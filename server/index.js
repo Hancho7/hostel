@@ -19,7 +19,7 @@ import displayHostelRoute from './route/hostel/hostel.js';
 import deleteHostelRoute from './route/hostel/delete.js';
 
 // RESET PASSWORD
-import resetPasswordRoute from './route/reset/resetPwd.js';
+import emailForResetRoute from './route/reset/resetPwd.js';
 import newPasswordRoute from './route/reset/newPassword.js';
 
 //COMMENTS
@@ -43,8 +43,8 @@ app.post('/log-In', signInRoute);
 app.get('/verify/:id/:token', verifyEmailRoute);
 
 // RESET ROUTE
-app.post('/resetPassword', resetPasswordRoute);
-app.post('/resetPassword/:id/verify/:token', newPasswordRoute);
+app.post('/forgotten-password', emailForResetRoute);
+app.post('/forgotten-password/:id/verify/:token', newPasswordRoute);
 
 // ROUTES HOSTEL
 app.get('/hostel', hostelRoute);

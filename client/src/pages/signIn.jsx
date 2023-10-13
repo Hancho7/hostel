@@ -2,10 +2,10 @@
 import { Link } from "react-router-dom";
 import signUpImg from "../assets/signIn.png";
 import { useSelector } from "react-redux/es/hooks/useSelector";
-import ClipLoader from "react-spinners/ClipLoader"
+import ClipLoader from "react-spinners/ClipLoader";
 
 export default function SignIn({ onSubmit, onChange, error }) {
-  const loading = useSelector(state=> state.user.loading)
+  const loading = useSelector((state) => state.user.loading);
   return (
     <div className="flex items-center mt-6 mb-6">
       <div className=" w-10/12 m-auto md:w-1/2">
@@ -29,14 +29,23 @@ export default function SignIn({ onSubmit, onChange, error }) {
             className="common-input"
             onChange={onChange}
           />
-          <input
-            type="password"
-            id="password"
-            name="password"
-            placeholder="Password"
-            className="common-input"
-            onChange={onChange}
-          />
+          <div className="flex flex-col w-10/12">
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Password"
+              className="text-[#7b7979] h-9 border-none w-auto shadow-md"
+              onChange={onChange}
+            />
+            {!error ? (
+              <></>
+            ) : (
+              <Link className=" text-right font-semibold" to="/forgotten-password">
+                Forgotten password?
+              </Link>
+            )}
+          </div>
 
           {/* ERROR IF ANY */}
           <p>{error}</p>
@@ -47,7 +56,7 @@ export default function SignIn({ onSubmit, onChange, error }) {
             title="Submit Form"
             className="flex flex-row justify-center gap-2 w-10/12 h-10 text-white bg-[#476faf] font-semibold hover:bg-[#7a90b3]"
           >
-            {loading? <ClipLoader size='1.5rem'/>: <></>}
+            {loading ? <ClipLoader size="1.5rem" /> : <></>}
             Login
           </button>
 

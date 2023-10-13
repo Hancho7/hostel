@@ -11,16 +11,16 @@ export const logIn = async (req, res)=>{
                 res.json(user)
             } 
             else{
-                res.json("NoMatch")
+                res.json("WrongPassword")
             }            
         }
         else{
-            res.json("NoMatch")
+            res.json("EmailNoMatch")
         }
        
     }
     catch(e){
-        console.log(e)
+        res.json("Error occured")
     }
 }
 

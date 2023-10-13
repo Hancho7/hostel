@@ -6,6 +6,8 @@ import { watchSignup } from './logs/signupSaga.jsx';
 import { watchVerification } from './logs/verifyEmailSaga.jsx';
 import { watchCommentCreation } from './comments/createComments.jsx';
 import { watchGetComments } from './comments/getComments.jsx';
+import {watchEmailForResetPassword} from './forgotten/resetEmail.jsx'
+import { watchResetPassword } from './forgotten/resetPassword.jsx';
 
 export default function* rootSaga() {
   yield all([
@@ -15,6 +17,8 @@ export default function* rootSaga() {
     watchVerification(),
     watchCommentCreation(),
     watchGetComments(),
+    watchEmailForResetPassword(),
+    watchResetPassword(),
     // Add other sagas here if needed.
   ]);
 }

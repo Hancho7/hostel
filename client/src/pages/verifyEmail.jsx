@@ -9,7 +9,7 @@ import Lottie from 'lottie-react'
 import animationData from '../assets/correct.json'
 import loadingGif from '../assets/loading.json'
 
-function EmailVerification() {
+function EmailVerification({ setIsEmailVerified }) {
   const { id, token } = useParams();
   console.log('user id',id)
   console.log('token',token)
@@ -20,9 +20,8 @@ function EmailVerification() {
     // Dispatch the `verify` action with id and token to initiate email verification
     dispatch(verify({ id, token }));
 
-    // Your previous code for making an API request to verify email
-    // ...
-  }, [dispatch, id, token]);
+    setIsEmailVerified(true)
+  }, [dispatch, id, token, setIsEmailVerified]);
 
   const { loading, success, error } = verificationState;
 

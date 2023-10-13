@@ -30,6 +30,7 @@ export const signUp = async (req, res) => {
         if (token) {
           res.json("checkEmail"); // User should check their email for verification
         } else {
+          await Token.deleteOne({userId: user._id})
           // Create a new verification token
           const newToken = await new Token({
             userId: user._id,

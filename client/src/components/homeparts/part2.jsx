@@ -1,15 +1,16 @@
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import HashLoader from "react-spinners/HashLoader";
 import { getHostels } from "../../features/hostels/displayHostels.jsx";
 import { Link } from "react-router-dom";
 import { GrLinkNext } from "react-icons/gr";
-import { addID } from "../../features/comments/commentsID.jsx";
+import { addID } from "../../features/hostels/hostelID.jsx";
 
 function Part2() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation()
 
   // Get the hostel data from the Redux store
   const loading = useSelector((state) => state.hostel.loading);
@@ -26,13 +27,15 @@ function Part2() {
   console.log('hostels ',hostels)
   const handleLearnMore = (hostel) => {
     console.log(hostel._id)
+    console.log("new location", location)
     if (!user) {
-      navigate("/sign-in");
+      navigate("/sign-in", {state: {from: location.pathname}});
       return;
     }
-    console.log(hostel._id)
+    console.log(hostel)
     dispatch(addID(hostel));
-    navigate(`/hostel/${hostel._id}`);
+    navigate(`/hostel/${hostel}`);
+    console.log("after navigation", location)
   };
 
   return (

@@ -2,27 +2,26 @@ import Token from "../../models/token.js";
 import Users from "../../models/user.js";
 
 export const newPassword = async (req, res) => {
-  const { email, password } = req.body;
+  const {id, token} = req.params
 
   try {
-    const user = await Users.findOne({ email:email });
+    const user = await Users.findOne({_id: id });
     if (!user) {
       res.json("invalid link");
     }
 
-    const token = await Token.findOne({
+    const verificationToken = await Token.findOne({
       userId: user._id,
-      token: req.params.token,
+      token: token
     });
 
-    if (!token) {
+    if (!verificationToken) {
       res.json("invalid link");
     }
-    await Users.updateOne({ _id: user._id }, { password: password });
-    await Token.deleteOne({ _id: token._id });
-
+    await Users.updateOne({ _id: user._id }, { password: req.body.password });
+    await Token.deleteOne({ _id: verificationToken._id });
     res.json("password updated");
   } catch (error) {
-    console.log(error);
+    res.status(500).json("Error occured")
   }
 };

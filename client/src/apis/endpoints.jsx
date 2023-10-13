@@ -4,3 +4,4 @@ export const HOSTEL = "/hostel";
 export const VERIFY_EMAIL = "/verify";
 export const CREATECOMMENTS = "/create-comments";
 export const READCOMMENTS = "/read-comments";
+export const ENTEREMAIL =  "/forgotten-password"

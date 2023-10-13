@@ -7,7 +7,6 @@ import SignIn from "../pages/signIn.jsx";
 
 export default function LoginWrapper() {
   const location = useLocation()
-  const from = location.state?.from?.pathname || '/';
   const user = useSelector(state=> state.user.user)
   const navigate = useNavigate()
   const [email, setEmail] = useState('');
@@ -30,7 +29,10 @@ export default function LoginWrapper() {
     if(!user){
       console.log('error')
     }
-    navigate(from, {replace: true})
+    console.log("location state from",location.state?.from)
+    if(location.state?.from){
+      navigate(location.state.from)
+    }  
    
   }
 

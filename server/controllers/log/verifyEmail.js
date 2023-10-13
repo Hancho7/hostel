@@ -35,7 +35,7 @@ export const verifyEmail = async (req, res) => {
 
     // Mark the user as verified and delete the verification token
     await Users.updateOne({ _id: user._id }, { verified: true });
-    await Token.deleteOne({ _id: token._id });
+    await Token.deleteOne({ _id: verificationToken._id });
 
     return res.json({ message: "Email verification successful" });
   } catch (error) {
