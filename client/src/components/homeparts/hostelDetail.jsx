@@ -3,15 +3,18 @@ import { useSelector } from "react-redux";
 import { RxDotFilled } from "react-icons/rx";
 import { BsChevronCompactLeft } from "react-icons/bs";
 import { BsChevronCompactRight } from "react-icons/bs";
+import { useParams } from "react-router-dom";
 
 function HostelDetail() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const id = useSelector((state) => state.commentID.id);
+  const {id} = useParams()
+ 
   const hostels = useSelector((state) => state.hostel.hostel);
+ 
 
   // Custom function to find the selected hostel by ID
   const findHostelById = (id) => {
-    return hostels.find((hostel) => hostel._id.toString() === id);
+    return hostels.find((hostel) => hostel._id === id);
   };
 
   // Find the selected hostel by ID

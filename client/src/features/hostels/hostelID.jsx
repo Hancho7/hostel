@@ -5,8 +5,8 @@ const initialState = {
 }
 
 
-const commentID = createSlice({
-    name: 'commentID',
+const hostelID = createSlice({
+    name: 'hostelID',
     initialState,
     reducers:{
         addID: (state, action)=>{
@@ -15,5 +15,5 @@ const commentID = createSlice({
     }
 })
 
-export const {addID}= commentID.actions
-export default commentID.reducer
+export const {addID}= hostelID.actions
+export default hostelID.reducer

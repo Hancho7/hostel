@@ -16,6 +16,10 @@ export default {
         '.common-input': {
           '@apply text-[#7b7979] h-9 border-none w-10/12 shadow-md': {},
         },
+        '.common-input2': {
+          '@apply rounded h-9 px-2 font-semibold text-black': {},
+        },
+        
       };
 
       addUtilities(commonInputStyles, ['responsive', 'hover']);

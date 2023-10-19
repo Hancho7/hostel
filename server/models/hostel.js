@@ -1,46 +1,61 @@
 import mongoose from "mongoose";
 
-const HostelSchema= mongoose.Schema(
+const HostelSchema = mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+    min: 2,
+  },
+  location: {
+    type: String,
+    required: true,
+    min: 10,
+    max: 50,
+  },
+  hostelDescription: [
     {
-        name: {
-            type: String,
-            required : true,
-            min: 2
-        },
-        location: {
-            type: String,
-            required : true,
-            min: 10,
-            max:50
-        },
-        hostelDescription: {
-            type: String,
-            required : true,
-            min: 10,
-            max: 100
-        },
-        prices:[{
-            numberInRoom: {type: String},
-            price: {type: Number}
-        }],
-        imageUrl: [{
-            type: String,
-            unique: true
-        }],
-        phone: {
-            type: String,
-            required : true,
-            unique: true
-        }
-    }
-)
+      type: String,
+      required: true,
+      min: 1,
+      max: 100,
+    },
+  ],
+  prices: [
+    {
+      numberInRoom: { type: String },
+      price: { type: Number },
+    },
+  ],
+  rooms: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Room",
+    },
+  ],
+  imageUrl: [
+    {
+      type: String,
+      unique: true,
+    },
+  ],
+  phone: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  admin: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User", // Reference to the User model
+    required: true,
+  },
+});
 
 HostelSchema.methods.toJSON = function () {
-    const hostelObject = this.toObject();
-    delete hostelObject.client; // Exclude the circular reference
-  
-    return hostelObject;
-  };
+  const hostelObject = this.toObject();
+  delete hostelObject.client; // Exclude the circular reference
 
-const Hostel = mongoose.model("Hostel", HostelSchema)
-export default Hostel
+  return hostelObject;
+};
+
+const Hostel = mongoose.model("Hostel", HostelSchema);
+export default Hostel;

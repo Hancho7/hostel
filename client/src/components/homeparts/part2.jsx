@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import HashLoader from "react-spinners/HashLoader";
 import { getHostels } from "../../features/hostels/displayHostels.jsx";
@@ -10,7 +10,6 @@ import { addID } from "../../features/hostels/hostelID.jsx";
 function Part2() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const location = useLocation()
 
   // Get the hostel data from the Redux store
   const loading = useSelector((state) => state.hostel.loading);
@@ -24,18 +23,15 @@ function Part2() {
     dispatch(getHostels());
   }, [dispatch]);
 
-  console.log('hostels ',hostels)
-  const handleLearnMore = (hostel) => {
-    console.log(hostel._id)
-    console.log("new location", location)
+  console.log("hostels ", hostels);
+  const handleLearnMore = (hostel, currentLocation) => {
     if (!user) {
-      navigate("/sign-in", {state: {from: location.pathname}});
+      navigate("/sign-in", { state: { from: currentLocation } });
       return;
     }
-    console.log(hostel)
+    console.log("currentLocation", currentLocation);
     dispatch(addID(hostel));
     navigate(`/hostel/${hostel}`);
-    console.log("after navigation", location)
   };
 
   return (
@@ -62,7 +58,11 @@ function Part2() {
                 <section className="flex flex-col items-center gap-y-2 bg-[#18428f] p-2">
                   <h2 className=" font-semibold text-2xl">{hostel.name}</h2>
                   <p>{hostel.location}</p>
-                  <button onClick={()=>handleLearnMore(hostel._id)}>
+                  <button
+                    onClick={() =>
+                      handleLearnMore(hostel._id, window.location.pathname)
+                    }
+                  >
                     <i>
                       <Link className="flex flex-row text-[#466d7d]">
                         Learn More

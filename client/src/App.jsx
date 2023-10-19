@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useState } from "react"; // Import useState
+import { useState } from "react";
 import Navbar from "./components/navBar";
 import Footer from "./components/footer";
 import Home from "./pages/home";
@@ -10,15 +10,23 @@ import EmailVerification from "./pages/verifyEmail.jsx";
 import HostelDetail from "./components/homeparts/hostelDetail";
 import RequireAuth from "./routes/privateRoute";
 import NotFound from "./pages/404.jsx";
-import ResetEmail from "./pages/resetEmail.jsx"
+import ResetEmail from "./pages/resetEmail.jsx";
 import NewPassword from "./pages/newPassword.jsx";
 
+// ADMIN DASHBOARD IMPORTS
+import Admin from "./adminDashboard/Admin";
+import GetHostel from "./adminDashboard/pages/readHostel";
+import DeleteHostel from "./adminDashboard/pages/deleteHostel";
+import CreateRooms from "./adminDashboard/pages/createRoom";
+import UploadHostel from "./adminDashboard/logic/createHostel";
+import Bookings from "./adminDashboard/pages/bookings";
+
 function App() {
-  const [isEmailVerified, setIsEmailVerified] = useState(false); // Initialize state
+  const [nav, setNav] = useState(false); // Initialize state
 
   return (
     <Router>
-      {isEmailVerified ? null : <Navbar />} {/* Conditionally render Navbar */}
+      {!nav ? <Navbar /> : null} {/* Conditionally render Navbar */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/contact-us" element={<ContactUs />} />
@@ -27,20 +35,35 @@ function App() {
         <Route element={<RequireAuth allowedRoles={["user", "manager"]} />}>
           <Route path="/hostel/:id" element={<HostelDetail />} />
         </Route>
-        <Route path="/forgotten-password" element={<ResetEmail/>}/>
-        <Route path="/forgotten-password/:id/verify/:token" element={<NewPassword/>}/>
 
+        {/* RESETTING FORGOTTEN PASSWORD */}
+        <Route path="/forgotten-password" element={<ResetEmail />} />
+        <Route
+          path="/forgotten-password/:id/verify/:token"
+          element={<NewPassword />}
+        />
+
+        {/* E-MAIL VERIFICATION */}
         <Route
           path="/verify/:id/:token"
-          element={
-            <EmailVerification setIsEmailVerified={setIsEmailVerified} />
-          }
+          element={<EmailVerification nav={setNav} />}
         />
+
+        {/* ADMIN DASHBOARD */}
+        <Route element={<RequireAuth allowedRoles={["manager"]} />}>
+          <Route path="/admin" element={<Admin nav={setNav} />}>
+            <Route path="/admin/create-hostel" element={<UploadHostel />} />
+            <Route path="/admin/" element={<GetHostel />} />
+            <Route path="/admin/delete-hostel" element={<DeleteHostel />} />
+            <Route path="/admin/add-rooms" element={<CreateRooms />} />
+            <Route path="/admin/bookings" element={<Bookings />} />
+          </Route>
+        </Route>
 
         {/* 404 Catch-all route */}
         <Route path="*" element={<NotFound />} />
       </Routes>
-      {isEmailVerified ? null : <Footer />} {/* Conditionally render Footer */}
+      {!nav ? <Footer /> : null} {/* Conditionally render Footer */}
     </Router>
   );
 }

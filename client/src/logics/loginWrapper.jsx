@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 import {  startLogin } from '../features/logs/loginSlice.jsx';
 import SignIn from "../pages/signIn.jsx";
+import { addID } from "../features/hostels/hostelID.jsx";
 
 export default function LoginWrapper() {
   const location = useLocation()
@@ -13,6 +14,7 @@ export default function LoginWrapper() {
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
   const error = useSelector(state=>state.user.error)
+  const hostelID = useSelector(state=>state.hostelID.id)
 
   const handleChange = (e) => {
     if (e.target.name === 'email') {
@@ -32,9 +34,16 @@ export default function LoginWrapper() {
     console.log("location state from",location.state?.from)
     if(location.state?.from){
       navigate(location.state.from)
-    }  
+    }  else if(hostelID) {
+      // If there is a selected hostel ID, navigate to the corresponding hostel detail page
+      navigate(`/hostel/${hostelID}`);
+      // Reset the selected hostel to avoid redirection on future sign-ins
+      dispatch(addID(null));
+    }
+    navigate("/")
    
   }
+  console.log("hostel", hostelID)
 
   return (
     <>

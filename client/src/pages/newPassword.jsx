@@ -1,5 +1,5 @@
 import Lottie from "lottie-react";
-import resetEmail from "../assets/resetEmail.json";
+import resetPassword from "../assets/resetPassword.json";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
@@ -49,7 +49,7 @@ function NewPassword() {
         </form>
       </section>
       <section>
-        <Lottie animationData={resetEmail} />
+        <Lottie animationData={resetPassword} />
       </section>
     </div>
   );
