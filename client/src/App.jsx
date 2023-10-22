@@ -20,6 +20,7 @@ import DeleteHostel from "./adminDashboard/pages/deleteHostel";
 import CreateRooms from "./adminDashboard/pages/createRoom";
 import UploadHostel from "./adminDashboard/logic/createHostel";
 import Bookings from "./adminDashboard/pages/bookings";
+import Room from "./adminDashboard/pages/roomRoute";
 
 function App() {
   const [nav, setNav] = useState(false); // Initialize state
@@ -57,6 +58,7 @@ function App() {
             <Route path="/admin/delete-hostel" element={<DeleteHostel />} />
             <Route path="/admin/add-rooms" element={<CreateRooms />} />
             <Route path="/admin/bookings" element={<Bookings />} />
+            <Route path="/admin/add-rooms/:id" element={<Room/>}/>
           </Route>
         </Route>
 

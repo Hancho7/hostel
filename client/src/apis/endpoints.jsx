@@ -6,3 +6,4 @@ export const CREATECOMMENTS = "/create-comments";
 export const READCOMMENTS = "/read-comments";
 export const ENTEREMAIL =  "/forgotten-password";
 export const UPLOADHOSTEL = "/upload-hostel"
+export const ADDROOMS = "/add-Rooms"

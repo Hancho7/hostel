@@ -12,31 +12,33 @@ function* handleHostelUpload(action) {
   try {
     yield put(uploadHostelLoading());
 
-    // Create a FormData object to send the form data, including files
     const formData = new FormData();
-    console.log("saga",action.payload)
+
+    // Append files without the index
+    action.payload.files.forEach((file) => {
+      formData.append("files", file);
+    });
+
     for (const key in action.payload) {
-        if (key === "files") {
-          // Append files to FormData
-          for (let i = 0; i < action.payload[key].length; i++) {
-            formData.append(key, action.payload[key][i]);
-          }
-        } else if (key === "prices" || key === "images") {
-          // Append prices and images to FormData
-          formData.append(key, action.payload[key]);
+      if (key !== "files") {
+        if (key === "prices") {
+          action.payload[key].forEach((price, index) => {
+            formData.append(`prices[${index}][numberInRoom]`, price.numberInRoom);
+            formData.append(`prices[${index}][price]`, price.price);
+          });
         } else {
           formData.append(key, action.payload[key]);
         }
-     }
+      }
+    }
 
     const config = {
       headers: {
-        "Content-Type": "multipart/form-data", // Set the Content-Type for file uploads
+        "Content-Type": "multipart/form-data",
       },
     };
-    console.log("formData saga", formData);
+
     const response = yield call(axios.post, UPLOADHOSTEL, formData, config);
-    console.log("response saga", response);
 
     if (response.status === 200) {
       yield put(uploadHostelSuccess(response.data));

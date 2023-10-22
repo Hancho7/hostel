@@ -13,22 +13,11 @@ const RoomSchema = mongoose.Schema({
     type: Number,
     required: true,
   },
-  bookings: [
-    {
-      user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User", // You'll need to create a User model for storing user information.
-      },
-      checkInDate: {
-        type: Date,
-        required: true,
-      },
-      checkOutDate: {
-        type: Date,
-        required: true,
-      },
-    },
-  ],
+  hostel: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Hostel'
+  },
 });
 
 const Room = mongoose.model("Room", RoomSchema);
+export default Room;

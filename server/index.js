@@ -18,6 +18,9 @@ import uploadRoute from './route/hostel/upload.js';
 import displayHostelRoute from './route/hostel/hostel.js';
 import deleteHostelRoute from './route/hostel/delete.js';
 
+//ROOM MANAGEMENT
+import roomUploadRoute from './route/hostelRooms/createHostelRoomRoute.js'
+
 // RESET PASSWORD
 import emailForResetRoute from './route/reset/resetPwd.js';
 import newPasswordRoute from './route/reset/newPassword.js';
@@ -51,6 +54,9 @@ app.get('/hostel', hostelRoute);
 app.post('/upload-hostel', uploadRoute);
 // app.get('/hostel-images', displayHostelRoute);
 app.delete('/delete-hostel', deleteHostelRoute);
+
+// HOSTEL ROOMS ROUTE
+app.post("/add-Rooms", roomUploadRoute)
 
 //COMMENTS
 app.post('/create-comments', createCommentRoute)

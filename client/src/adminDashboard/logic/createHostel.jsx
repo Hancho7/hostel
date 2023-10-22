@@ -65,22 +65,32 @@ export default function UploadHostel() {
   // Handle file input change
   const handleImageChange = (e) => {
     const selectedFiles = Array.from(e.target.files);
-    // Update "files" field with an array of objects
+    // Update "files" field with an array of file objects
     setFormData({
       ...formData,
-      files: selectedFiles.map((file) => ({
-        name: file.name,
-        size: file.size,
-        type: file.type,
-      })),
+      files: selectedFiles, // Simply set the selected files
     });
   };
+  
+
 
   const handleUpload = (e) => {
     e.preventDefault();
-    console.log("Form Data", formData);
-    dispatch(uploadHostelAction(formData));
-    // Handle the upload here, including formData.files for file uploads
+
+    // Convert prices to an array of objects
+    const pricesArray = formData.prices.map((price) => ({
+      numberInRoom: price.numberInRoom,
+      price: price.price,
+    }));
+  
+    // Update the FormData object
+    const updatedFormData = {
+      ...formData,
+      prices: pricesArray,
+    };
+  
+    console.log("Form Data", updatedFormData);
+    dispatch(uploadHostelAction(updatedFormData));
   };
 
   return (

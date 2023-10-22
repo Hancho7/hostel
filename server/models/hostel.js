@@ -26,12 +26,6 @@ const HostelSchema = mongoose.Schema({
       price: { type: Number },
     },
   ],
-  rooms: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Room",
-    },
-  ],
   imageUrl: [
     {
       type: String,

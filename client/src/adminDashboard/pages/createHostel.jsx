@@ -16,6 +16,7 @@ function CreateHostel({
         Upload a Hostel
       </h2>
       <form
+      encType="multipart/form-data"
         className="flex flex-col  gap-4 w-[100%] md:w-[60%] md:m-auto p-5 bg-black rounded-md "
         onSubmit={handleUpload}
       >

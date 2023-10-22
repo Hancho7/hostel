@@ -20,6 +20,9 @@ import resetPasswordSlice from '../features/resetPassword/resetPassword.jsx';
 import uploadHostelSlice from "../features/hostels/createHostel.jsx"
 import hostelDisplayReducer from '../features/hostels/displayHostels.jsx'
 
+//ROOMS
+import addRoomSlice from '../features/hostels/rooms/addRooms.jsx'
+
 
 
 // SAGA CONFIGURATION
@@ -44,6 +47,9 @@ const store = configureStore({
     // HOSTEL MANAGEMENT
     hostel: hostelDisplayReducer,
     uploadHostel: uploadHostelSlice,
+
+    //ROOMS
+    addRoom: addRoomSlice,
 
   },
   middleware: [sagaMiddleware],

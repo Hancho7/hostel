@@ -13,6 +13,9 @@ import { watchResetPassword } from "./forgotten/resetPassword.jsx";
 import { watchFetchHostels } from "./hostel/displayHostel.jsx";
 import { watchHostelUpload } from "./hostel/createHostel.jsx";
 
+//ROOM MANAGEMENT
+import { watchAddRoom } from "./hostel/rooms/addRooms.jsx";
+
 export default function* rootSaga() {
   yield all([
     // AUTHENTICATION
@@ -31,6 +34,8 @@ export default function* rootSaga() {
     // HOSTEL MANAGEMENT
     watchFetchHostels(),
     watchHostelUpload(),
-    // Add other sagas here if needed.
+    
+    //ROOM MANAGMENT
+    watchAddRoom(),
   ]);
 }
