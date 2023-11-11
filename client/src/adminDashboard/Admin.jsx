@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { IoIosArrowBack } from "react-icons/io";
@@ -13,6 +13,7 @@ import { BiLogOut } from "react-icons/bi";
 
 export default function Admin({ nav }) {
   const user = useSelector((state) => state.user.user);
+  const navigate = useNavigate();
   console.log(user);
   const [open, setOpen] = useState(false);
  
@@ -136,7 +137,10 @@ export default function Admin({ nav }) {
           })}
         </div>
 
-        <div className={`${!open && "justify-center"} flex gap-x-4 py-2 px-6 items-center font-semibold rounded-md hover:bg-slate-400 hover:cursor-pointer`}>
+        <div className={`${!open && "justify-center"} flex gap-x-4 py-2 px-6 items-center font-semibold rounded-md hover:bg-slate-400 hover:cursor-pointer`} onClick={()=>{
+          navigate('/');
+          nav(false)
+        }}>
 
           <span><BiLogOut /></span>
           <p className={`${!open && "hidden"}`}>Return</p>

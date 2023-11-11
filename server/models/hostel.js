@@ -44,12 +44,18 @@ const HostelSchema = mongoose.Schema({
   },
 });
 
-HostelSchema.methods.toJSON = function () {
-  const hostelObject = this.toObject();
-  delete hostelObject.client; // Exclude the circular reference
 
-  return hostelObject;
-};
+// Define a virtual field for 'fullRooms' to populate rooms
+HostelSchema.virtual("fullRooms", {
+  ref: "Room",
+  localField: "_id",
+  foreignField: "hostel",
+});
+
+// Optionally, ensure virtuals are included when converting the document to an object
+HostelSchema.set("toObject", { virtuals: true });
+HostelSchema.set("toJSON", { virtuals: true });
+
 
 const Hostel = mongoose.model("Hostel", HostelSchema);
 export default Hostel;

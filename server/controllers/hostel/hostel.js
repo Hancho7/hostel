@@ -5,7 +5,7 @@ import { GetObjectCommand } from "@aws-sdk/client-s3";
 
 export const getHostels = async (req, res) => {
   try {
-    const hostels = await Hostel.find();
+    const hostels = await Hostel.find().populate("fullRooms");
 
     const updatedHostels = [];
 
@@ -36,6 +36,6 @@ export const getHostels = async (req, res) => {
 
     res.status(200).json(updatedHostels);
   } catch (error) {
-    res.status(404).json({ message: error.message });
+    res.status(500).json({ message: error.message });
   }
 };

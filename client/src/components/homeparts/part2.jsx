@@ -31,7 +31,7 @@ function Part2() {
     }
     console.log("currentLocation", currentLocation);
     dispatch(addID(hostel));
-    navigate(`/hostel/${hostel}`);
+    navigate(`/${hostel}`);
   };
 
   return (

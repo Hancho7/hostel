@@ -1,9 +1,9 @@
 import Room from "../../models/room.js";
 import Hostel from "../../models/hostel.js";
 
-
 export const createRooms = async (req, res) => {
   const { name, capacity, hostelID } = req.body;
+  console.log("request body", req.body);
 
   try {
     const hostel = await Hostel.findOne({ _id: hostelID });
@@ -21,13 +21,18 @@ export const createRooms = async (req, res) => {
     const newHostelRoom = new Room({
       name,
       capacity,
+      remainingCapacity: capacity,
       hostel: hostel._id,
     });
 
-    await newHostelRoom.save();
+    const saved = await newHostelRoom.save();
 
+    if (!saved) {
+      return res.status(400).json("Failed to save the room");
+    }
     return res.status(201).json(newHostelRoom); // Consider using a 201 status code for successful resource creation
   } catch (error) {
+    console.error("Error creating room:", error);
     return res.status(500).json({ error: "Error creating the room" });
   }
 };

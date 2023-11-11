@@ -30,12 +30,13 @@ function App() {
       {!nav ? <Navbar /> : null} {/* Conditionally render Navbar */}
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route element={<RequireAuth allowedRoles={["user", "manager"]} />}>
+          <Route path="/:id" element={<HostelDetail />} />
+        </Route>
         <Route path="/contact-us" element={<ContactUs />} />
         <Route path="/sign-in" element={<LoginWrapper />} />
         <Route path="/sign-up" element={<SignUpWrapper />} />
-        <Route element={<RequireAuth allowedRoles={["user", "manager"]} />}>
-          <Route path="/hostel/:id" element={<HostelDetail />} />
-        </Route>
+       
 
         {/* RESETTING FORGOTTEN PASSWORD */}
         <Route path="/forgotten-password" element={<ResetEmail />} />
