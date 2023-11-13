@@ -20,6 +20,7 @@ import deleteHostelRoute from './route/hostel/delete.js';
 
 //ROOM MANAGEMENT
 import roomUploadRoute from './route/hostelRooms/createHostelRoomRoute.js'
+import bookingRoute from './route/hostelRooms/booking.js'
 
 // RESET PASSWORD
 import emailForResetRoute from './route/reset/resetPwd.js';
@@ -57,6 +58,7 @@ app.delete('/delete-hostel', deleteHostelRoute);
 
 // HOSTEL ROOMS ROUTE
 app.post("/add-Rooms", roomUploadRoute)
+app.use('/hostelRoom', bookingRoute)
 
 //COMMENTS
 app.post('/create-comments', createCommentRoute)

@@ -13,7 +13,7 @@ export default async function saveToBucket(files) {
 
       // Use sharp to resize the image to the desired dimensions
       const resizedImageBuffer = await sharp(file.buffer)
-        .resize(1080, 1928) // Set the width and height
+        .resize(720, 540) // Set the width and height
         .toBuffer();
 
       const uploadFileParams = {

@@ -19,9 +19,9 @@ function CreateRooms() {
   }, [dispatch]);
   console.log(myHostels);
 
-  const handleRoomRoute= (id)=>{
-    navigate(`/admin/add-rooms/${id}`)
-  }
+  const handleRoomRoute = (id) => {
+    navigate(`/admin/add-rooms/${id}`);
+  };
 
   return (
     <div>
@@ -44,7 +44,12 @@ function CreateRooms() {
           <p>You do not have any hostels yet...</p>
         </div>
       ) : (
-        <div className="grid">
+        <div
+          className="grid"
+          style={{
+            gridTemplateColumns: "repeat(auto-fit, minmax(236px, 1fr))",
+          }}
+        >
           {myHostels.map((hostel) => (
             <div
               key={hostel._id}
@@ -54,12 +59,17 @@ function CreateRooms() {
                 <img
                   src={hostel.imageUrl[0]}
                   alt={hostel.name}
-                  className=" w-full h-96"
+                  className=" w-full h-36"
                 />
               </section>
               <p className=" relative -top-8">{hostel.name}</p>
               <section className="relative top-[-1.5rem]">
-                <button className="bg-[#7752FE] w-full h-10 hover:bg-slate-400" onClick={()=>handleRoomRoute(hostel._id)}>ADD A ROOM</button>
+                <button
+                  className="bg-[#7752FE] w-full h-10 hover:bg-slate-400"
+                  onClick={() => handleRoomRoute(hostel._id)}
+                >
+                  ADD A ROOM
+                </button>
               </section>
             </div>
           ))}

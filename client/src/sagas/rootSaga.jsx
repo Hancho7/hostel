@@ -14,7 +14,12 @@ import { watchFetchHostels } from "./hostel/displayHostel.jsx";
 import { watchHostelUpload } from "./hostel/createHostel.jsx";
 
 //ROOM MANAGEMENT
+// CREATING ROOM
 import { watchAddRoom } from "./hostel/rooms/addRooms.jsx";
+// BOOKING ROOM
+import { watchBooking } from "./hostel/rooms/booking.jsx";
+//DEIPLAYING BOOKINGS
+import {watchGetBookings} from "./hostel/rooms/getBookings.jsx"
 
 export default function* rootSaga() {
   yield all([
@@ -37,5 +42,7 @@ export default function* rootSaga() {
     
     //ROOM MANAGMENT
     watchAddRoom(),
+    watchBooking(),
+    watchGetBookings(),
   ]);
 }

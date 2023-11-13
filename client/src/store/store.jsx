@@ -22,6 +22,10 @@ import hostelDisplayReducer from '../features/hostels/displayHostels.jsx'
 
 //ROOMS
 import addRoomSlice from '../features/hostels/rooms/addRooms.jsx'
+import bookingSlice from '../features/hostels/rooms/booking.jsx';
+
+// DISPLAYING BOOKINGS
+import getBookingSlice from '../features/hostels/rooms/getBookings.jsx'
 
 
 
@@ -50,6 +54,8 @@ const store = configureStore({
 
     //ROOMS
     addRoom: addRoomSlice,
+    book: bookingSlice,
+    Bookings: getBookingSlice,
 
   },
   middleware: [sagaMiddleware],

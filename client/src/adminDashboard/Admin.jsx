@@ -50,10 +50,11 @@ export default function Admin({ nav }) {
       icons: <MdOutlineAddHome />,
       path: "/admin/add-rooms",
     },
+    // navigate(`/${hostel}`);
     {
       title: "Booking",
       icons: <TbBrandBooking />,
-      path: "/admin/bookings",
+      path: `/admin/bookings/${user._id}`,
     },
   ];
 

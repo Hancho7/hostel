@@ -7,3 +7,5 @@ export const READCOMMENTS = "/read-comments";
 export const ENTEREMAIL =  "/forgotten-password";
 export const UPLOADHOSTEL = "/upload-hostel"
 export const ADDROOMS = "/add-Rooms"
+export const BOOKING = "/hostelRoom/book-room"
+export const GETBOOKING = "/hostelRoom/get-bookings"
