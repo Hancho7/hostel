@@ -26,12 +26,12 @@ function CreateRooms() {
   return (
     <div>
       <div className="flex gap-4 mb-7">
-        <div className="w-40 h-16 text-center shadow-md bg-[#183244] rounded font-semibold">
+        <div className="h-16 text-center shadow-md bg-[#183244] rounded font-semibold">
           <h1>number of hostels</h1>
           <h1 className="text-2xl">{numberOfHostels}</h1>
         </div>
 
-        <div className="w-40 h-16 text-center shadow-md bg-[#183244] rounded font-semibold">
+        <div className="h-16 text-center shadow-md bg-[#183244] rounded font-semibold">
           <h1>Your hostels</h1>
           <h1 className="text-2xl">{numberOfMyHostels}</h1>
         </div>

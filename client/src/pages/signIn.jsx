@@ -56,8 +56,8 @@ export default function SignIn({ onSubmit, onChange, error }) {
             title="Submit Form"
             className="flex flex-row justify-center gap-2 w-10/12 h-10 text-white bg-[#476faf] font-semibold hover:bg-[#7a90b3]"
           >
-            {loading ? <ClipLoader size="1.5rem" /> : <></>}
-            Login
+            {loading ? <ClipLoader size="1.5rem" className=" mt-auto mb-auto" /> : <></>}
+            <span className=" mt-auto mb-auto">Login</span>
           </button>
 
           <div className="w-10/12 mt-8">

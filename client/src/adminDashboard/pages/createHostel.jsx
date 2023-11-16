@@ -16,8 +16,8 @@ function CreateHostel({
         Upload a Hostel
       </h2>
       <form
-      encType="multipart/form-data"
-        className="flex flex-col  gap-4 w-[100%] md:w-[60%] md:m-auto p-5 bg-black rounded-md "
+        encType="multipart/form-data"
+        className="flex flex-col  gap-4 w-[100%] md:w-[80%] lg:w-[60%] md:m-auto p-5 bg-black rounded-md "
         onSubmit={handleUpload}
       >
         <input
@@ -36,12 +36,12 @@ function CreateHostel({
           value={formData.location}
           onChange={handleInputChange}
         />
-        <div className=" flex items-center gap-3">
-          <div className="flex flex-col gap-y-2">
+        <div className="flex items-center flex-row sm:flex-row gap-3">
+          <div className="flex flex-col gap-y-2 w-full sm:w-auto">
             {formData.hostelDescription.map((description, index) => (
-              <div key={index} className=" flex gap-y-2">
+              <div key={index} className="flex gap-y-2">
                 <input
-                  className=" common-input2"
+                  className="common-input2 w-full md:w-auto"
                   type="text"
                   placeholder="Hostel Description"
                   value={description}
@@ -58,44 +58,48 @@ function CreateHostel({
               e.preventDefault();
               addDescription();
             }}
-            className=" bg-slate-200 ml-1 text-white"
+            className="bg-slate-200 ml-0 mt-2 md:ml-1 text-white"
           >
-            <GrFormAdd className=" text-white" />
+            <GrFormAdd className="text-white" />
           </button>
         </div>
 
-        <div className=" flex items-center gap-3">
-          <div>
+        {/* Prices */}
+        <div className="flex flex-row gap-5">
+          <div className="flex flex-col gap-3">
             {formData.prices.map((price, index) => (
-              <div key={index} className="flex gap-x-2 flex-col md:flex-row">
-                <input
-                  className=" common-input2 my-2"
-                  type="text"
-                  placeholder="Number in Room"
-                  value={price.numberInRoom}
-                  onChange={(e) =>
-                    handlePriceChange(index, "numberInRoom", e.target.value)
-                  }
-                />
-                <input
-                  className=" common-input2 my-2"
-                  type="number"
-                  placeholder="Price"
-                  value={price.price}
-                  onChange={(e) => {
-                    handlePriceChange(index, "price", e.target.value);
-                  }}
-                />
+              <div key={index} className="flex gap-x-2 flex-row">
+                <div className="flex flex-col md:flex-row md:gap-2">
+                  <input
+                    className="common-input2 my-2 w-full md:w-auto"
+                    type="text"
+                    placeholder="Number in Room"
+                    value={price.numberInRoom}
+                    onChange={(e) =>
+                      handlePriceChange(index, "numberInRoom", e.target.value)
+                    }
+                  />
+                  <input
+                    className="common-input2 my-2 w-full md:w-auto"
+                    type="number"
+                    placeholder="Price"
+                    value={price.price}
+                    onChange={(e) => {
+                      handlePriceChange(index, "price", e.target.value);
+                    }}
+                  />
+                </div>
               </div>
             ))}
           </div>
 
+          {/* Add button */}
           <button
             onClick={(e) => {
               e.preventDefault();
               addPrice();
             }}
-            className=" bg-slate-200 ml-1 text-white"
+            className="bg-slate-200 m-auto text-white h-8 self-end md:self-center"
           >
             <GrFormAdd />
           </button>

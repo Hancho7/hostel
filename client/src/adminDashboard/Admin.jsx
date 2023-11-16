@@ -9,32 +9,50 @@ import { AiFillDelete, AiFillRead } from "react-icons/ai";
 import { MdOutlineAddHome } from "react-icons/md";
 import { TbBrandBooking } from "react-icons/tb";
 import { BiLogOut } from "react-icons/bi";
-
+import DropdownMenu from "./dropdownMenu.jsx";
 
 export default function Admin({ nav }) {
   const user = useSelector((state) => state.user.user);
   const navigate = useNavigate();
   console.log(user);
   const [open, setOpen] = useState(false);
- 
+
   useEffect(() => {
     nav(true);
   }, [nav]);
- 
+
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+  useEffect(() => {
+    nav(true);
+
+    const handleResize = () => {
+      setIsSmallScreen(window.innerWidth <= 768);
+    };
+
+    handleResize(); // Check on initial render
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [nav]);
+
   const pages = [
     {
       title: "Hostel",
       icons: null,
     },
     {
-      title: "Create",
+      title: "Add Hostel",
       icons: <FaHotel />,
-      path:  "/admin/create-hostel",
+      path: "/admin/create-hostel",
     },
     {
       title: "Delete",
       icons: <AiFillDelete />,
-      path:  "/admin/delete-hostel",
+      path: "/admin/delete-hostel",
     },
     {
       title: "Read",
@@ -80,12 +98,15 @@ export default function Admin({ nav }) {
           backgroundColor: "#001524",
         }}
       >
-        <div></div>
+        <div className="hidden md:block"></div>
 
         <img src={logo} className=" rounded-full w-11" />
         <div className="flex justify-end gap-3">
-          <h1>{user.firstName}</h1>
-          <div>Admin</div>
+          <h1 className=" self-center md:self-auto">{user.firstName}</h1>
+          {!isSmallScreen && <div>Admin</div>}
+          {isSmallScreen && (
+            <DropdownMenu pages={pages} navigate={navigate} user={user} />
+          )}
         </div>
       </div>
 
@@ -93,7 +114,7 @@ export default function Admin({ nav }) {
       <div
         className={`${
           open ? " w-60" : " w-20"
-        } h-screen bg-[#0b0c53ec] duration-500 p-4 flex flex-col justify-between`}
+        } h-screen bg-[#0b0c53ec] duration-500 p-4 md:flex flex-col justify-between hidden`}
         style={{ gridArea: "sidebar", position: "relative" }}
       >
         <IoIosArrowBack
@@ -138,18 +159,31 @@ export default function Admin({ nav }) {
           })}
         </div>
 
-        <div className={`${!open && "justify-center"} flex gap-x-4 py-2 px-6 items-center font-semibold rounded-md hover:bg-slate-400 hover:cursor-pointer`} onClick={()=>{
-          navigate('/');
-          nav(false)
-        }}>
-
-          <span><BiLogOut /></span>
+        <div
+          className={`${
+            !open && "justify-center"
+          } flex gap-x-4 py-2 px-6 items-center font-semibold rounded-md hover:bg-slate-400 hover:cursor-pointer`}
+          onClick={() => {
+            navigate("/");
+            nav(false);
+          }}
+        >
+          <span>
+            <BiLogOut />
+          </span>
           <p className={`${!open && "hidden"}`}>Return</p>
         </div>
       </div>
 
       {/* CHILDREN */}
-      <div style={{ gridArea: "props", overflow: "auto", backgroundColor: "#001524" }} className="p-4 md:p-8">
+      <div
+        style={{
+          gridArea: "props",
+          overflow: "auto",
+          backgroundColor: "#001524",
+        }}
+        className="p-4 md:p-8"
+      >
         <Outlet />
       </div>
     </div>

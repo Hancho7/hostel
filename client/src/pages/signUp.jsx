@@ -5,12 +5,27 @@ import { useSelector } from "react-redux/es/hooks/useSelector";
 import animationData from "../assets/correct.json";
 import loadingGif from "../assets/loading.json";
 import Lottie from "lottie-react";
+import ClipLoader from "react-spinners/ClipLoader";
 
 export default function SignUp({ onSubmit, onChange, error }) {
   const loading = useSelector((state) => state.signup.loading);
   const user = useSelector((state) => state.signup.user);
   return (
     <div className="flex items-center mt-6 mb-6">
+      {loading && (
+        <div
+          style={{
+            position: "fixed",
+            top: "0",
+            left: "0",
+            width: "100vw",
+            height: "100vh",
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            backdropFilter: "blur(5px)",
+            zIndex: "49",
+          }}
+        ></div>
+      )}
       <div className=" w-10/12 m-auto md:w-1/2">
         {loading && (
           <div className="flex flex-col bg-[rgba(240,248,255,0.7)] items-center fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 px-8">
@@ -86,10 +101,11 @@ export default function SignUp({ onSubmit, onChange, error }) {
           <div>{error}</div>
           <button
             type="submit"
-            className="w-10/12 h-10 text-white bg-[#476faf] font-semibold hover:bg-[#7a90b3]"
+            className="w-10/12 h-10 gap-2 text-white bg-[#476faf] font-semibold hover:bg-[#7a90b3]"
           >
             
-            Sign Up
+            {loading ? <ClipLoader size="1.5rem" className=" mt-auto mb-auto" /> : <></>}
+            <span className=" mt-auto mb-auto">Sign Up</span>
           </button>
           <div className="w-10/12 mt-8">
             <p>

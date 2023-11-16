@@ -13,9 +13,9 @@ function Bookings() {
 
   console.log("bookings", bookings);
 
-  // Create an object to group bookings by hostel
+  // Check if bookings is null or undefined before using forEach
   const groupedBookings = {};
-  bookings.forEach((booking) => {
+  bookings?.forEach((booking) => {
     const hostelName = booking.hostel.name;
     if (!groupedBookings[hostelName]) {
       groupedBookings[hostelName] = [];

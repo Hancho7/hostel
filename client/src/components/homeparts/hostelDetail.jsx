@@ -1,22 +1,44 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RxDotFilled } from "react-icons/rx";
 import { BsChevronCompactLeft } from "react-icons/bs";
 import { BsChevronCompactRight } from "react-icons/bs";
 import { useParams } from "react-router-dom";
-import {bookAction} from '../../features/hostels/rooms/booking.jsx'
+import { bookAction } from "../../features/hostels/rooms/booking.jsx";
 
 function HostelDetail() {
-  const user = useSelector((state) => state.user.user);
+  const { id } = useParams();
+  const dispatch = useDispatch();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
   const [isOpen, setIsOpen] = useState(false);
   const [roomID, setRoomID] = useState("");
-  const { id } = useParams();
-
-  const dispatch = useDispatch();
-
+  const user = useSelector((state) => state.user.user);
   const hostels = useSelector((state) => state.hostel.hostel);
+
+  // MANAGING THE MEDIA QUERY
+  const [displayStyle, setDisplayStyle] = useState("grid"); // Add this state
+
+  // MANAGING THE MEDIA QUERY
+  const handleMediaQueryChange = (e) => {
+    if (e.matches) {
+      setDisplayStyle("flex");
+    } else {
+      setDisplayStyle("grid");
+    }
+  };
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 768px)");
+
+    // Initial check and state setting
+    handleMediaQueryChange(mediaQuery);
+
+    mediaQuery.addEventListener("change", handleMediaQueryChange);
+
+    return () => {
+      mediaQuery.removeEventListener("change", handleMediaQueryChange);
+    };
+  }, []);
 
   // Custom function to find the selected hostel by ID
   const findHostelById = (id) => {
@@ -30,6 +52,7 @@ function HostelDetail() {
   if (!hostel) {
     return <div>Hostel not found</div>;
   }
+  console.log("hostel", hostel);
 
   const handlePreviousImage = () => {
     const isFirstSlide = currentImageIndex === 0;
@@ -60,7 +83,7 @@ function HostelDetail() {
   const handleRoomBooking = (roomID, userID) => {
     console.log("roomID", roomID);
     console.log("user._id", userID);
-    dispatch(bookAction({roomID, userID, id}))
+    dispatch(bookAction({ roomID, userID, id }));
     setIsOpen(false);
   };
   return (
@@ -94,13 +117,13 @@ function HostelDetail() {
           <h1>Proceed to book the room</h1>
           <div className="flex flex-row justify-around mt-4">
             <button
-              className="bg-[#948b8c] w-1/3 py-1 rounded-md hover:bg-[#ffffff]"
+              className="bg-[#ff0d21] w-1/3 py-1 rounded-md hover:bg-[#cf5a64]"
               onClick={handleCloseBookingPopup}
             >
               Cancel
             </button>
             <button
-              className="bg-[#ff0d21] w-1/3 py-1 rounded-md hover:bg-[#be4f59]"
+              className="bg-[#18428F] w-1/3 py-1 rounded-md hover:bg-[#5f84c7]"
               onClick={() => handleRoomBooking(roomID, user._id)}
             >
               Book
@@ -143,34 +166,47 @@ function HostelDetail() {
 
         <div
           style={{
-            display: "grid",
-            gap: "2rem",
-            margin: "2rem",
-            gridTemplateAreas: `"amenities price"`,
-            gridTemplateColumns: "auto 0fr",
-            gridTemplateRows: "auto 1fr",
+            display: displayStyle,
+            ...((displayStyle === "grid" && {
+              gap: "2rem",
+              margin: "2rem",
+              gridTemplateAreas: `"amenities price"`,
+              gridTemplateColumns: "auto 0fr",
+              gridTemplateRows: "auto 1fr",
+            }) ||
+              (displayStyle === "flex" && {
+                flexDirection: "column",
+                alignItems: "center",
+              })),
           }}
         >
           {/* PRICES TABLE */}
-          <table style={{ gridArea: "price" }} className="shadow-lg bg-white rounded h-60">
-            <tr>
-              <th className="bg-blue-100 border text-left px-8 py-4">Number</th>
-              <th className="bg-blue-100 border text-left px-8 py-4">Price</th>
-            </tr>
-            {hostel.prices.map((pricePerRoom) => (
-              <tr key={pricePerRoom._id}>
-                <td className="border px-8 py-4">
-                  {pricePerRoom.numberInRoom}
-                </td>
-                <td className="border px-8 py-4">{pricePerRoom.price}</td>
+          <table
+            style={{ gridArea: "price" }}
+            className="shadow-lg bg-white rounded h-60"
+          >
+            <tbody>
+              <tr>
+                <th className="bg-blue-100 border text-left px-8 py-4">
+                  Number
+                </th>
+                <th className="bg-blue-100 border text-left px-8 py-4">
+                  Price
+                </th>
               </tr>
-            ))}
+              {hostel.prices.map((pricePerRoom) => (
+                <tr key={pricePerRoom._id}>
+                  <td className="border px-8 py-4">
+                    {pricePerRoom.numberInRoom}
+                  </td>
+                  <td className="border px-8 py-4">{pricePerRoom.price}</td>
+                </tr>
+              ))}
+            </tbody>
           </table>
-
 
           {/* AVAILABLE ROOMS AND  HOTEL AMENITIES */}
           <div style={{ gridArea: "amenities" }}>
-
             {/* THE ROOMS OF EACH HOSTEL */}
             <h1 className=" text-center font-semibold text-xl">
               Available Rooms
@@ -187,7 +223,10 @@ function HostelDetail() {
             >
               {hostel.fullRooms.map((room) => (
                 <div
-                  className="shadow-lg bg-white w-14 h-14 text-center hover:cursor-pointer rounded-md"
+                  disabled={room.remainingCapacity === 0}
+                  className={`shadow-lg bg-${
+                    room.remainingCapacity === 0 ? "red" : "blue"
+                  } w-14 h-14 text-center hover:cursor-pointer rounded-md`}
                   key={room._id}
                   onClick={() => {
                     handleOpenBookingPopup();
@@ -201,12 +240,14 @@ function HostelDetail() {
             </div>
 
             <div className="flex items-center flex-col">
-              <h1 className=" text-center font-semibold text-xl">What this hostel offers</h1>
+              <h1 className=" text-center font-semibold text-xl">
+                What this hostel offers
+              </h1>
               <ol className="flex gap-5 mt-2">
                 {hostel.hostelDescription.map((item) =>
                   item.split(",").map((subItem, subKey) => (
                     <li key={subKey}>
-                      {subKey+1}.{subItem.trim()}
+                      {subKey + 1}.{subItem.trim()}
                     </li>
                   ))
                 )}

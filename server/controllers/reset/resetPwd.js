@@ -35,6 +35,7 @@ export const reset = async (req, res) => {
       return res.json("checkEmail"); // Inform the user to check their email for verification
     }
   } catch (error) {
+    console.error("Error:", error);
     return res.status(500).json("error occurred");
   }
 };
