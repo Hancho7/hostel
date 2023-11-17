@@ -25,7 +25,7 @@ function NewPassword() {
   }
 
   return (
-    <div className="flex items-center justify-center flex-col m-6 gap-8 md:flex-row lg:gap-24 lg:m-16">
+    <div className="flex items-center justify-center flex-col-reverse m-6 gap-8 md:flex-row lg:gap-24 lg:m-16">
       <h1 className=" font-semibold text-lg text-[#476faf] md:hidden">
         Reset password
       </h1>
@@ -48,7 +48,7 @@ function NewPassword() {
           </button>
         </form>
       </section>
-      <section>
+      <section className="md:w-[50%]">
         <Lottie animationData={resetPassword} />
       </section>
     </div>

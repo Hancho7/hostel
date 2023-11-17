@@ -6,17 +6,18 @@ import {
   resetPasswordAction,
 } from "../../features/resetPassword/resetPassword.jsx";
 import axios from "../../apis/main.jsx";
-import { ENTEREMAIL } from "../../apis/endpoints.jsx";
+import { NEWPASSWORD } from "../../apis/endpoints.jsx";
 
 function* handleResetPassword(action) {
   try {
+    console.log("action.payload", action.payload);
     yield put(loading());
     const response = yield call(
       axios.post,
-      `${ENTEREMAIL}/${action.payload.id}/verify/${action.payload.token}`,
-      action.payload.password
+      NEWPASSWORD,
+      action.payload
     );
-    console.log(action.payload)
+
     if (response.status === 200) {
       yield put(passwordSuccessful(response.data));
     } else {
@@ -28,5 +29,5 @@ function* handleResetPassword(action) {
 }
 
 export function* watchResetPassword() {
-    yield takeLatest(resetPasswordAction, handleResetPassword)
+  yield takeLatest(resetPasswordAction, handleResetPassword);
 }

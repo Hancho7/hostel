@@ -48,7 +48,7 @@ app.get('/verify/:id/:token', verifyEmailRoute);
 
 // RESET ROUTE
 app.post('/forgotten-password', emailForResetRoute);
-app.post('/forgotten-password/:id/verify/:token', newPasswordRoute);
+app.post('/forgotten-password/id/verify/token', newPasswordRoute);
 
 // ROUTES HOSTEL
 app.get('/hostel', hostelRoute);

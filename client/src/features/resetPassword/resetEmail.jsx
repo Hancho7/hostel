@@ -2,6 +2,7 @@ import { createSlice, createAction } from "@reduxjs/toolkit";
 
 const initialState = {
   loading: false,
+  emailSentSuccessfull: false,
   email: null,
   error: null,
 };
@@ -15,11 +16,13 @@ const emailSlice = createSlice({
       state.loading = true;
     },
     emailSent: (state, action) => {
+      state.emailSentSuccessfull= true,
       state.loading = false;
       state.email = action.payload;
       state.error = null;
     },
     emailError: (state, action) => {
+      state.emailSentSuccessfull= false,
       state.loading = false;
       state.email = null;
       state.error = action.payload;
