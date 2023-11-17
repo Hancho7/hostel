@@ -42,7 +42,7 @@ export const UserSchema = mongoose.Schema(
 
 UserSchema.pre('save', function (next) {
     if (this.isModified('password')) {
-        bcrypt.hash(this.password, 8, (err, result) => {
+        bcrypt.hash(this.password, 10, (err, result) => {
             if (err) return next(err);
             this.password = result;
             next();
@@ -58,7 +58,8 @@ UserSchema.methods.comparePassword = async function (password) {
         const result = await bcrypt.compare(password, this.password);
         return result;
     } catch (err) {
-        console.log(err);
+        console.error("Compare Password Error:", err);
+        return false;
     }
 };
 

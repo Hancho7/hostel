@@ -26,11 +26,7 @@ export const newPassword = async (req, res) => {
     // Add logging to check the value of req.body.password
     console.log("New password:", password);
 
-    // Hash the new password before updating
-    const hashedPassword = await bcrypt.hash(req.body.password, 10);
-
-    // Always set the password to the hashed password
-    user.password = hashedPassword;
+    user.password = password;
 
     const updated = await user.save();
 
