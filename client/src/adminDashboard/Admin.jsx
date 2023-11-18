@@ -66,7 +66,7 @@ export default function Admin({ nav }) {
     {
       title: "Add",
       icons: <MdOutlineAddHome />,
-      path: "/admin/add-rooms",
+      path: `/admin/add-rooms/${user._id}`,
     },
     // navigate(`/${hostel}`);
     {

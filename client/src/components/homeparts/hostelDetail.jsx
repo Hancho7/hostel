@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RxDotFilled } from "react-icons/rx";
+import { AiOutlineMail } from "react-icons/ai";
 import { BsChevronCompactLeft } from "react-icons/bs";
+import { BiPhoneCall } from "react-icons/bi";
 import { BsChevronCompactRight } from "react-icons/bs";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { bookAction } from "../../features/hostels/rooms/booking.jsx";
 
 function HostelDetail() {
@@ -183,7 +185,7 @@ function HostelDetail() {
           {/* PRICES TABLE */}
           <table
             style={{ gridArea: "price" }}
-            className="shadow-lg bg-white rounded h-60"
+            className="shadow-lg bg-white rounded h-60 sticky top-0"
           >
             <tbody>
               <tr>
@@ -253,6 +255,34 @@ function HostelDetail() {
                 )}
               </ol>
             </div>
+            {hostel.admin && (
+              <div className="w-full md:w-[60%] lg:w-[50%] mt-20 mb-8">
+                <h1 className="font-semibold text-xl">
+                  Hosted By {hostel.admin.firstName} {hostel.admin.lastName}
+                </h1>
+                <div className=" mx-auto my-5">
+                  <h1>Contacts</h1>
+                  <section>
+                    <span
+                      itemProp="telephone"
+                      className="flex items-center justify-center my-4 gap-2 w-48 h-9 border-2 border-[#476faf]  text-[#476faf]"
+                    >
+                      <BiPhoneCall />
+
+                      <Link to={`tel:${hostel.admin.phone}`}>Call Now</Link>
+                    </span>
+                    <a
+                      itemProp="email"
+                      href={hostel.admin.email}
+                      className="flex items-center justify-center gap-2 w-48 h-9 border-2 border-[#476faf] text-[#476faf]"
+                    >
+                      <AiOutlineMail />
+                      {hostel.admin.email}
+                    </a>
+                  </section>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>

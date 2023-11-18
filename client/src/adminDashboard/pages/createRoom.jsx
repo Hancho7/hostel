@@ -1,45 +1,44 @@
 import { useDispatch, useSelector } from "react-redux";
-import { getHostels } from "../../features/hostels/displayHostels";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { adminGetHostels } from "../../features/hostels/adminHostels.jsx";
+import { useParams } from "react-router-dom";
 
 function CreateRooms() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const hostels = useSelector((state) => state.hostel.hostel);
-  const user = useSelector((state) => state.user.user);
-  const myHostels = hostels.filter((hostel) => hostel.admin === user._id);
-  const numberOfHostels = hostels.length || 0;
-
-  // Check if myHostel is not undefined before accessing its length
-  const numberOfMyHostels = myHostels.length || 0;
+  const { userID } = useParams();
+  const hostels = useSelector((state) => state.adminHostel);
+  const { hostel } = hostels;
+  const { adminHostelsCount, totalHostelsCount, adminHostels } = hostel;
 
   useEffect(() => {
-    dispatch(getHostels());
-  }, [dispatch]);
-  console.log(myHostels);
+    console.log("userID:", userID);
+    dispatch(adminGetHostels({ userID }));
+  }, [dispatch, userID]);
 
   const handleRoomRoute = (id) => {
-    navigate(`/admin/add-rooms/${id}`);
+    // Replace :userID with the actual userID value
+    navigate(`/admin/add-rooms/${userID}/${id}`);
   };
 
   return (
     <div>
-      <div className="flex gap-4 mb-7">
-        <div className="h-16 text-center shadow-md bg-[#183244] rounded font-semibold">
-          <h1>number of hostels</h1>
-          <h1 className="text-2xl">{numberOfHostels}</h1>
+      {adminHostels && (
+        <div className="flex gap-4 mb-7">
+          <div className="h-16 text-center shadow-md bg-[#183244] rounded font-semibold">
+            <h1>Number of Hostels</h1>
+            <h1 className="text-2xl">{totalHostelsCount}</h1>
+          </div>
+
+          <div className="h-16 text-center shadow-md bg-[#183244] rounded font-semibold">
+            <h1>Your Hostels</h1>
+            <h1 className="text-2xl">{adminHostelsCount}</h1>
+          </div>
         </div>
+      )}
 
-        <div className="h-16 text-center shadow-md bg-[#183244] rounded font-semibold">
-          <h1>Your hostels</h1>
-          <h1 className="text-2xl">{numberOfMyHostels}</h1>
-        </div>
-      </div>
-
-      {/* HOSTELS BUILT BY THE ADMIN */}
-
-      {!myHostels ? (
+      {!adminHostels || adminHostels.length === 0 ? (
         <div>
           <p>You do not have any hostels yet...</p>
         </div>
@@ -50,7 +49,7 @@ function CreateRooms() {
             gridTemplateColumns: "repeat(auto-fit, minmax(236px, 1fr))",
           }}
         >
-          {myHostels.map((hostel) => (
+          {adminHostels.map((hostel) => (
             <div
               key={hostel._id}
               className="w-[13rem] text-center font-semibold rounded"
@@ -59,10 +58,10 @@ function CreateRooms() {
                 <img
                   src={hostel.imageUrl[0]}
                   alt={hostel.name}
-                  className=" w-full h-36"
+                  className="w-full h-36"
                 />
               </section>
-              <p className=" relative -top-8">{hostel.name}</p>
+              <p className="relative -top-8">{hostel.name}</p>
               <section className="relative top-[-1.5rem]">
                 <button
                   className="bg-[#7752FE] w-full h-10 hover:bg-slate-400"

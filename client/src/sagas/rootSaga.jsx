@@ -20,6 +20,8 @@ import { watchAddRoom } from "./hostel/rooms/addRooms.jsx";
 import { watchBooking } from "./hostel/rooms/booking.jsx";
 //DEIPLAYING BOOKINGS
 import {watchGetBookings} from "./hostel/rooms/getBookings.jsx"
+// ADMIN RQUESTING FOR HOSTELS THROUGH PARAMS
+import {watchAdminFetchHostels} from './hostel/adminHostels.jsx'
 
 export default function* rootSaga() {
   yield all([
@@ -39,6 +41,8 @@ export default function* rootSaga() {
     // HOSTEL MANAGEMENT
     watchFetchHostels(),
     watchHostelUpload(),
+    // ADMINS HOSTELS
+    watchAdminFetchHostels(),
     
     //ROOM MANAGMENT
     watchAddRoom(),

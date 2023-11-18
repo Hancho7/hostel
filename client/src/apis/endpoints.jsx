@@ -10,3 +10,5 @@ export const UPLOADHOSTEL = "/upload-hostel"
 export const ADDROOMS = "/add-Rooms"
 export const BOOKING = "/hostelRoom/book-room"
 export const GETBOOKING = "/hostelRoom/get-bookings"
+// ADMIN HOSTELS
+export const ADMINHOSTELS= '/admin/add-rooms'

@@ -4,36 +4,67 @@ import Booking from "../../models/booking.js";
 
 export const book = async (req, res) => {
   const { userID, roomID, id } = req.body;
-  // const {hostelID}= req.params;
-  console.log("userID", userID);
-  console.log("roomID", roomID);
-  console.log("hostelID", id);
+
   try {
+    // Check if the user is an admin
     const user = await Users.findById({ _id: userID });
-    if (!user) {
-      return res.status(400).json("Log in to book a room");
+    if (!user || user.role === "manager") {
+      return res.status(400).json("Managers are not allowed to book hostels.");
     }
-    const room = await Room.findById({ _id: roomID });
-    if (!room) {
-      return res.status(400).send("Room not found");
-    }
-    const { remainingCapacity } = room;
-    if (remainingCapacity == 0) {
-      return res.status(400).send("Sorry! This room is fully booked.");
-    }
-    const book = new Booking({
+
+    // Check if the user has already booked the same room in the same hostel
+    const existingBooking = await Booking.findOne({
       user: userID,
       room: roomID,
       hostel: id,
     });
-    await book.save();
+
+    if (existingBooking) {
+      return res.status(400).json("You have already booked this room.");
+    }
+
+    const room = await Room.findById({ _id: roomID });
+    if (!room) {
+      return res.status(400).send("Room not found");
+    }
+
+    // Check if the room is already fully booked
+    if (room.remainingCapacity === 0) {
+      return res.status(400).send("Sorry! This room is fully booked.");
+    }
+
+    // Check if the user has already booked a room in the same hostel
+    const userBookingsInHostel = await Booking.find({
+      user: userID,
+      hostel: id,
+    });
+
+    if (userBookingsInHostel.length > 0) {
+      return res
+        .status(400)
+        .json("You can only book one room in a particular hostel.");
+    }
+
+    // Create and save the booking
+    const newBooking = new Booking({
+      user: userID,
+      room: roomID,
+      hostel: id,
+    });
+
+    await newBooking.save();
+
+    // Update the remaining capacity of the room
     room.remainingCapacity -= 1;
     await room.save();
+
+    res.status(200).json("Booking successful");
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return res.status(500).json("Server error");
   }
 };
+
 
 // TAKING BOOKINGS FROM THE DATABASE
 export const getBooking = async (req, res) => {

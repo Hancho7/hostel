@@ -19,6 +19,8 @@ import resetPasswordSlice from '../features/resetPassword/resetPassword.jsx';
 // HOSTEL MANAGEMENT
 import uploadHostelSlice from "../features/hostels/createHostel.jsx"
 import hostelDisplayReducer from '../features/hostels/displayHostels.jsx'
+// ADMIN HOSTEL PARAMS REQUEST
+import adminHostelSlice from '../features/hostels/adminHostels.jsx';
 
 //ROOMS
 import addRoomSlice from '../features/hostels/rooms/addRooms.jsx'
@@ -51,6 +53,8 @@ const store = configureStore({
     // HOSTEL MANAGEMENT
     hostel: hostelDisplayReducer,
     uploadHostel: uploadHostelSlice,
+    // ADMIN HOSTELS PARAMS REQUEST
+    adminHostel: adminHostelSlice,
 
     //ROOMS
     addRoom: addRoomSlice,

@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import Users from "./user.js";
 
 const HostelSchema = mongoose.Schema({
   name: {
@@ -39,7 +40,7 @@ const HostelSchema = mongoose.Schema({
   },
   admin: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "User", // Reference to the User model
+    ref: "Users", // Reference to the User model
     required: true,
   },
 });

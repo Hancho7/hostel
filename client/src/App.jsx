@@ -60,9 +60,9 @@ function App() {
             <Route path="/admin/create-hostel" element={<UploadHostel />} />
             <Route path="/admin/" element={<GetHostel />} />
             <Route path="/admin/delete-hostel" element={<DeleteHostel />} />
-            <Route path="/admin/add-rooms" element={<CreateRooms />} />
+            <Route path="/admin/add-rooms/:userID" element={<CreateRooms />} />
             <Route path="/admin/bookings/:id" element={<Bookings />} />
-            <Route path="/admin/add-rooms/:id" element={<Room />} />
+            <Route path="/admin/add-rooms/:userID/:id" element={<Room />} />
           </Route>
         </Route>
 

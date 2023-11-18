@@ -2,10 +2,16 @@ import Hostel from "../../models/hostel.js";
 import { s3 } from "../../index.js";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import { GetObjectCommand } from "@aws-sdk/client-s3";
+import Users from "../../models/user.js";
 
 export const getHostels = async (req, res) => {
   try {
-    const hostels = await Hostel.find().populate("fullRooms");
+    const hostels = await Hostel.find()
+      .populate({
+        path: "admin", // Populate the 'admin' field
+        select: "firstName lastName email phone", // Select the fields you want to populate
+      })
+      .populate("fullRooms");
 
     const updatedHostels = [];
 
@@ -36,6 +42,72 @@ export const getHostels = async (req, res) => {
 
     res.status(200).json(updatedHostels);
   } catch (error) {
+    console.error("Error in getHostels:", error);
     res.status(500).json({ message: error.message });
+  }
+};
+
+
+// ADMIN REQUESTING FOR HOSTELS
+export const adminGetHostels = async (req, res) => {
+  const { userID } = req.params;
+
+  try {
+    const user = await Users.findOne({ _id: userID });
+
+    if (!user) {
+      return res.status(400).json("User does not exist");
+    }
+
+    const allowedRoles = ["manager"]; // Add other allowed roles if needed
+    if (!allowedRoles.includes(user.role)) {
+      return res.status(400).json("You are not authorized to view hostels");
+    }
+
+    // Get the admin's own hostels
+    const adminHostels = await Hostel.find({ admin: user._id });
+
+    // Count the admin's own hostels
+    const adminHostelsCount = adminHostels.length;
+
+    // Get the total count of hostels
+    const totalHostelsCount = await Hostel.countDocuments();
+
+    const updatedAdminHostels = [];
+
+    for (let i = 0; i < adminHostels.length; i++) {
+      const hostel = adminHostels[i];
+      const imageUrls = hostel.imageUrl;
+      const updatedImageUrls = [];
+
+      for (let j = 0; j < imageUrls.length; j++) {
+        const getObjectParams = {
+          Bucket: process.env.BUCKET_NAME,
+          Key: imageUrls[j],
+        };
+        const command = new GetObjectCommand(getObjectParams);
+        const link = await getSignedUrl(s3, command, { expiresIn: 3600 });
+
+        updatedImageUrls.push(link);
+      }
+
+      const updatedHostel = {
+        ...hostel.toObject(),
+        imageUrl: updatedImageUrls,
+      };
+
+      updatedAdminHostels.push(updatedHostel);
+    }
+
+    const response = {
+      adminHostels: updatedAdminHostels,
+      adminHostelsCount,
+      totalHostelsCount,
+    };
+
+    res.status(200).json(response);
+  } catch (error) {
+    console.log("error", error);
+    return res.status(500).json("Server error");
   }
 };
