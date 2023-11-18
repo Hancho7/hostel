@@ -24,13 +24,14 @@ function Part2() {
   }, [dispatch]);
 
   const handleLearnMore = (hostel, currentLocation) => {
+    console.log("currentLocation", currentLocation);
     if (!user) {
       navigate("/sign-in", { state: { from: currentLocation } });
       return;
     }
-    console.log("currentLocation", currentLocation);
+    
     dispatch(addID(hostel));
-    navigate(`/${hostel}`);
+    navigate(currentLocation);
   };
 
   return (
@@ -57,7 +58,7 @@ function Part2() {
                   <p>{hostel.location}</p>
                   <button
                     onClick={() =>
-                      handleLearnMore(hostel._id, window.location.pathname)
+                      handleLearnMore(hostel._id, `${window.location.pathname}${hostel._id}`)
                     }
                   >
                     <i>

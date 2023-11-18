@@ -13,7 +13,7 @@ function CreateHostel({
   return (
     <div>
       <h2 className=" text-base md:text-lg lg:text-3xl my-4 font-semibold text-center">
-        Upload a Hostel
+        Upload New Hostel
       </h2>
       <form
         encType="multipart/form-data"

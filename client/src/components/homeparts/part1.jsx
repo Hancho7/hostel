@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 const Part1 = () => {
   const [images, setImages] = useState([first, sec, third]);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const user = useSelector(state=>state.user.user)
+  const user = useSelector((state) => state.user.user);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -25,21 +25,26 @@ const Part1 = () => {
   return (
     <div className="flex flex-col items-center md:flex-row">
       <div className="md:w-1/2">
-        <h2 className=" font-bold text-4xl mb-6">Your best value proposition</h2>
+        <h2 className=" font-bold text-4xl mb-6">
+          Your best value proposition
+        </h2>
         <p className="mb-6">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Suscipit
-          totam consectetur officiis blanditiis odit molestias repudiandae,
-          dolorum doloribus ratione consequuntur, illo neque? Possimus illum
-          distinctio obcaecati unde vel id labore?
+          Where Comfort Meets Community,<br/> Discover Your Home Away from Home with
+          Glee. Explore, Connect, and Unwind,<br/> In Our Hostel Haven, Joy you'll
+          Find.
         </p>
-        {
-          !user?(
-            <button className=" h-12 bg-[#18428f] w-28 rounded-sm text-white font-semibold hover:bg-[#7a95c7] mb-9" onClick={()=>{window.location.href='/sign-up'}}>REGISTER</button>
-          ): (
-            <div></div>
-          )
-        }
-        
+        {!user ? (
+          <button
+            className=" h-12 bg-[#18428f] w-28 rounded-sm text-white font-semibold hover:bg-[#7a95c7] mb-9"
+            onClick={() => {
+              window.location.href = "/sign-up";
+            }}
+          >
+            REGISTER
+          </button>
+        ) : (
+          <div></div>
+        )}
       </div>
       <div className=" w-full md:w-1/2 h-96">
         <img
