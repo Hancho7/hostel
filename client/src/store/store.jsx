@@ -25,6 +25,8 @@ import adminHostelSlice from '../features/hostels/adminHostels.jsx';
 //ROOMS
 import addRoomSlice from '../features/hostels/rooms/addRooms.jsx'
 import bookingSlice from '../features/hostels/rooms/booking.jsx';
+// ADMIN ROOMS
+import adminRoomSlice from '../features/hostels/rooms/adminGetRooms.jsx'
 
 // DISPLAYING BOOKINGS
 import getBookingSlice from '../features/hostels/rooms/getBookings.jsx'
@@ -60,6 +62,8 @@ const store = configureStore({
     addRoom: addRoomSlice,
     book: bookingSlice,
     Bookings: getBookingSlice,
+    // ADMIN ROOMS
+    adminGetRoom: adminRoomSlice,
 
   },
   middleware: [sagaMiddleware],

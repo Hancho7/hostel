@@ -22,6 +22,8 @@ import { watchBooking } from "./hostel/rooms/booking.jsx";
 import {watchGetBookings} from "./hostel/rooms/getBookings.jsx"
 // ADMIN RQUESTING FOR HOSTELS THROUGH PARAMS
 import {watchAdminFetchHostels} from './hostel/adminHostels.jsx'
+// // ADMIN RQUESTING FOR ROOMS THROUGH PARAMS
+import watchGetAdminRooms from "./hostel/rooms/adminGetRooms.jsx"
 
 export default function* rootSaga() {
   yield all([
@@ -48,5 +50,8 @@ export default function* rootSaga() {
     watchAddRoom(),
     watchBooking(),
     watchGetBookings(),
+
+    // ADMIN ROOM MANAGEMENT
+    watchGetAdminRooms()
   ]);
 }
