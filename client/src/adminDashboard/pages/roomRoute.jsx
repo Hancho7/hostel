@@ -63,39 +63,43 @@ function Room() {
         ...((displayStyle === "grid" && {
           gap: "2rem",
           margin: "2rem",
-          gridTemplateAreas: `"rooms form"`,
-          gridTemplateColumns: "auto 0fr",
-          gridTemplateRows: "auto 1fr",
+          gridTemplateColumns: "70% 30%",
         }) ||
           (displayStyle === "flex" && {
             flexDirection: "column-reverse",
             alignItems: "center",
           })),
       }}
-      className="flex flex-col gap-4 md:grid"
     >
       {/* ROOMS OF THIS HOSTEL */}
-      <div style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(80px, 1fr))",
-                gridTemplateRows: "auto",
-                gridGap: "10px",
-                gridAutoFlow: "row",
-                gridArea: "rooms"
-              }}
-              className="mx-auto shadow-lg mb-11 mt-7 p-4" >
-        {rooms ? (
-          rooms.map((room) => (
-            <div key={room.name}>
-              <h1>{room.name}</h1>
-              <p>{room.capacity} x 1</p>
-            </div>
-          ))
-        ) : (
-          <div>No rooms available</div>
-        )}
+      <div className="w-[100%] text-center mt-12 md:mt-0">
+        <h1>ROOMS ADDED</h1>
+        <div
+          style={{
+            display: "grid",
+            gridGap: "10px",
+            gridTemplateColumns: "repeat(auto-fit, minmax(100px, 1fr))",
+            width: "100%",
+          }}
+          className="shadow-lg p-4"
+        >
+          {rooms ? (
+            rooms.map((room) => (
+              <div
+                className=" w-12 h-12 bg-slate-500 text-center rounded-md mx-auto"
+                key={room.name}
+              >
+                <h1>{room.name}</h1>
+                <p>{room.capacity} x 1</p>
+              </div>
+            ))
+          ) : (
+            <div>No rooms available</div>
+          )}
+        </div>
       </div>
-      <div style={{ gridArea: "form" }} className="md:w-[20%] sticky top-0 text-center">
+
+      <div className="text-center">
         <h1 className=" font-semibold my-5">ADD A ROOM</h1>
         <div>
           <form
@@ -114,12 +118,14 @@ function Room() {
             <input
               type="text"
               placeholder="Number per room"
-              className=" h-8 p-2"
+              className=" h-8 p-2 w-full"
               name="capacity"
               value={formData.capacity}
               onChange={handleInputChange}
             />
-            <button className=" bg-[#0d2266] h-8" type="submit">ADD ROOM</button>
+            <button className=" bg-[#0d2266] h-8" type="submit">
+              ADD ROOM
+            </button>
           </form>
         </div>
       </div>
