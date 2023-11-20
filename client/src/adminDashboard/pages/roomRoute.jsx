@@ -3,10 +3,13 @@ import { addRoomAction } from "../../features/hostels/rooms/addRooms";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { adminGetRooms } from "../../features/hostels/rooms/adminGetRooms";
+import ClipLoader from "react-spinners/ClipLoader";
 
 function Room() {
   const dispatch = useDispatch();
   const rooms = useSelector((state) => state.adminGetRoom.rooms);
+  const loading = useSelector((state) => state.addRoom.loading);
+  const addRoomSuccess = useSelector(state => state.addRoom.success);
   const { userID, id } = useParams();
   const [formData, setFormData] = useState({
     name: "",
@@ -23,13 +26,17 @@ function Room() {
     e.preventDefault();
     console.log(formData);
     dispatch(addRoomAction(formData));
+    console.log('loading', loading)
+    if(!addRoomSuccess){
+      alert("error occured")
+    }
+    alert(`${formData.name} has successfully been added`)
+    
   };
 
   useEffect(() => {
     dispatch(adminGetRooms({ userID, id }));
   }, [dispatch, userID, id]);
-
-  console.log("rooms", rooms);
 
   // MANAGING THE MEDIA QUERY
   const [displayStyle, setDisplayStyle] = useState("grid"); // Add this state
@@ -123,8 +130,13 @@ function Room() {
               value={formData.capacity}
               onChange={handleInputChange}
             />
-            <button className=" bg-[#0d2266] h-8" type="submit">
-              ADD ROOM
+            <button className="flex flex-row justify-center gap-2 bg-[#0d2266] h-8" type="submit">
+              {loading ? (
+                <ClipLoader size="1.5rem" className=" mt-auto mb-auto" />
+              ) : (
+                <></>
+              )}
+              <span className=" mt-auto mb-auto"> ADD ROOM</span>
             </button>
           </form>
         </div>

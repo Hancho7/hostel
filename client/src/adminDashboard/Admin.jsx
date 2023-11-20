@@ -11,21 +11,15 @@ import { TbBrandBooking } from "react-icons/tb";
 import { BiLogOut } from "react-icons/bi";
 import DropdownMenu from "./dropdownMenu.jsx";
 
-export default function Admin({ nav }) {
+export default function Admin() {
   const user = useSelector((state) => state.user.user);
   const navigate = useNavigate();
   console.log(user);
   const [open, setOpen] = useState(false);
 
-  useEffect(() => {
-    nav(true);
-  }, [nav]);
-
   const [isSmallScreen, setIsSmallScreen] = useState(false);
 
   useEffect(() => {
-    nav(true);
-
     const handleResize = () => {
       setIsSmallScreen(window.innerWidth <= 768);
     };
@@ -37,7 +31,7 @@ export default function Admin({ nav }) {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, [nav]);
+  });
 
   const pages = [
     {
@@ -165,7 +159,6 @@ export default function Admin({ nav }) {
           } flex gap-x-4 py-2 px-6 items-center font-semibold rounded-md hover:bg-slate-400 hover:cursor-pointer`}
           onClick={() => {
             navigate("/");
-            nav(false);
           }}
         >
           <span>

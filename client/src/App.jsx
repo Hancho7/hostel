@@ -1,7 +1,4 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useState, useEffect } from "react";
-import Navbar from "./components/navBar";
-import Footer from "./components/footer";
 import Home from "./pages/home";
 import ContactUs from "./pages/contactUs";
 import LoginWrapper from "./logics/loginWrapper.jsx";
@@ -12,6 +9,7 @@ import RequireAuth from "./routes/privateRoute";
 import NotFound from "./pages/404.jsx";
 import ResetEmail from "./pages/resetEmail.jsx";
 import NewPassword from "./pages/newPassword.jsx";
+import Components from "./pages/components.jsx";
 
 // ADMIN DASHBOARD IMPORTS
 import Admin from "./adminDashboard/Admin";
@@ -23,40 +21,33 @@ import Bookings from "./adminDashboard/pages/bookings";
 import Room from "./adminDashboard/pages/roomRoute";
 
 function App() {
-  const [nav, setNav] = useState(false); // Initialize state
-
-  useEffect(() => {
-    setNav(false);
-  }, []);
-
   return (
     <Router>
-      {!nav ? <Navbar /> : null} {/* Conditionally render Navbar */}
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route element={<RequireAuth allowedRoles={["user", "manager"]} />}>
-          <Route path="/:id" element={<HostelDetail />} />
+        <Route element={<Components />}>
+          <Route path="/" element={<Home />} />
+          <Route element={<RequireAuth allowedRoles={["user", "manager"]} />}>
+            <Route path="/:id" element={<HostelDetail />} />
+          </Route>
+          <Route path="/contact-us" element={<ContactUs />} />
+          <Route path="/sign-in" element={<LoginWrapper />} />
+          <Route path="/sign-up" element={<SignUpWrapper />} />
+
+          {/* RESETTING FORGOTTEN PASSWORD */}
+          <Route path="/forgotten-password" element={<ResetEmail />} />
+          <Route
+            path="/forgotten-password/:id/verify/:token"
+            element={<NewPassword />}
+          />
+          {/* E-MAIL VERIFICATION */}
+          <Route path="/verify/:id/:token" element={<EmailVerification />} />
+          {/* 404 Catch-all route */}
+          <Route path="*" element={<NotFound />} />
         </Route>
-        <Route path="/contact-us" element={<ContactUs />} />
-        <Route path="/sign-in" element={<LoginWrapper />} />
-        <Route path="/sign-up" element={<SignUpWrapper />} />
-
-        {/* RESETTING FORGOTTEN PASSWORD */}
-        <Route path="/forgotten-password" element={<ResetEmail />} />
-        <Route
-          path="/forgotten-password/:id/verify/:token"
-          element={<NewPassword />}
-        />
-
-        {/* E-MAIL VERIFICATION */}
-        <Route
-          path="/verify/:id/:token"
-          element={<EmailVerification nav={setNav} />}
-        />
 
         {/* ADMIN DASHBOARD */}
         <Route element={<RequireAuth allowedRoles={["manager"]} />}>
-          <Route path="/admin" element={<Admin nav={setNav} />}>
+          <Route path="/admin" element={<Admin />}>
             <Route path="/admin/create-hostel" element={<UploadHostel />} />
             <Route path="/admin/" element={<GetHostel />} />
             <Route path="/admin/delete-hostel" element={<DeleteHostel />} />
@@ -65,11 +56,7 @@ function App() {
             <Route path="/admin/add-rooms/:userID/:id" element={<Room />} />
           </Route>
         </Route>
-
-        {/* 404 Catch-all route */}
-        <Route path="*" element={<NotFound />} />
       </Routes>
-      {!nav ? <Footer /> : null} {/* Conditionally render Footer */}
     </Router>
   );
 }

@@ -185,7 +185,7 @@ function HostelDetail() {
           {/* PRICES TABLE */}
           <table
             style={{ gridArea: "price" }}
-            className="shadow-lg bg-white rounded h-60 sticky top-0"
+            className="shadow-lg bg-white rounded h-60 md:sticky top-0"
           >
             <tbody>
               <tr>
@@ -228,7 +228,7 @@ function HostelDetail() {
                   disabled={room.remainingCapacity === 0}
                   className={`shadow-lg bg-${
                     room.remainingCapacity === 0 ? "red" : "blue"
-                  } w-14 h-14 text-center hover:cursor-pointer rounded-md`}
+                  } w-14 h-14 text-center hover:cursor-pointer rounded-md mx-auto`}
                   key={room._id}
                   onClick={() => {
                     handleOpenBookingPopup();
