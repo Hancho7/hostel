@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.5.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.5.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <title>Nice Home PU</title>
+</head>
+
+<body>
+    <main>
+        <header>
+            <nav class="navbar navbar-expand-sm navbar-dark text-white fixed-top" style="background-color: #18428F;">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="index.html">
+                        <img class="img-fluid rounded-pill" src="../Images/Logo.png" alt="Logo" width="80px"
+                            height="auto">
+                    </a>
+                    <div class="navbar-header">
+                        <div class="dropdown">
+                            <button
+                                class="bg-transparent text-white px-3 d-flex align-items-center border-0 dropdown-toggle"
+                                type="button" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                <div>
+                                    <img class="img-fluid mx-auto rounded-circle p-2" src="../Images/avatar1.png"
+                                        width="60px" height="60px" alt="Profile">
+                                </div>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="profileDropdown">
+                                <li><a class="dropdown-item" href="#">Details</a></li>
+                                <li><a class="dropdown-item" href="#">Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </nav>
+        </header>
+
+        <section style="margin-top: 8rem;">
+            <div class="container">
+                <div class="card-header">
+                    <h3>Booking Info</h3>
+                </div>
+                <div class="row py-2">
+                    <div class="col-lg-4 col-md-6 col-sm-12 px-2">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="my-1">First Floor</h5>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <p>Room number:</p>
+                                    </div>
+                                    <div class="col-6">
+                                        <p> FFR02</p>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <p>Room type:</p>
+                                    </div>
+                                    <div class="col-6">
+                                        <p>4</p>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <p>Amount:</p>
+                                    </div>
+                                    <div class="col-6">
+                                        <p>GHS 2,400</p>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <p>Hostel name:</p>
+                                    </div>
+                                    <div class="col-6">
+                                        <p>SoS Hostel</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 col-md-6 col-sm-12 px-2">
+                        <div class="card">
+                            <div class="card-body">
+                                <form method="post">
+                                    <div class="row g-3 needs-validation" novalidate>
+                                        <div class="col-md-6">
+                                            <label for="validationCustom01" class="form-label">First name</label>
+                                            <input type="text" class="form-control" id="validationCustom01" value="Mark"
+                                                required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="validationCustom02" class="form-label">Last name</label>
+                                            <input type="text" class="form-control" id="validationCustom02" value="Otto"
+                                                required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="validationCustomUsername" class="form-label">Email</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text" id="inputGroupPrepend">@</span>
+                                                <input type="text" class="form-control" id="validationCustomUsername"
+                                                    aria-describedby="inputGroupPrepend" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="validationCustom03" class="form-label">Contact</label>
+                                            <input type="tel" class="form-control" id="validationCustom03" required>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="studentID" class="form-label">Student ID</label>
+                                            <input class="form-control" type="file" id="studentID"
+                                                onchange="handleFileSelection('studentID')">
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label for="admissionLetter" class="form-label">Admission Letter</label>
+                                            <input class="form-control" type="file" id="admissionLetter"
+                                                onchange="handleFileSelection('admissionLetter')">
+                                        </div>
+                                        <div class="col-12">
+                                            <p>
+                                                By completing and submitting the final form to confirm your booking
+                                                through our hostel booking system, you agree to our <a
+                                                    href="#exampleModal" data-bs-toggle="modal">terms and conditions</a>
+                                            </p>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value=""
+                                                    id="invalidCheck" required>
+                                                <label class="form-check-label" for="invalidCheck">
+                                                    Agree to terms and conditions
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <button class="btn btn-primary" type="submit">Submit form</button>
+                                        </div>
+                                        <div class="col-6">
+                                            <button class="btn btn-danger" type="submit">Cancel
+                                                booking</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-sm modal-fullscreen">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Terms and conditions</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <style>
+                                li {
+                                    margin: 10px;
+                                }
+                            </style>
+                            <ul>
+                                By completing and submitting the final form to confirm your booking through our hostel
+                                booking system, you agree to the following terms and conditions:
+
+                                <li>
+                                    Booking Confirmation:
+                                    Your booking is confirmed only upon the successful submission of the final form and
+                                    receipt of the booking confirmation email.
+                                </li>
+
+                                <li>
+                                    Payment:
+                                    Payment must be made in full at the time of booking to secure your reservation. All
+                                    transactions are subject to the payment terms outlined in the booking system.
+                                </li>
+
+                                <li>
+                                    Cancellation and Refund:
+                                    Cancellation policies are outlined in the booking system. Refunds, if applicable,
+                                    will
+                                    be processed according to the specified cancellation terms.
+                                </li>
+
+                                <li>
+                                    Check-In/Check-Out:
+                                    Check-in and check-out times are specified in your booking confirmation. Late
+                                    check-out
+                                    may incur additional charges.
+                                </li>
+
+                                <li>
+                                    Guest Responsibility:
+                                    Guests are responsible for the proper use of the hostel facilities and are expected
+                                    to
+                                    adhere to hostel rules and regulations.
+                                </li>
+
+                                <li>
+                                    Damages:
+                                    Guests are liable for any damages caused to hostel property during their stay.
+                                </li>
+
+                                <li>
+                                    Privacy Policy:
+                                    Personal information provided during the booking process will be handled in
+                                    accordance
+                                    with our privacy policy.
+                                </li>
+
+                                <li>
+                                    Changes to Reservation:
+                                    Changes to reservation dates or details may be subject to availability and
+                                    additional
+                                    charges.
+                                </li>
+
+                                <li>
+                                    Termination of Stay:
+                                    The hostel reserves the right to terminate the stay of any guest who violates hostel
+                                    policies without refund.
+                                </li>
+
+                                <li>
+                                    By submitting the final form, you acknowledge that you have read, understood, and
+                                    agree
+                                    to comply with these terms and conditions. Please contact us if you have any
+                                    questions
+                                    or concerns.
+                                </li>
+
+                                <li>
+                                    Thank you for choosing our hostel. We look forward to hosting you.
+                                </li>
+
+                            </ul>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous">
+        </script>
+</body>
+
+</html>

@@ -1,0 +1,810 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.5.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.5.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <title>Nice Home PU</title>
+</head>
+
+<body>
+    <main>
+        <header>
+            <nav class="navbar navbar-expand-sm navbar-light bg-light fixed-top">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="index.html">
+                        <img class="img-fluid rounded-pill" src="../Images/Logo.png" alt="Logo" width="80px"
+                            height="auto">
+                    </a>
+                    <div class="navbar-header">
+                        <div class="dropdown">
+                          <button class="bg-light py-2 px-3 d-flex align-items-center border-0 dropdown-toggle" type="button" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <div>
+                              <img class="img-fluid mx-auto rounded-circle p-2" src="../Images/avatar.png" width="40px" height="40px" alt="Profile" style="border: 1px solid black;">
+                            </div>
+                          </button>
+                          <ul class="dropdown-menu" aria-labelledby="profileDropdown">
+                            <li><a class="dropdown-item mx-3" href="#">Details</a></li>
+                            <li><a class="dropdown-item mx-3" href="#">Logout</a></li>
+                          </ul>
+                        </div>
+                      </div>
+                      
+                </div>
+            </nav>
+        </header>
+
+        <!--<section style="margin-top: 10rem;">
+            <div class="container">
+                <h3 class="text-dark text-center mt-3"><strong>15 Hostel to view from</strong></h3>
+                <h3 class="text-dark-50 text-center mt-4">Sorted by: Our top picks <span><i
+                            class="fa-solid fa-chevron-down"></i></span>
+                </h3>
+            </div>
+            !---Sorting of hostels--
+            <div class="row">
+                <div class="col-sm-4 container" id="mynavbar">
+                    <div class="flex-column p-2 mx-2" style="border: 1px solid black">
+                        <h5 class="m-2 p-2">Filter by:</h5>
+                        <p class="p-1">Distance from campus</p>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Less than 100km
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Less than 100km
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Less than 100km
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Less than 100km
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="flex-column p-2 mx-2" style="border: 1px solid black">
+                        <p class="p-1">Facilities</p>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Library
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Kitchen
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Movie room
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Study room
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="flex-column p-2 mx-2" style="border: 1px solid black">
+                        <p class="p-1">Resources</p>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Wifi
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Matress
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Study table/chair
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Less than 100km
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-8 container-fluid book">
+                    <div class="d-sm-flex justify-content-between align-items-center" style="border: 1px solid black">
+                        <div class="">
+                            <img class="img-fluid mx-auto" src="/images/istock_000088754957_medium.jpg">
+                        </div>
+                        <div class="m-2">
+                            <h2 class="text-dark">Green Hostel</h2>
+                            <h5 class="text-dark">Hostel - 100km from main campus</h5>
+                            <a class="text-danger nav-link" href="https://goo.gl/maps/TtWmsjZhr7pKVnz67">Show on map</a>
+                            <i class="bi bi-check2-square mt-5"></i> <span class="">120 reviews</span>
+                            <div class="flex-row">
+                                <i class="fa-regular fa-star text-warning"></i>
+                                <i class="fa-regular fa-star text-warning"></i>
+                                <i class="fa-regular fa-star text-warning"></i>
+                            </div>
+                        </div>
+                        <div class="mt-5 p-2 mx-2">
+                            <h5 class="text-dark-50 mt-2">From: </h5>
+                            <h3 class="mt-2"><strong>₵2400</strong></h3>
+                            <h6 class="text-dark-50">Rooms available</h6>
+                            <a class="btn btn-danger" type="button" href="selection page.html">View</a>
+                        </div>
+                    </div>
+                    <div class="d-sm-flex justify-content-around align-items-center" style="border: 1px solid black">
+                        <div class="">
+                            <img class="img-fluid mx-auto" src="/images/istockphoto-503343507-612x612.jpg">
+                        </div>
+                        <div class="m-2">
+                            <h2 class="text-dark">Green Hostel</h2>
+                            <h5 class="text-dark">Hostel - 100km from main campus</h5>
+                            <a class="text-danger nav-link" href="https://goo.gl/maps/TtWmsjZhr7pKVnz67">Show on map</a>
+                            <i class="bi bi-check2-square mt-5"></i> <span class="">120 reviews</span>
+                            <div class="flex-row">
+                                <i class="fa-regular fa-star text-warning"></i>
+                                <i class="fa-regular fa-star text-warning"></i>
+                                <i class="fa-regular fa-star text-warning"></i>
+                            </div>
+                        </div>
+                        <div class="mt-5 p-2 mx-2">
+                            <h5 class="text-dark-50 mt-2">From: </h5>
+                            <h3 class="mt-2"><strong>₵2400</strong></h3>
+                            <h6 class="text-dark-50">Rooms available</h6>
+                            <a class="btn btn-danger" type="button" href="selection page.html">View</a>
+                        </div>
+                    </div>
+                    <div class="d-sm-flex justify-content-between align-items-center" style="border: 1px solid black">
+                        <div class="">
+                            <img class="img-fluid mx-auto" src="/images/istock_000088754957_medium.jpg">
+                        </div>
+                        <div class="m-2">
+                            <h2 class="text-dark">Green Hostel</h2>
+                            <h5 class="text-dark">Hostel - 100km from main campus</h5>
+                            <a class="text-danger nav-link" href="https://goo.gl/maps/TtWmsjZhr7pKVnz67">Show on map</a>
+                            <i class="bi bi-check2-square mt-5"></i> <span class="">120 reviews</span>
+                            <div class="flex-row">
+                                <i class="fa-regular fa-star text-warning"></i>
+                                <i class="fa-regular fa-star text-warning"></i>
+                                <i class="fa-regular fa-star text-warning"></i>
+                            </div>
+                        </div>
+                        <div class="mt-5 p-2 mx-2">
+                            <h5 class="text-dark-50 mt-2">From: </h5>
+                            <h3 class="mt-2"><strong>₵2400</strong></h3>
+                            <h6 class="text-dark-50">Rooms available</h6>
+                            <a class="btn btn-danger" type="button" href="selection page.html">View</a>
+                        </div>
+                    </div>
+                    <div class="d-sm-flex justify-content-between align-items-center" style="border: 1px solid black">
+                        <div class="">
+                            <img class="img-fluid mx-auto" src="/images/istock_000088754957_medium.jpg">
+                        </div>
+                        <div class="m-2">
+                            <h2 class="text-dark">Green Hostel</h2>
+                            <h5 class="text-dark">Hostel - 100km from main campus</h5>
+                            <a class="text-danger nav-link" href="https://goo.gl/maps/TtWmsjZhr7pKVnz67">Show on map</a>
+                            <i class="bi bi-check2-square mt-5"></i> <span class="">120 reviews</span>
+                            <div class="flex-row">
+                                <i class="fa-regular fa-star text-warning"></i>
+                                <i class="fa-regular fa-star text-warning"></i>
+                                <i class="fa-regular fa-star text-warning"></i>
+                            </div>
+                        </div>
+                        <div class="mt-5 p-2 mx-2">
+                            <h5 class="text-dark-50 mt-2">From: </h5>
+                            <h3 class="mt-2"><strong>₵2400</strong></h3>
+                            <h6 class="text-dark-50">Rooms available</h6>
+                            <a class="btn btn-danger" type="button" href="selection page.html">View</a>
+                        </div>
+                    </div>
+                    <div class="d-sm-flex justify-content-between align-items-center" style="border: 1px solid black">
+                        <div class="">
+                            <img class="img-fluid mx-auto" src="/images/istock_000088754957_medium.jpg">
+                        </div>
+                        <div class="m-2">
+                            <h2 class="text-dark">Green Hostel</h2>
+                            <h5 class="text-dark">Hostel - 100km from main campus</h5>
+                            <a class="text-danger nav-link" href="https://goo.gl/maps/TtWmsjZhr7pKVnz67">Show on map</a>
+                            <i class="bi bi-check2-square mt-5"></i> <span class="">120 reviews</span>
+                            <div class="flex-row">
+                                <i class="fa-regular fa-star text-warning"></i>
+                                <i class="fa-regular fa-star text-warning"></i>
+                                <i class="fa-regular fa-star text-warning"></i>
+                            </div>
+                        </div>
+                        <div class="mt-5 p-2 mx-2">
+                            <h5 class="text-dark-50 mt-2">From: </h5>
+                            <h3 class="mt-2"><strong>₵2400</strong></h3>
+                            <h6 class="text-dark-50">Rooms available</h6>
+                            <a class="btn btn-danger" type="button" href="selection page.html">View</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex flex-row align-items-center justify-content-center mx-auto mt-3">
+                <a class="nav-link rounded-5 text-center text-dark mx-1" style="border: black 1px solid" href="#">1</a>
+                <a class="nav-link text-center text-dark mx-1" href="#">2</a>
+                <a class="nav-link text-center text-dark mx-1" href="#">3</a>
+            </div>
+        </section>--->
+
+
+        <!--<section style="margin-top: 10rem;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="p-2">
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3970.609906435138!2d-0.27901277472372116!3d5.624464944356594!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfdf98c25ce18e1d%3A0xa488794859304f7!2sPentecost%20University!5e0!3m2!1sen!2sgh!4v1691873574106!5m2!1sen!2sgh"
+                                width="400" height="650" style="border:0;" allowfullscreen="" loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-8 col-md-12">
+                        <div class="mb-3">
+                            <div class="navbar navbar-expand-sm navbar-light">
+                                <a class="navbar-brand">Filter by:</a>
+                                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#filterBar">
+                                    <span class="navbar-toggler-icon"></span>
+                                </button>
+                                <div class="collapse navbar-collapse" id="filterBar">
+                                    <ul class="navbar-nav justify-content-around">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" href="#">Distance</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link active" href="#">Prices</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link active" href="#">Rating</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row align-items-center">
+                            <div class="col-lg-4 col-md-12">
+                                !-- Carousel --
+                                <div id="demo" class="carousel slide" data-bs-ride="carousel">
+                                    !-- Indicators/dots --
+                                    <div class="carousel-indicators">
+                                        <button type="button" data-bs-target="#demo" data-bs-slide-to="0"
+                                            class="active"></button>
+                                        <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+                                        <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+                                        <button type="button" data-bs-target="#demo" data-bs-slide-to="3"></button>
+                                        <button type="button" data-bs-target="#demo" data-bs-slide-to="4"></button>
+                                        <button type="button" data-bs-target="#demo" data-bs-slide-to="5"></button>
+                                    </div>
+                                    !-- The slideshow/carousel --
+                                    <div class="carousel-inner">
+                                        <div class="carousel-item active">
+                                            <img src="../Images/b3.jpg" alt="Los Angeles" class="d-block"
+                                                style="width:100%; height:300px;">
+                                        </div>
+                                        <div class="carousel-item">
+                                            <img src="../Images/b1.jpg" alt="Chicago" class="d-block"
+                                                style="width:100%; height:300px;">
+                                        </div>
+                                        <div class="carousel-item">
+                                            <img src="../Images/b.jpg" alt="New York" class="d-block"
+                                                style="width:100%; height:300px;">
+                                        </div>
+                                        <div class="carousel-item">
+                                            <img src="../Images/b4.jpg" alt="New York" class="d-block"
+                                                style="width:100%; height:300px;">
+                                        </div>
+                                        <div class="carousel-item">
+                                            <img src="../Images/b5.jpg" alt="New York" class="d-block"
+                                                style="width:100%; height:300px;">
+                                        </div>
+                                        <div class="carousel-item">
+                                            <img src="../Images/b6.jpg" alt="New York" class="d-block"
+                                                style="width:100%; height:300px;">
+                                        </div>
+                                    </div>
+                                    !-- Left and right controls/icons --
+                                    <button class="carousel-control-prev" type="button" data-bs-target="#demo"
+                                        data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon"></span>
+                                    </button>
+                                    <button class="carousel-control-next" type="button" data-bs-target="#demo"
+                                        data-bs-slide="next">
+                                        <span class="carousel-control-next-icon"></span>
+                                    </button>
+                                </div>
+                                <div>
+                                </div>
+                            </div>
+                            <div class="col-lg-8 col-md-12">
+                                <div class="row">
+                                    <div class="col-6 p-2">
+                                        <h2 class="text-dark">NICEHOME Hostel</h2>
+
+                                        <i class="bi bi-check2-square mt-5"></i> <span class="">120 reviews</span>
+                                        <div class="flex-row">
+                                            <i class="fa-regular fa-star text-warning"></i>
+                                            <i class="fa-regular fa-star text-warning"></i>
+                                            <i class="fa-regular fa-star text-warning"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <h5 class="text-dark-50 mt-2">From: </h5>
+                                        <h3 class="mt-2"><strong>₵2400</strong></h3>
+                                        <h6 class="text-dark-50">Rooms available</h6>
+                                        <a class="btn btn-danger" type="button" href="selection page.html">View</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>--->
+
+        <!-- Start destinations Area -->
+        <section class="destinations-area section-gap" style="margin-top: 10rem;">
+            <div class="container">
+                <div class="row d-flex justify-content-center">
+                    <div class="menu-content pb-40 col-lg-8">
+                        <div class="title text-center">
+                            <h1 class="mb-10 mt-2">Available Hostels</h1>
+                            <p class="my-2">Explore a variety of available hostels for your comfortable and
+                                budget-friendly stay.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="single-destinations">
+                            <div class="thumb">
+                                <img class="img-fluid" src="../Images/b1.jpg" alt="">
+                            </div>
+                            <div class="details">
+                                <h4 class="d-flex justify-content-between">
+                                    <span>NiceHome Star Hostel</span>
+                                    <div class="star">
+                                        <span class="bi bi-star checked"></span>
+                                        <span class="bi bi-star checked"></span>
+                                        <span class="bi bi-star checked"></span>
+                                        <span class="bi bi-star checked"></span>
+                                        <span class="bi bi-star"></span>
+                                    </div>
+                                </h4>
+                                <a class="text-dark" href="#">
+                                    View on map | 49 Reviews
+                                </a>
+                                <ul class="package-list">
+                                    <li class="d-flex justify-content-between align-items-center">
+                                        <span>Swimming pool</span>
+                                        <span>Yes</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between align-items-center">
+                                        <span>Gymnesium</span>
+                                        <span>No</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between align-items-center">
+                                        <span>Wi-fi</span>
+                                        <span>Yes</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between align-items-center">
+                                        <span>Room Service</span>
+                                        <span>No</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between align-items-center">
+                                        <span>Air Condition</span>
+                                        <span>Yes</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between align-items-center">
+                                        <span>Restaurant</span>
+                                        <span>Yes</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between align-items-center">
+                                        <span>Rooms available</span>
+                                        <a href="booking.html" class="book-btn text-light">Book now</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="single-destinations">
+                            <div class="thumb">
+                                <img src="../Images/b2.jpg" alt="">
+                            </div>
+                            <div class="details">
+                                <h4 class="d-flex justify-content-between">
+                                    <span>Campus Hostel</span>
+                                    <div class="star">
+                                        <span class="bi bi-star checked"></span>
+                                        <span class="bi bi-star checked"></span>
+                                        <span class="bi bi-star checked"></span>
+                                        <span class="bi bi-star checked"></span>
+                                        <span class="bi bi-star"></span>
+                                    </div>
+                                </h4>
+                                <a class="text-dark" href="#">
+                                    View on map | 49 Reviews
+                                </a>
+                                <ul class="package-list">
+                                    <li class="d-flex justify-content-between align-items-center">
+                                        <span>Swimming pool</span>
+                                        <span>Yes</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between align-items-center">
+                                        <span>Gymnesium</span>
+                                        <span>No</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between align-items-center">
+                                        <span>Wi-fi</span>
+                                        <span>Yes</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between align-items-center">
+                                        <span>Room Service</span>
+                                        <span>No</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between align-items-center">
+                                        <span>Air Condition</span>
+                                        <span>Yes</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between align-items-center">
+                                        <span>Restaurant</span>
+                                        <span>Yes</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between align-items-center">
+                                        <span>Rooms available</span>
+                                        <a href="booking.html" class="book-btn">Book now</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="single-destinations">
+                            <div class="thumb">
+                                <img class="img-fluid" src="../Images/b1.jpg" alt="">
+                            </div>
+                            <div class="details">
+                                <h4 class="d-flex justify-content-between">
+                                    <span>Le Grande Hostel</span>
+                                    <div class="star">
+                                        <span class="bi bi-star checked"></span>
+                                        <span class="bi bi-star checked"></span>
+                                        <span class="bi bi-star checked"></span>
+                                        <span class="bi bi-star checked"></span>
+                                        <span class="bi bi-star"></span>
+                                    </div>
+                                </h4>
+                                <a class="text-dark" href="#">
+                                    View on map | 49 Reviews
+                                </a>
+                                <ul class="package-list">
+                                    <li class="d-flex justify-content-between align-items-center">
+                                        <span>Swimming pool</span>
+                                        <span>Yes</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between align-items-center">
+                                        <span>Gymnesium</span>
+                                        <span>No</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between align-items-center">
+                                        <span>Wi-fi</span>
+                                        <span>Yes</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between align-items-center">
+                                        <span>Room Service</span>
+                                        <span>No</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between align-items-center">
+                                        <span>Air Condition</span>
+                                        <span>Yes</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between align-items-center">
+                                        <span>Restaurant</span>
+                                        <span>Yes</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between align-items-center">
+                                        <span>Rooms available</span>
+                                        <a href="#" class="book-btn">Book now</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="single-destinations">
+                            <div class="thumb">
+                                <img class="img-fluid" src="../Images/b1.jpg" alt="">
+                            </div>
+                            <div class="details">
+                                <h4 class="d-flex justify-content-between">
+                                    <span>SoS Hostel</span>
+                                    <div class="star">
+                                        <span class="bi bi-star checked"></span>
+                                        <span class="bi bi-star checked"></span>
+                                        <span class="bi bi-star checked"></span>
+                                        <span class="bi bi-star checked"></span>
+                                        <span class="bi bi-star"></span>
+                                    </div>
+                                </h4>
+                                <a class="text-dark" href="#">
+                                    View on map | 49 Reviews
+                                </a>
+                                <ul class="package-list">
+                                    <li class="d-flex justify-content-between align-items-center">
+                                        <span>Swimming pool</span>
+                                        <span>Yes</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between align-items-center">
+                                        <span>Gymnesium</span>
+                                        <span>No</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between align-items-center">
+                                        <span>Wi-fi</span>
+                                        <span>Yes</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between align-items-center">
+                                        <span>Room Service</span>
+                                        <span>No</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between align-items-center">
+                                        <span>Air Condition</span>
+                                        <span>Yes</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between align-items-center">
+                                        <span>Restaurant</span>
+                                        <span>Yes</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between align-items-center">
+                                        <span>Rooms available</span>
+                                        <a href="booking.html" class="book-btn">Book now</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="single-destinations">
+                            <div class="thumb">
+                                <img class="img-fluid" src="../Images/b1.jpg" alt="">
+                            </div>
+                            <div class="details">
+                                <h4 class="d-flex justify-content-between">
+                                    <span>Star Hostel</span>
+                                    <div class="star">
+                                        <span class="bi bi-star checked"></span>
+                                        <span class="bi bi-star checked"></span>
+                                        <span class="bi bi-star checked"></span>
+                                        <span class="bi bi-star checked"></span>
+                                        <span class="bi bi-star"></span>
+                                    </div>
+                                </h4>
+                                <a class="text-dark" href="#">
+                                    View on map | 49 Reviews
+                                </a>
+                                <ul class="package-list">
+                                    <li class="d-flex justify-content-between align-items-center">
+                                        <span>Swimming pool</span>
+                                        <span>Yes</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between align-items-center">
+                                        <span>Gymnesium</span>
+                                        <span>No</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between align-items-center">
+                                        <span>Wi-fi</span>
+                                        <span>Yes</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between align-items-center">
+                                        <span>Room Service</span>
+                                        <span>No</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between align-items-center">
+                                        <span>Air Condition</span>
+                                        <span>Yes</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between align-items-center">
+                                        <span>Restaurant</span>
+                                        <span>Yes</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between align-items-center">
+                                        <span>Rooms available</span>
+                                        <a href="#" class="book-btn">Book now</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="single-destinations">
+                            <div class="thumb">
+                                <img class="img-fluid" src="../Images/b1.jpg" alt="">
+                            </div>
+                            <div class="details">
+                                <h4 class="d-flex justify-content-between">
+                                    <span>Legacy</span>
+                                    <div class="star">
+                                        <span class="bi bi-star checked"></span>
+                                        <span class="bi bi-star checked"></span>
+                                        <span class="bi bi-star checked"></span>
+                                        <span class="bi bi-star checked"></span>
+                                        <span class="bi bi-star"></span>
+                                    </div>
+                                </h4>
+                                <a class="text-dark" href="#">
+                                    View on map | 49 Reviews
+                                </a>
+                                <ul class="package-list">
+                                    <li class="d-flex justify-content-between align-items-center">
+                                        <span>Swimming pool</span>
+                                        <span>Yes</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between align-items-center">
+                                        <span>Gymnesium</span>
+                                        <span>No</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between align-items-center">
+                                        <span>Wi-fi</span>
+                                        <span>Yes</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between align-items-center">
+                                        <span>Room Service</span>
+                                        <span>No</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between align-items-center">
+                                        <span>Air Condition</span>
+                                        <span>Yes</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between align-items-center">
+                                        <span>Restaurant</span>
+                                        <span>Yes</span>
+                                    </li>
+                                    <li class="d-flex justify-content-between align-items-center">
+                                        <span>Rooms available</span>
+                                        <a href="#" class="book-btn">Book now</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End destinations Area -->
+
+        <!-- start footer Area -->
+        <footer class="footer-area section-gap" style="margin-top: 3rem;">
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-lg-3  col-md-6 col-sm-6">
+                        <div class="single-footer-widget">
+                            <h6>About Nice Home</h6>
+                            <p>
+                                The world has become so fast paced that people don’t want to stand by reading a page of
+                                information, they would much rather look at a presentation and understand the message.
+                                It has come to a point
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="single-footer-widget">
+                            <h6>Navigation Links</h6>
+                            <div class="row">
+                                <div class="col">
+                                    <ul>
+                                        <li><a href="#">Home</a></li>
+                                        <li><a href="#">Customer Support</a></li>
+                                        <li><a href="#">Service Guarantee</a></li>
+                                        <li><a href="#">System Feedback</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col">
+                                    <ul>
+                                        <li><a href="#">Privacy Policy</a></li>
+                                        <li><a href="#">Terms and Conditions</a></li>
+                                        <li><a href="#">Blog</a></li>
+                                        <li><a href="#">Contact</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3  col-md-6 col-sm-6">
+                        <div class="single-footer-widget">
+                            <h6>Newsletter</h6>
+                            <p>
+                                For business professionals caught between high OEM price and mediocre print and graphic
+                                output.
+                            </p>
+                            <div id="mc_embed_signup">
+                                <form target="_blank" action="mail.php" method="get" class="subscription relative">
+                                    <div class="input-group d-flex flex-row">
+                                        <input name="EMAIL" placeholder="Email Address" onfocus="this.placeholder = ''"
+                                            onblur="this.placeholder = 'Email Address '" required="" type="email">
+                                        <button class="btn bb-btn px-lg-2 px-sm-3"><span><i
+                                                    class="bi bi-send-check-fill"></i></span></button>
+                                    </div>
+                                    <div class="mt-10 info"></div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3  col-md-6 col-sm-6">
+                        <div class="single-footer-widget mail-chimp">
+                            <h6 class="mb-20">Partners</h6>
+                            <ul class="instafeed d-flex flex-wrap">
+                                <li><img src="../Images/i1.jpg" alt=""></li>
+                                <li><img src="../Images/i2.jpg" alt=""></li>
+                                <li><img src="../Images/i3.jpg" alt=""></li>
+                                <li><img src="../Images/i4.jpg" alt=""></li>
+                                <li><img src="../Images/i5.jpg" alt=""></li>
+                                <li><img src="../Images/i6.jpg" alt=""></li>
+                                <li><img src="../Images/i7.jpg" alt=""></li>
+                                <li><img src="../Images/i8.jpg" alt=""></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row footer-bottom d-flex justify-content-between align-items-center">
+                    <p class="col-lg-8 col-sm-12 footer-text m-0 text-light">
+                        Copyright &copy;
+                        <script>document.write(new Date().getFullYear());</script> All rights reserved | This project is
+                        made with
+                        <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="#" target="_blank">Nice Home</a>
+                    </p>
+                    <div class="col-lg-4 col-sm-12 footer-social">
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="bi bi-twitter"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                        <a href="#"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- End footer Area -->
+
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

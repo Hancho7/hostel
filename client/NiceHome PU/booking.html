@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.5.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.5.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <title>Nice Home PU</title>
+</head>
+
+<body>
+    <main>
+        <header>
+            <nav class="navbar navbar-expand-sm navbar-dark text-white fixed-top" style="background-color: #18428F;">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="index.html">
+                        <img class="img-fluid rounded-pill" src="../Images/Logo.png" alt="Logo" width="80px"
+                            height="auto">
+                    </a>
+                    <div class="navbar-header">
+                        <div class="dropdown">
+                            <button class="bg-transparent text-white px-3 d-flex align-items-center border-0 dropdown-toggle"
+                                type="button" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                <div>
+                                    <img class="img-fluid mx-auto rounded-circle p-2" src="../Images/avatar1.png"
+                                        width="60px" height="60px" alt="Profile">
+                                </div>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="profileDropdown">
+                                <li><a class="dropdown-item" href="#">Details</a></li>
+                                <li><a class="dropdown-item" href="#">Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </nav>
+        </header>
+
+        <section id="rooms" style="margin-top: 8rem;">
+            <div class="m-4">
+                <h3>NiceHome Hostel</h3>
+            </div>
+            <div class="container row">
+                <div class="col-lg-6 col-md-12 single-pro-image">
+                    <img class="img-fluid" src="images/b1.jpg" width="100%" style="max-width: 100%; max-height: 250px;" id="MainImg">
+                </div>
+                <div class="col-lg-6 col-md-12 small-img-group">
+                    <div class="row g-1">
+                        <!-- Simplified the repetitive HTML for small images -->
+                        <div class="col-4 small-img">
+                            <img src="images/b2.jpg" width="100%" height="120px" class="small-img" onclick="updateMainImage(this)">
+                        </div>
+                        <div class="col-4 small-img">
+                            <img src="images/b3.jpg" width="100%" height="120px" class="small-img" onclick="updateMainImage(this)">
+                        </div>
+                        <div class="col-4 small-img">
+                            <img src="images/b4.jpg" width="100%" height="120px" class="small-img" onclick="updateMainImage(this)">
+                        </div>
+                        <div class="col-4 small-img">
+                            <img src="images/b5.jpg" width="100%" height="120px" class="small-img" onclick="updateMainImage(this)">
+                        </div>
+                        <div class="col-4 small-img">
+                            <img src="images/b6.jpg" width="100%" height="120px" class="small-img" onclick="updateMainImage(this)">
+                        </div>
+                        <div class="col-4 small-img">
+                            <img src="images/b7.jpg" width="100%" height="120px" class="small-img" onclick="updateMainImage(this)">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <script>
+            function updateMainImage(clickedImage) {
+                var mainImage = document.getElementById("MainImg");
+                mainImage.src = clickedImage.src;
+                mainImage.style.width = "100%";
+                mainImage.style.height = "250px";
+            }
+        </script>
+        
+        <section id="rooms" style="margin-top: 4rem;">
+            <div class="container">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h3 class="my-2">Available Rooms</h3>
+                            </div>
+                            <div class="col-md-6">
+                                <select class="float-end py-2 px-3 btn btn-outline-primary" id="floorSelector" style="width: 200px;">
+                                    <option>Select floor...</option>
+                                    <option>All</option>
+                                    <option>Ground floor</option>
+                                    <option>First floor</option>
+                                    <option>Second floor</option>
+                                    <option>Third floor</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 card-body" id="roomsContainer">
+                            <div class="card">
+                                <div class="row p-2 my-2">
+                                    <div class="col-6">
+                                        <p>First floor</p>
+                                        <p class="py-1">Number per room</p>
+                                        <div>
+                                            <p class="text-dark"><strong>Four</strong></p>
+                                        </div>
+                                        <div>
+                                            <button class="py-2 px-0 btn btn-light disabled">2 beds available</button>
+                                        </div>
+                                        <div>
+                                            <p>Status</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <button class="btn btn-outline-dark disabled">FFR01</button>
+                                        <p class="py-1">Price Per semester</p>
+                                        <div class="my-2">
+                                            <p class="text-danger"><strong>GHS 3,200</strong></p>
+                                        </div>
+                                        <div>
+                                            <button class="btn text-white" style="background-color: #292A66;">Select</button>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                Almost full
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+        
+                            <div class="card">
+                                <div class="row p-2 my-2">
+                                    <div class="col-6">
+                                        <p>Ground floor</p>
+                                        <p class="py-1">Number per room</p>
+                                        <div>
+                                            <p class="text-dark"><strong>One</strong></p>
+                                        </div>
+                                        <div>
+                                            <button class="py-2 px-0 btn btn-light disabled">1 bed available</button>
+                                        </div>
+                                        <div>
+                                            <p>Status</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <button class="btn btn-outline-dark disabled">GFR02</button>
+                                        <p class="py-1">Price Per semester</p>
+                                        <div class="my-2">
+                                            <p class="text-danger"><strong>GHS 3,500</strong></p>
+                                        </div>
+                                        <div>
+                                            <button class="btn text-white" style="background-color: #292A66;">Select</button>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                Almost full
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div class="card">
+                                <div class="row p-2 my-2">
+                                    <div class="col-6">
+                                        <p>Third floor</p>
+                                        <p class="py-1">Number per room</p>
+                                        <div>
+                                            <p class="text-dark"><strong>Three</strong></p>
+                                        </div>
+                                        <div>
+                                            <button class="py-2 px-0 btn btn-light disabled">3 beds available</button>
+                                        </div>
+                                        <div>
+                                            <p>Status</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <button class="btn btn-outline-dark disabled">TFR01</button>
+                                        <p class="py-1">Price Per semester</p>
+                                        <div class="my-2">
+                                            <p class="text-danger"><strong>GHS 2,700</strong></p>
+                                        </div>
+                                        <div>
+                                            <button class="btn text-white" style="background-color: #292A66;">Select</button>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                Almost full
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div class="card">
+                                <div class="row p-2 my-2">
+                                    <div class="col-6">
+                                        <p>Second floor</p>
+                                        <p class="py-1">Number per room</p>
+                                        <div>
+                                            <p class="text-dark"><strong>Four</strong></p>
+                                        </div>
+                                       <div>
+                                            <button class="py-2 px-0 btn btn-light disabled">3 beds available</button>
+                                        </div>
+                                        <div>
+                                            <p>Status</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <button class="btn btn-outline-dark disabled">SFR09</button>
+                                        <p class="py-1">Price Per semester</p>
+                                        <div class="my-2">
+                                            <p class="text-danger"><strong>GHS 2,400</strong></p>
+                                        </div>
+                                        <div>
+                                            <button class="btn text-white" style="background-color: #292A66;">Select</button>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                Almost full
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="col-md-6 card-body">
+                            <div>
+                                <h3>Property Description</h3><hr>
+                                <p>
+                                    Welcome to our vibrant hostel located in the heart of [City Name]. Designed with your comfort in mind, our hostel offers a modern and welcoming atmosphere for travelers seeking a memorable stay.
+                                </p>
+                            </div>
+                            <div class="my-1">
+                                <h3>Hostel rules</h3><hr>
+                                <li>Respect quiet hours between 9:00 pm to 5:30 am to ensure a peaceful environment for all guests.</li>
+                                <li>Keep shared spaces tidy by cleaning up after yourself. Dispose of trash in designated bins and wash your dishes promptly.</li>
+                                <li>Check out by 4:30 pm on the day of departure. Late check-outs may incur additional charges.</li>
+                                <li>Be mindful of other guests' privacy and personal space. Avoid loud conversations and keep noise to a minimum in dormitories and common areas.</li>
+                                <li>Lock doors securely when entering or leaving rooms. Do not share room keys or access codes with unauthorized individuals.</li>
+                            </div>
+                            <div class="my-1 py-2">
+                                <h3>Paid Services</h3><hr>
+                                <div class="row align-items-center">
+                                   <div class="col-4">
+                                    <div class="row">
+                                        <div class="col-3"><i class="bi bi-cloud-fog2"></i></div>
+                                        <div class="col-9">Laundry</div>
+                                    </div>
+                                   </div>
+                                    <div class="col-4">
+                                        <div class="row">
+                                            <div class="col-3"><i class="bi bi-cloud-fog2"></i></div>
+                                            <div class="col-9">Ironing</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="row">
+                                            <div class="col-3"><i class="bi bi-cloud-fog2"></i></div>
+                                            <div class="col-9">Laundry</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="row">
+                                            <div class="col-3"><i class="bi bi-cloud-fog2"></i></div>
+                                            <div class="col-9">Laundry</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="my-1 py-2">
+                                <h3>Free services</h3><hr>
+                                <div class="row align-items-center">
+                                   <div class="col-4">
+                                    <div class="row">
+                                        <div class="col-3"><i class="bi bi-wifi"></i></div>
+                                        <div class="col-9">Wifi</div>
+                                    </div>
+                                   </div>
+                                    <div class="col-4">
+                                        <div class="row">
+                                            <div class="col-3"><i class="bi bi-pc-horizontal"></i></div>
+                                            <div class="col-9">Mattress</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="row">
+                                            <div class="col-3"><i class="bi bi-water"></i></div>
+                                            <div class="col-9">Water</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="row">
+                                            <div class="col-3"><i class="bi bi-lightbulb-fill"></i></div>
+                                            <div class="col-9">Electricity</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="row">
+                                            <div class="col-3"><i class="bi bi-dash-square-fill"></i></div>
+                                            <div class="col-9">Wardrobe</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- start footer Area -->
+        <footer class="footer-area section-gap" style="margin-top: 3rem;">
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-lg-3  col-md-6 col-sm-6">
+                        <div class="single-footer-widget">
+                            <h6>About NiceHome</h6>
+                            <p>
+                                The world has become so fast paced that people don’t want to stand by reading a page of
+                                information, they would much rather look at a presentation and understand the message.
+                                It has come to a point
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                        <div class="single-footer-widget">
+                            <h6>Navigation Links</h6>
+                            <div class="row">
+                                <div class="col">
+                                    <ul>
+                                        <li><a href="#">Home</a></li>
+                                        <li><a href="#">Customer Support</a></li>
+                                        <li><a href="#">Service Guarantee</a></li>
+                                        <li><a href="#">System Feedback</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col">
+                                    <ul>
+                                        <li><a href="#">Privacy Policy</a></li>
+                                        <li><a href="#">Terms and Conditions</a></li>
+                                        <li><a href="#">Blog</a></li>
+                                        <li><a href="#">Contact</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3  col-md-6 col-sm-6">
+                        <div class="single-footer-widget">
+                            <h6>Newsletter</h6>
+                            <p>
+                                For business professionals caught between high OEM price and mediocre print and graphic
+                                output.
+                            </p>
+                            <div id="mc_embed_signup">
+                                <form target="_blank" action="mail.php" method="get" class="subscription relative">
+                                    <div class="input-group d-flex flex-row">
+                                        <input name="EMAIL" placeholder="Email Address" onfocus="this.placeholder = ''"
+                                            onblur="this.placeholder = 'Email Address '" required="" type="email">
+                                        <button class="btn bb-btn px-lg-2 px-sm-3"><span><i
+                                                    class="bi bi-send-check-fill"></i></span></button>
+                                    </div>
+                                    <div class="mt-10 info"></div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3  col-md-6 col-sm-6">
+                        <div class="single-footer-widget mail-chimp">
+                            <h6 class="mb-20">Partners</h6>
+                            <ul class="instafeed d-flex flex-wrap">
+                                <li><img src="../Images/i1.jpg" alt=""></li>
+                                <li><img src="../Images/i2.jpg" alt=""></li>
+                                <li><img src="../Images/i3.jpg" alt=""></li>
+                                <li><img src="../Images/i4.jpg" alt=""></li>
+                                <li><img src="../Images/i5.jpg" alt=""></li>
+                                <li><img src="../Images/i6.jpg" alt=""></li>
+                                <li><img src="../Images/i7.jpg" alt=""></li>
+                                <li><img src="../Images/i8.jpg" alt=""></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row footer-bottom d-flex justify-content-between align-items-center">
+                    <p class="col-lg-8 col-sm-12 footer-text m-0 text-light">
+                        Copyright &copy;
+                        <script>document.write(new Date().getFullYear());</script> All rights reserved | This project is
+                        made with
+                        <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="#" target="_blank">Nice Home</a>
+                    </p>
+                    <div class="col-lg-4 col-sm-12 footer-social">
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="bi bi-twitter"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                        <a href="#"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- End footer Area -->
+
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous">
+        </script>
+</body>
+
+</html>
