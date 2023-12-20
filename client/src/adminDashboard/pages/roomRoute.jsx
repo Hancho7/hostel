@@ -24,12 +24,20 @@ function Room() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
     dispatch(addRoomAction(formData));
-    console.log('loading', loading)
     if(!addRoomSuccess){
       alert("error occured")
     }
+    // Dispatch action to update Redux state with the new room
+    dispatch(adminGetRooms({ userID, id }));
+
+    // Clear the form data
+    setFormData({
+      name: '',
+      capacity: '',
+      hostelID: id,
+    });
+    
     alert(`${formData.name} has successfully been added`)
     
   };

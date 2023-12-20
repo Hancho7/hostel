@@ -6,10 +6,23 @@ import animationData from "../assets/correct.json";
 import loadingGif from "../assets/loading.json";
 import Lottie from "lottie-react";
 import ClipLoader from "react-spinners/ClipLoader";
+import { useEffect, useState } from "react";
 
 export default function SignUp({ onSubmit, onChange, error }) {
   const loading = useSelector((state) => state.signup.loading);
   const user = useSelector((state) => state.signup.user);
+  const [showEmailCheckMessage, setShowEmailCheckMessage] = useState(false);
+
+  useEffect(() => {
+    if (user === "checkEmail") {
+      setShowEmailCheckMessage(true);
+      const timeoutId = setTimeout(() => {
+        setShowEmailCheckMessage(false);
+      }, 5000); // Set the duration in milliseconds (e.g., 5000 for 5 seconds)
+
+      return () => clearTimeout(timeoutId); // Clear the timeout on component unmount
+    }
+  }, [user]);
   return (
     <div className="flex items-center mt-6 mb-6">
       {loading && (
@@ -33,12 +46,12 @@ export default function SignUp({ onSubmit, onChange, error }) {
             <p className=" font-semibold">Sending E-mail for verification</p>
           </div>
         )}
-        {user === "checkEmail" && (
-          <div className="flex flex-col bg-[rgba(240,248,255,0.7)] items-center fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50">
-            <Lottie className=" w-48" animationData={animationData} />
-            <p className=" font-semibold">Please proceed to check your email for verification </p>
-          </div>
-        )}
+         {user === "checkEmail" && showEmailCheckMessage && (
+        <div className="flex flex-col bg-[rgba(240,248,255,0.7)] items-center fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50">
+          <Lottie className="w-48" animationData={animationData} />
+          <p className="font-semibold">Please proceed to check your email for verification</p>
+        </div>
+      )}
         <form
           onSubmit={onSubmit}
           className="flex flex-col items-center w-full gap-3"

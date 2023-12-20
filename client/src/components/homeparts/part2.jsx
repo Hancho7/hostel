@@ -36,7 +36,7 @@ function Part2() {
 
   return (
     <div className="flex flex-col">
-      <h1 className="font-bold text-3xl mb-6">Available Hostels</h1>
+      <h1 className="font-bold text-3xl mb-6 text-center">Available Hostels</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
         {!error ? (
           hostels && hostels.length > 0 ? (
