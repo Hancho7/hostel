@@ -1,8 +1,9 @@
 import express from 'express'
-import { getHostels } from '../../controllers/hostel/hostel.js'
+import { homeGetHostels, getHostel } from '../../controllers/hostel/hostel.js'
 
 const router = express.Router()
 
-router.get('/hostel', getHostels)
+router.get('/home', homeGetHostels)
+router.get('/:hostelID', getHostel )
 
 export default router;

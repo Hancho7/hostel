@@ -12,6 +12,7 @@ import { watchResetPassword } from "./forgotten/resetPassword.jsx";
 // HOSTEL MANAGEMENT
 import { watchFetchHostels } from "./hostel/displayHostel.jsx";
 import { watchHostelUpload } from "./hostel/createHostel.jsx";
+import { watchUserFetchHostelDetail } from "./hostel/hostelDetail.jsx";
 
 //ROOM MANAGEMENT
 // CREATING ROOM
@@ -42,6 +43,7 @@ export default function* rootSaga() {
 
     // HOSTEL MANAGEMENT
     watchFetchHostels(),
+    watchUserFetchHostelDetail(), //specific hostel detail
     watchHostelUpload(),
     // ADMINS HOSTELS
     watchAdminFetchHostels(),

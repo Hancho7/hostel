@@ -78,7 +78,7 @@ export default function Admin() {
         gridTemplateAreas: `"sidebar header" "sidebar props"`,
         gridTemplateColumns: "auto 1fr",
         gridTemplateRows: "auto 1fr",
-        color: "white",
+        color: "#636363",
       }}
     >
       {/* HEADER */}
@@ -89,7 +89,7 @@ export default function Admin() {
           justifyContent: "space-between",
           gap: "1rem",
           padding: "1rem",
-          backgroundColor: "#001524",
+          backgroundColor: "#E1E1E1",
         }}
       >
         <div className="hidden md:block"></div>
@@ -108,7 +108,7 @@ export default function Admin() {
       <div
         className={`${
           open ? " w-60" : " w-20"
-        } h-screen bg-[#0b0c53ec] duration-500 p-4 md:flex flex-col justify-between hidden`}
+        } h-screen bg-[#E1E1E1] duration-500 p-4 md:flex flex-col justify-between hidden`}
         style={{ gridArea: "sidebar", position: "relative" }}
       >
         <IoIosArrowBack
@@ -119,7 +119,7 @@ export default function Admin() {
         />
         <div className="flex items-center justify-center text-white gap-2">
           <img src={logo} className="w-8" />
-          <span className={`${!open && " hidden"} duration-700 font-semibold`}>
+          <span className={`${!open && " hidden"} duration-700 font-semibold text-[#636363]`}>
             Nice home
           </span>
         </div>
@@ -173,7 +173,6 @@ export default function Admin() {
         style={{
           gridArea: "props",
           overflow: "auto",
-          backgroundColor: "#001524",
         }}
         className="p-4 md:p-8"
       >

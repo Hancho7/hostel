@@ -27,7 +27,7 @@ function App() {
         <Route element={<Components />}>
           <Route path="/" element={<Home />} />
           <Route element={<RequireAuth allowedRoles={["user", "manager"]} />}>
-            <Route path="/:id" element={<HostelDetail />} />
+            <Route path="/:hostelID" element={<HostelDetail />} />
           </Route>
           <Route path="/contact-us" element={<ContactUs />} />
           <Route path="/sign-in" element={<LoginWrapper />} />

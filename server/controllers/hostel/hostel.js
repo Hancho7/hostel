@@ -4,37 +4,30 @@ import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import { GetObjectCommand } from "@aws-sdk/client-s3";
 import Users from "../../models/user.js";
 
-export const getHostels = async (req, res) => {
+
+// HOME REQUESTING FOR THE HOSTELS IMAGE AND DESCRIPTION
+export const homeGetHostels = async (req, res) => {
   try {
-    const hostels = await Hostel.find()
-      .populate({
-        path: "admin", // Populate the 'admin' field
-        select: "firstName lastName email phone", // Select the fields you want to populate
-      })
-      .populate("fullRooms");
+    const hostels = await Hostel.find();
 
     const updatedHostels = [];
 
     for (let i = 0; i < hostels.length; i++) {
       const hostel = hostels[i];
-      const imageUrls = hostel.imageUrl;
-      const updatedImageUrls = [];
+      const firstImageUrl = hostel.imageUrl[0]; // Retrieve only the first image URL
 
-      for (let j = 0; j < imageUrls.length; j++) {
-        const getObjectParams = {
-          Bucket: process.env.BUCKET_NAME,
-          Key: imageUrls[j],
-        };
-        const command = new GetObjectCommand(getObjectParams);
-        const link = await getSignedUrl(s3, command, { expiresIn: 3600 }); // Expires in one day (86400 seconds)
+      const getObjectParams = {
+        Bucket: process.env.BUCKET_NAME,
+        Key: firstImageUrl,
+      };
+      const command = new GetObjectCommand(getObjectParams);
+      const link = await getSignedUrl(s3, command, { expiresIn: 3600 });
 
-        updatedImageUrls.push(link);
-      }
-
-      // Create a new hostel object with updated imageUrls
+      // Create a new hostel object with specific data and the first image URL
       const updatedHostel = {
-        ...hostel.toObject(),
-        imageUrl: updatedImageUrls,
+        _id: hostel._id,
+        name: hostel.name,
+        firstImageUrl: link, // Include only the first image URL
       };
 
       updatedHostels.push(updatedHostel);
@@ -42,11 +35,51 @@ export const getHostels = async (req, res) => {
 
     res.status(200).json(updatedHostels);
   } catch (error) {
+    console.error("Error in getHostelsWithFirstImage:", error);
+    res.status(500).json({ message: error.message });
+  }
+};
+// #########################################################################
+
+// USER REQUESTING FOR SPECIFIC HOSTEL
+export const getHostel = async (req, res) => {
+  const { hostelID } = req.params;
+  console.log(hostelID);
+
+  try {
+    const hostel = await Hostel.findOne({ _id: hostelID })
+      .populate({
+        path: "admin", // Populate the 'admin' field
+        select: "firstName lastName email phone", // Select the fields you want to populate
+      })
+      .populate("fullRooms");
+
+    const imageUrls = hostel.imageUrl;
+    const updatedImageUrls = [];
+
+    for (let i = 0; i < imageUrls.length; i++) {
+      const getObjectParams = {
+        Bucket: process.env.BUCKET_NAME,
+        Key: imageUrls[i],
+      };
+      const command = new GetObjectCommand(getObjectParams);
+      const link = await getSignedUrl(s3, command, { expiresIn: 3600 }); // Expires in one day (86400 seconds)
+
+      updatedImageUrls.push(link);
+    }
+
+    // Create a new hostel object with updated imageUrls
+    const updatedHostel = {
+      ...hostel.toObject(),
+      imageUrl: updatedImageUrls,
+    };
+
+    res.status(200).json(updatedHostel);
+  } catch (error) {
     console.error("Error in getHostels:", error);
     res.status(500).json({ message: error.message });
   }
 };
-
 
 // ADMIN REQUESTING FOR HOSTELS
 export const adminGetHostels = async (req, res) => {

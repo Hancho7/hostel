@@ -101,7 +101,7 @@ function Room() {
           {rooms ? (
             rooms.map((room) => (
               <div
-                className=" w-12 h-12 bg-slate-500 text-center rounded-md mx-auto"
+                className=" w-12 h-12 bg-[#E1E1E1] text-center rounded-md mx-auto"
                 key={room.name}
               >
                 <h1>{room.name}</h1>
@@ -124,7 +124,7 @@ function Room() {
             <input
               type="text"
               placeholder="room name"
-              className=" h-8 p-2"
+              className=" h-8 p-2 bg-[#E1E1E1]"
               name="name"
               value={formData.name}
               onChange={handleInputChange}
@@ -133,7 +133,7 @@ function Room() {
             <input
               type="text"
               placeholder="Number per room"
-              className=" h-8 p-2 w-full"
+              className=" h-8 p-2 w-full bg-[#E1E1E1]"
               name="capacity"
               value={formData.capacity}
               onChange={handleInputChange}

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import HashLoader from "react-spinners/HashLoader";
@@ -6,6 +6,7 @@ import { getHostels } from "../../features/hostels/displayHostels.jsx";
 import { Link } from "react-router-dom";
 import { GrLinkNext } from "react-icons/gr";
 import { addID } from "../../features/hostels/hostelID.jsx";
+import { animated, useSpring } from "@react-spring/web";
 
 function Part2() {
   const dispatch = useDispatch();
@@ -29,13 +30,23 @@ function Part2() {
       navigate("/sign-in", { state: { from: currentLocation } });
       return;
     }
-    
+
     dispatch(addID(hostel));
     navigate(currentLocation);
   };
 
+  const styles = useSpring({
+    from: {
+      opacity: 0,
+    },
+    to: {
+      opacity: 1,
+    },
+  });
+
+  console.log(hostels);
   return (
-    <div className="flex flex-col">
+    <animated.div className="flex flex-col" style={styles}>
       <h1 className="font-bold text-3xl mb-6 text-center">Available Hostels</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
         {!error ? (
@@ -43,13 +54,16 @@ function Part2() {
             hostels.map((hostel) => (
               <div className="text-white text-center" key={hostel._id}>
                 {loading ? (
-                  <section className="flex items-center justify-center w-44 m-auto ">
+                  <section className="flex items-center justify-center w-44 m-auto h-44">
                     <HashLoader color="#18428f" className="m-[50%]" />
                   </section>
                 ) : (
                   <section className="flex items-center justify-center">
-                    <img src={hostel.imageUrl[0]} alt={hostel.name} className=" rounded-tr-lg rounded-tl-lg" />
-                    {console.log(hostel.imageUrl[0])}
+                    <img
+                      src={hostel.firstImageUrl}
+                      alt={hostel.name}
+                      className=" rounded-tr-lg rounded-tl-lg w-full h-44 object-fill"
+                    />
                   </section>
                 )}
 
@@ -58,7 +72,10 @@ function Part2() {
                   <p>{hostel.location}</p>
                   <button
                     onClick={() =>
-                      handleLearnMore(hostel._id, `${window.location.pathname}${hostel._id}`)
+                      handleLearnMore(
+                        hostel._id,
+                        `${window.location.pathname}${hostel._id}`
+                      )
                     }
                   >
                     <i>
@@ -78,7 +95,7 @@ function Part2() {
           <div></div>
         )}
       </div>
-    </div>
+    </animated.div>
   );
 }
 

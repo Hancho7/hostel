@@ -17,11 +17,11 @@ function CreateHostel({
       </h2>
       <form
         encType="multipart/form-data"
-        className="flex flex-col  gap-4 w-[100%] md:w-[80%] lg:w-[60%] md:m-auto p-5 bg-black rounded-md "
+        className="flex flex-col  gap-4 w-[100%] md:w-[80%] lg:w-[60%] md:m-auto p-5 rounded-md "
         onSubmit={handleUpload}
       >
         <input
-          className=" common-input2"
+          className=" common-input2 bg-[#E1E1E1]"
           type="text"
           name="name"
           placeholder="Name"
@@ -29,7 +29,7 @@ function CreateHostel({
           onChange={handleInputChange}
         />
         <input
-          className=" common-input2"
+          className=" common-input2 bg-[#E1E1E1]"
           type="text"
           name="location"
           placeholder="Location"
@@ -41,7 +41,7 @@ function CreateHostel({
             {formData.hostelDescription.map((description, index) => (
               <div key={index} className="flex gap-y-2">
                 <input
-                  className="common-input2 w-full md:w-auto"
+                  className="common-input2 w-full md:w-auto bg-[#E1E1E1]"
                   type="text"
                   placeholder="Hostel Description"
                   value={description}
@@ -71,7 +71,7 @@ function CreateHostel({
               <div key={index} className="flex gap-x-2 flex-row">
                 <div className="flex flex-col md:flex-row md:gap-2">
                   <input
-                    className="common-input2 my-2 w-full md:w-auto"
+                    className="common-input2 my-2 w-full md:w-auto bg-[#E1E1E1]"
                     type="text"
                     placeholder="Number in Room"
                     value={price.numberInRoom}
@@ -80,7 +80,7 @@ function CreateHostel({
                     }
                   />
                   <input
-                    className="common-input2 my-2 w-full md:w-auto"
+                    className="common-input2 my-2 w-full md:w-auto bg-[#E1E1E1]"
                     type="number"
                     placeholder="Price"
                     value={price.price}
@@ -124,7 +124,7 @@ function CreateHostel({
           </label>
         </div>
         <input
-          className=" common-input2"
+          className=" common-input2 bg-[#E1E1E1]"
           type="text"
           name="phone"
           placeholder="Phone"
@@ -134,7 +134,7 @@ function CreateHostel({
         <button
           type="submit"
           onClick={handleUpload}
-          className="h-8 w-28 bg-white text-black font-semibold rounded m-auto"
+          className=" cursor-pointer text-white hover:bg-slate-500 h-9 w-28 bg-[#3B82F6] font-semibold rounded m-auto"
         >
           Upload Hostel
         </button>

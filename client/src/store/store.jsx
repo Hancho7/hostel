@@ -21,6 +21,7 @@ import resetPasswordSlice from "../features/resetPassword/resetPassword.jsx";
 // HOSTEL MANAGEMENT
 import uploadHostelSlice from "../features/hostels/createHostel.jsx";
 import hostelDisplayReducer from "../features/hostels/displayHostels.jsx";
+import hostelDetailSlice from "../features/hostels/hostelDetail.jsx";
 // ADMIN HOSTEL PARAMS REQUEST
 import adminHostelSlice from "../features/hostels/adminHostels.jsx";
 
@@ -58,6 +59,7 @@ const rootReducer = combineReducers({
 
   // HOSTEL MANAGEMENT
   hostel: hostelDisplayReducer,
+  hostelDetail: hostelDetailSlice,
   uploadHostel: uploadHostelSlice,
   // ADMIN HOSTELS PARAMS REQUEST
   adminHostel: adminHostelSlice,

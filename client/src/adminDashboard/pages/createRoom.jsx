@@ -26,13 +26,13 @@ function CreateRooms() {
     <div>
       {adminHostels && (
         <div className="flex gap-4 mb-7">
-          <div className="h-16 text-center shadow-md bg-[#183244] rounded font-semibold">
+          <div className="h-16 text-center shadow-md bg-[#E1E1E1] rounded font-semibold">
             <h1>Number of Hostels</h1>
             <h1 className="text-2xl">{totalHostelsCount}</h1>
           </div>
 
-          <div className="h-16 text-center shadow-md bg-[#183244] rounded font-semibold">
-            <h1>Your Hostels</h1>
+          <div className="h-16 text-center shadow-md bg-[#E1E1E1] rounded font-semibold">
+            <h1 className="px-6">Your Hostels</h1>
             <h1 className="text-2xl">{adminHostelsCount}</h1>
           </div>
         </div>
@@ -61,10 +61,10 @@ function CreateRooms() {
                   className="w-full h-36"
                 />
               </section>
-              <p className="relative -top-8">{hostel.name}</p>
+              <p className="relative -top-8 text-white">{hostel.name}</p>
               <section className="relative top-[-1.5rem]">
                 <button
-                  className="bg-[#7752FE] w-full h-10 hover:bg-slate-400"
+                  className="bg-[#7752FE] w-full h-10 hover:bg-slate-400 text-white"
                   onClick={() => handleRoomRoute(hostel._id)}
                 >
                   ADD A ROOM

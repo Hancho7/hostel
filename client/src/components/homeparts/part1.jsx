@@ -15,7 +15,7 @@ const Part1 = () => {
       setCurrentImageIndex((prevIndex) =>
         prevIndex === images.length - 1 ? 0 : prevIndex + 1
       );
-    }, 3000); // Change image every 3 seconds (adjust as needed)
+    }, 4000); // Change image every 3 seconds (adjust as needed)
 
     return () => {
       clearInterval(interval); // Clean up the interval when the component unmounts
@@ -23,19 +23,19 @@ const Part1 = () => {
   }, [images]);
 
   return (
-    <div className="flex flex-col items-center md:flex-row">
-      <div className="md:w-1/2">
-        <h2 className=" font-bold text-4xl mb-6">
+    <div className="flex flex-col-reverse items-center gap-20">
+      <div className=" my-8 w-full text-center">
+        <h2 className=" font-bold text-4xl mb-6 text-center">
           Your best value proposition
         </h2>
-        <p className="mb-6">
+        <p>
           Where Comfort Meets Community,<br/> Discover Your Home Away from Home with
           Glee. Explore, Connect, and Unwind,<br/> In Our Hostel Haven, Joy you'll
           Find.
         </p>
         {!user ? (
           <button
-            className=" h-12 bg-[#18428f] w-28 rounded-sm text-white font-semibold hover:bg-[#7a95c7] mb-9"
+            className=" h-12 bg-[#18428f] w-28 rounded-sm text-white font-semibold hover:bg-[#7a95c7] my-9"
             onClick={() => {
               window.location.href = "/sign-up";
             }}
@@ -46,11 +46,11 @@ const Part1 = () => {
           <div></div>
         )}
       </div>
-      <div className=" w-full md:w-1/2 h-96">
+      <div className=" w-full">
         <img
           src={images[currentImageIndex]}
           alt={`Image ${currentImageIndex + 1}`}
-          className="slideshow-image w-11/12 m-auto h-full"
+          className="slideshow-image w-11/12 m-auto h-96"
         />
       </div>
     </div>

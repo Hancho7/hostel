@@ -5,19 +5,25 @@ import { BiPhoneCall } from "react-icons/bi";
 import { Link, useParams } from "react-router-dom";
 import { bookAction } from "../../features/hostels/rooms/booking.jsx";
 import { Carousel } from "react-responsive-carousel"; // Import Carousel from the library
+import { getHostel } from "../../features/hostels/hostelDetail.jsx";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // Import the styles
 
 function HostelDetail() {
-  const { id } = useParams();
+  const { hostelID } = useParams();
   const dispatch = useDispatch();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
   const [roomID, setRoomID] = useState("");
   const user = useSelector((state) => state.user.user);
-  const hostels = useSelector((state) => state.hostel.hostel);
+  const hostel = useSelector((state) => state.hostelDetail.hostel);
+  const [displayStyle, setDisplayStyle] = useState("grid"); // MANAGING THE MEDIA QUERY
 
-  // MANAGING THE MEDIA QUERY
-  const [displayStyle, setDisplayStyle] = useState("grid"); // Add this state
+  useEffect(() => {
+    dispatch(getHostel({ hostelID }));
+  }, [dispatch, hostelID]);
+
+  console.log(hostel);
+  console.log("hostel id", hostelID);
 
   // MANAGING THE MEDIA QUERY
   const handleMediaQueryChange = (e) => {
@@ -41,25 +47,11 @@ function HostelDetail() {
     };
   }, []);
 
-  // Custom function to find the selected hostel by ID
-  const findHostelById = (id) => {
-    return hostels.find((hostel) => hostel._id === id);
-  };
-
-  // Find the selected hostel by ID
-  const hostel = findHostelById(id);
-
-  // Check if the selected hostel exists
-  if (!hostel) {
-    return <div>Hostel not found</div>;
-  }
-  console.log("hostel", hostel);
-
   const moveToImage = (index) => {
     setCurrentImageIndex(index);
   };
 
-  // HANDLING THE POP UP MENU
+  // // HANDLING THE POP UP MENU
   const handleOpenBookingPopup = () => {
     setIsOpen(true);
   };
@@ -69,11 +61,14 @@ function HostelDetail() {
 
   // HANDLING SUBMISSION OF ROOM AND USER DETAILS
   const handleRoomBooking = (roomID, userID) => {
-    console.log("roomID", roomID);
-    console.log("user._id", userID);
-    dispatch(bookAction({ roomID, userID, id }));
+    dispatch(bookAction({ roomID, userID, hostelID }));
     setIsOpen(false);
   };
+
+  // Check if the selected hostel exists
+  if(!hostel){
+    return <div>Hostel does not exist</div>;
+  }
   return (
     <div className="hostel-detail relative">
       {/* Background Blur */}
@@ -131,7 +126,7 @@ function HostelDetail() {
           onChange={(index) => setCurrentImageIndex(index)}
         >
           {hostel.imageUrl.map((link, index) => (
-            <div key={index} style={{display: "grid"}}>
+            <div key={index} style={{ display: "grid" }}>
               <img src={link} alt={`Room ${index + 1}`} />
             </div>
           ))}

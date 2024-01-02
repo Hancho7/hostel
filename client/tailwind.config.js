@@ -14,10 +14,10 @@ export default {
     function ({ addUtilities }) {
       const commonInputStyles = {
         '.common-input': {
-          '@apply text-[#7b7979] h-9 border-none w-10/12 shadow-md': {},
+          '@apply text-[#F4F6F8] font-[16px] h-9 w-10/12 h-11 border border-gray-300 rounded-md text-base text-[#9FA1A3] p-4': {},
         },
         '.common-input2': {
-          '@apply rounded h-9 px-2 font-semibold text-black': {},
+          '@apply rounded h-11 px-2 font-semibold text-black': {},
         },
         
       };
