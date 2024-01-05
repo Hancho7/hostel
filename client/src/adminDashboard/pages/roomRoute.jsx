@@ -9,12 +9,13 @@ function Room() {
   const dispatch = useDispatch();
   const rooms = useSelector((state) => state.adminGetRoom.rooms);
   const loading = useSelector((state) => state.addRoom.loading);
-  const addRoomSuccess = useSelector(state => state.addRoom.success);
+  const addRoomSuccess = useSelector((state) => state.addRoom.success);
   const { userID, id } = useParams();
   const [formData, setFormData] = useState({
     name: "",
     capacity: "",
     hostelID: id,
+    description: "",
   });
 
   const handleInputChange = (e) => {
@@ -25,21 +26,21 @@ function Room() {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(addRoomAction(formData));
-    if(!addRoomSuccess){
-      alert("error occured")
+    if (!addRoomSuccess) {
+      alert("error occured");
     }
     // Dispatch action to update Redux state with the new room
     dispatch(adminGetRooms({ userID, id }));
 
     // Clear the form data
     setFormData({
-      name: '',
-      capacity: '',
+      name: "",
+      capacity: "",
       hostelID: id,
+      description: "",
     });
-    
-    alert(`${formData.name} has successfully been added`)
-    
+
+    alert(`${formData.name} has successfully been added`);
   };
 
   useEffect(() => {
@@ -138,7 +139,17 @@ function Room() {
               value={formData.capacity}
               onChange={handleInputChange}
             />
-            <button className="flex flex-row justify-center gap-2 bg-[#0d2266] h-8" type="submit">
+            <textarea
+              placeholder="Room description"
+              name="description"
+              className="  placeholder:italic p-2 w-full bg-[#E1E1E1]"
+              onChange={handleInputChange}
+              value={formData.description}
+            ></textarea>
+            <button
+              className="flex flex-row justify-center gap-2 bg-[#0d2266] h-8"
+              type="submit"
+            >
               {loading ? (
                 <ClipLoader size="1.5rem" className=" mt-auto mb-auto" />
               ) : (

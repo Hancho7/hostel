@@ -7,6 +7,7 @@ import { bookAction } from "../../features/hostels/rooms/booking.jsx";
 import { Carousel } from "react-responsive-carousel"; // Import Carousel from the library
 import { getHostel } from "../../features/hostels/hostelDetail.jsx";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // Import the styles
+import { Tooltip } from "../../assets/tooltip.jsx";
 
 function HostelDetail() {
   const { hostelID } = useParams();
@@ -59,6 +60,17 @@ function HostelDetail() {
     setIsOpen(false);
   };
 
+  //HANDLING HOVERING THE ROOM
+  const [hoveredRoom, setHoveredRoom] = useState(null);
+  const handleRoomHover = (room) => {
+    setHoveredRoom(room);
+  };
+
+  const handleRoomClick = (room) => {
+    handleOpenBookingPopup();
+    setRoomID(room._id);
+  };
+
   // HANDLING SUBMISSION OF ROOM AND USER DETAILS
   const handleRoomBooking = (roomID, userID) => {
     dispatch(bookAction({ roomID, userID, hostelID }));
@@ -66,7 +78,7 @@ function HostelDetail() {
   };
 
   // Check if the selected hostel exists
-  if(!hostel){
+  if (!hostel) {
     return <div>Hostel does not exist</div>;
   }
   return (
@@ -199,18 +211,25 @@ function HostelDetail() {
             >
               {hostel.fullRooms.map((room) => (
                 <div
-                  disabled={room.remainingCapacity === 0}
-                  className={`shadow-lg bg-${
-                    room.remainingCapacity === 0 ? "red" : "blue"
-                  } w-14 h-14 text-center hover:cursor-pointer rounded-md mx-auto`}
                   key={room._id}
-                  onClick={() => {
-                    handleOpenBookingPopup();
-                    setRoomID(room._id);
-                  }}
+                  onMouseEnter={() => handleRoomHover(room)}
+                  onMouseLeave={() => handleRoomHover(null)}
+                  onClick={() => handleRoomClick(room)}
                 >
-                  <h1 className="bg-blue-100 border">{room.name}</h1>
-                  <p className="border ">{room.capacity} in 1</p>
+                  <div
+                    disabled={room.remainingCapacity === 0}
+                    className={`shadow-lg bg-${
+                      room.remainingCapacity === 0 ? "red" : "blue"
+                    } w-14 h-14 text-center hover:cursor-pointer rounded-md mx-auto relative`}
+                  >
+                    <h1 className="bg-blue-100 border">{room.name}</h1>
+                    <p className="border">{room.capacity} in 1</p>
+                    <Tooltip
+                      content={hoveredRoom === room ? room.description : ""}
+                      position="right"
+                      show={hoveredRoom === room}
+                    />
+                  </div>
                 </div>
               ))}
             </div>

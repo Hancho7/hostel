@@ -56,36 +56,26 @@ export default function SignUpWrapper() {
 
   useEffect(() => {
     const result = FIRSTNAME_REGEX.test(firstName);
-    console.log(result);
-    console.log(firstName);
     setValidateFirstname(result);
   }, [firstName]);
 
   useEffect(() => {
     const result = LASTNAME_REGEX.test(lastName);
-    console.log(result);
-    console.log(lastName);
     setValidateLastname(result);
   }, [lastName]);
 
   useEffect(() => {
     const result = EMAIL_REGEX.test(email);
-    console.log(result);
-    console.log(email);
     setValidateEmail(result);
   }, [email]);
 
   useEffect(() => {
     const result = PHONE_REGEX.test(phone);
-    console.log(result);
-    console.log(phone);
     setValidatePhone(result);
   }, [phone]);
 
   useEffect(() => {
     const result = PASSWORD_REGEX.test(password);
-    console.log(result);
-    console.log(password);
     setValidatePassword(result);
     const match = password === repassword;
     setmatchPassword(match);

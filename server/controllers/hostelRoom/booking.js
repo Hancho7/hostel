@@ -3,7 +3,8 @@ import Room from "../../models/room.js";
 import Booking from "../../models/booking.js";
 
 export const book = async (req, res) => {
-  const { userID, roomID, id } = req.body;
+  const { userID, roomID, hostelID } = req.body;
+  console.log("request body",req.body)
 
   try {
     // Check if the user is an admin
@@ -16,7 +17,7 @@ export const book = async (req, res) => {
     const existingBooking = await Booking.findOne({
       user: userID,
       room: roomID,
-      hostel: id,
+      hostel: hostelID,
     });
 
     if (existingBooking) {
@@ -36,7 +37,7 @@ export const book = async (req, res) => {
     // Check if the user has already booked a room in the same hostel
     const userBookingsInHostel = await Booking.find({
       user: userID,
-      hostel: id,
+      hostel: hostelID,
     });
 
     if (userBookingsInHostel.length > 0) {
@@ -49,7 +50,7 @@ export const book = async (req, res) => {
     const newBooking = new Booking({
       user: userID,
       room: roomID,
-      hostel: id,
+      hostel: hostelID,
     });
 
     await newBooking.save();

@@ -13,6 +13,9 @@ const RoomSchema = mongoose.Schema({
     type: Number,
     required: true,
   },
+  description: {
+    type: String,
+  },
   hostel: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Hostel'

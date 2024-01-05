@@ -15,7 +15,7 @@ export default function Admin() {
   const user = useSelector((state) => state.user.user);
   const navigate = useNavigate();
   console.log(user);
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
 
   const [isSmallScreen, setIsSmallScreen] = useState(false);
 

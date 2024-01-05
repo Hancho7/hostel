@@ -3,7 +3,7 @@ import Hostel from "../../models/hostel.js";
 import Users from "../../models/user.js";
 
 export const createRooms = async (req, res) => {
-  const { name, capacity, hostelID } = req.body;
+  const { name, capacity, hostelID, description } = req.body;
   console.log("request body", req.body);
 
   try {
@@ -24,6 +24,7 @@ export const createRooms = async (req, res) => {
       capacity,
       remainingCapacity: capacity,
       hostel: hostel._id,
+      description,
     });
 
     const saved = await newHostelRoom.save();
