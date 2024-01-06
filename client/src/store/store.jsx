@@ -28,6 +28,9 @@ import adminHostelSlice from "../features/hostels/adminHostels.jsx";
 //ROOMS
 import addRoomSlice from "../features/hostels/rooms/addRooms.jsx";
 import bookingSlice from "../features/hostels/rooms/booking.jsx";
+
+// USER REQUESTING BOOKINGS THROUGH PARAMS
+import getUserBookSlice from "../features/hostels/rooms/getUserBookings.jsx";
 // ADMIN ROOMS
 import adminRoomSlice from "../features/hostels/rooms/adminGetRooms.jsx";
 
@@ -68,6 +71,7 @@ const rootReducer = combineReducers({
   addRoom: addRoomSlice,
   book: bookingSlice,
   Bookings: getBookingSlice,
+  getUserBooking: getUserBookSlice,
   // ADMIN ROOMS
   adminGetRoom: adminRoomSlice,
 });

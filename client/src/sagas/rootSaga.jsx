@@ -19,12 +19,14 @@ import { watchUserFetchHostelDetail } from "./hostel/hostelDetail.jsx";
 import { watchAddRoom } from "./hostel/rooms/addRooms.jsx";
 // BOOKING ROOM
 import { watchBooking } from "./hostel/rooms/booking.jsx";
+//USER REQUESTING FOR ROOMS THROUGH PARAMS
+import { watchGetUserBookings } from "./hostel/rooms/getUserBookings";
 //DEIPLAYING BOOKINGS
-import {watchGetBookings} from "./hostel/rooms/getBookings.jsx"
+import { watchGetBookings } from "./hostel/rooms/getBookings.jsx";
 // ADMIN RQUESTING FOR HOSTELS THROUGH PARAMS
-import {watchAdminFetchHostels} from './hostel/adminHostels.jsx'
+import { watchAdminFetchHostels } from "./hostel/adminHostels.jsx";
 // // ADMIN RQUESTING FOR ROOMS THROUGH PARAMS
-import watchGetAdminRooms from "./hostel/rooms/adminGetRooms.jsx"
+import watchGetAdminRooms from "./hostel/rooms/adminGetRooms.jsx";
 
 export default function* rootSaga() {
   yield all([
@@ -32,7 +34,7 @@ export default function* rootSaga() {
     watchLogin(),
     watchSignup(),
     watchVerification(),
-   
+
     // RESET PASSWORD MANAGEMENT
     watchEmailForResetPassword(),
     watchResetPassword(),
@@ -47,13 +49,14 @@ export default function* rootSaga() {
     watchHostelUpload(),
     // ADMINS HOSTELS
     watchAdminFetchHostels(),
-    
+
     //ROOM MANAGMENT
     watchAddRoom(),
     watchBooking(),
     watchGetBookings(),
+    watchGetUserBookings(),
 
     // ADMIN ROOM MANAGEMENT
-    watchGetAdminRooms()
+    watchGetAdminRooms(),
   ]);
 }

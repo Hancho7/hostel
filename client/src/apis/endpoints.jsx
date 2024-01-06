@@ -19,6 +19,7 @@ export const HOSTELDETAIL = "/hostel";
 export const ADDROOMS = "/admin/add-rooms"
 export const BOOKING = "/hostelRoom/book-room"
 export const GETBOOKING = "/hostelRoom/get-bookings" //ADMIN GETTINGS BOOKINGS
+export const GETUSERBOOKING ="/hostelRoom/user-bookings"
 
 // ADMIN HOSTELS
 export const ADMINHOSTELS= '/admin/add-rooms'

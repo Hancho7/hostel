@@ -137,11 +137,12 @@ function HostelDetail() {
           onClickItem={(index) => moveToImage(index)}
           onChange={(index) => setCurrentImageIndex(index)}
         >
-          {hostel.imageUrl.map((link, index) => (
-            <div key={index} style={{ display: "grid" }}>
-              <img src={link} alt={`Room ${index + 1}`} />
-            </div>
-          ))}
+          {hostel.imageUrl &&
+            hostel.imageUrl.map((link, index) => (
+              <div key={index} style={{ display: "grid" }}>
+                <img src={link} alt={`Room ${index + 1}`} />
+              </div>
+            ))}
         </Carousel>
       </div>
 
@@ -182,14 +183,15 @@ function HostelDetail() {
                   Price
                 </th>
               </tr>
-              {hostel.prices.map((pricePerRoom) => (
-                <tr key={pricePerRoom._id}>
-                  <td className="border px-8 py-4">
-                    {pricePerRoom.numberInRoom}
-                  </td>
-                  <td className="border px-8 py-4">{pricePerRoom.price}</td>
-                </tr>
-              ))}
+              {hostel.prices &&
+                hostel.prices.map((pricePerRoom) => (
+                  <tr key={pricePerRoom._id}>
+                    <td className="border px-8 py-4">
+                      {pricePerRoom.numberInRoom}
+                    </td>
+                    <td className="border px-8 py-4">{pricePerRoom.price}</td>
+                  </tr>
+                ))}
             </tbody>
           </table>
 
@@ -209,29 +211,30 @@ function HostelDetail() {
               }}
               className="mx-auto shadow-lg mb-11 mt-7 p-4"
             >
-              {hostel.fullRooms.map((room) => (
-                <div
-                  key={room._id}
-                  onMouseEnter={() => handleRoomHover(room)}
-                  onMouseLeave={() => handleRoomHover(null)}
-                  onClick={() => handleRoomClick(room)}
-                >
+              {hostel.fullRooms &&
+                hostel.fullRooms.map((room) => (
                   <div
-                    disabled={room.remainingCapacity === 0}
-                    className={`shadow-lg bg-${
-                      room.remainingCapacity === 0 ? "red" : "blue"
-                    } w-14 h-14 text-center hover:cursor-pointer rounded-md mx-auto relative`}
+                    key={room._id}
+                    onMouseEnter={() => handleRoomHover(room)}
+                    onMouseLeave={() => handleRoomHover(null)}
+                    onClick={() => handleRoomClick(room)}
                   >
-                    <h1 className="bg-blue-100 border">{room.name}</h1>
-                    <p className="border">{room.capacity} in 1</p>
-                    <Tooltip
-                      content={hoveredRoom === room ? room.description : ""}
-                      position="right"
-                      show={hoveredRoom === room}
-                    />
+                    <div
+                      disabled={room.remainingCapacity === 0}
+                      className={`shadow-lg bg-${
+                        room.remainingCapacity === 0 ? "red" : "blue"
+                      } w-14 h-14 text-center hover:cursor-pointer rounded-md mx-auto relative`}
+                    >
+                      <h1 className="bg-blue-100 border">{room.name}</h1>
+                      <p className="border">{room.capacity} in 1</p>
+                      <Tooltip
+                        content={hoveredRoom === room ? room.description : ""}
+                        position="right"
+                        show={hoveredRoom === room}
+                      />
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
             </div>
 
             <div className="flex items-center flex-col">
@@ -239,13 +242,14 @@ function HostelDetail() {
                 What this hostel offers
               </h1>
               <ol className="flex gap-5 mt-2">
-                {hostel.hostelDescription.map((item) =>
-                  item.split(",").map((subItem, subKey) => (
-                    <li key={subKey}>
-                      {subKey + 1}.{subItem.trim()}
-                    </li>
-                  ))
-                )}
+                {hostel.hostelDescription &&
+                  hostel.hostelDescription.map((item) =>
+                    item.split(",").map((subItem, subKey) => (
+                      <li key={subKey}>
+                        {subKey + 1}.{subItem.trim()}
+                      </li>
+                    ))
+                  )}
               </ol>
             </div>
             {hostel.admin && (

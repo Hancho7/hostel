@@ -4,7 +4,7 @@ import Booking from "../../models/booking.js";
 
 export const book = async (req, res) => {
   const { userID, roomID, hostelID } = req.body;
-  console.log("request body",req.body)
+  console.log("request body", req.body);
 
   try {
     // Check if the user is an admin
@@ -66,7 +66,6 @@ export const book = async (req, res) => {
   }
 };
 
-
 // TAKING BOOKINGS FROM THE DATABASE
 export const getBooking = async (req, res) => {
   const { userID } = req.params;
@@ -124,5 +123,34 @@ export const getBooking = async (req, res) => {
   } catch (error) {
     console.log(error);
     return res.status(500).json("Server Error");
+  }
+};
+
+//USER GETTING THE BOOKINGS IF THERE ARE ANY
+export const getUserBooking = async (req, res) => {
+  const { userID } = req.params;
+  try {
+    const user = await Users.findOne({ _id: userID });
+    if (!user) {
+      return res.status(400).json("User does not exist");
+    }
+    const booking = await Booking.find({ user: user._id });
+    if (!booking) {
+      return res.status(404).send("No bookings found");
+    }
+    const bookingDetails = await Booking.find()
+      .populate({
+        path: "room",
+        select: "name",
+      })
+      .populate({
+        path: "hostel",
+        select: "name phone",
+      });
+    // Format the data to be sent back as a response
+    return res.status(200).json(bookingDetails);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json("Server error");
   }
 };

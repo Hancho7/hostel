@@ -57,7 +57,6 @@ app.post('/forgotten-password/id/verify/token', newPasswordRoute);
 app.use('/hostel', hostelRoute);
 app.get('/admin/add-rooms/:userID', adminDisplayHostelRoute);
 app.post('/upload-hostel', uploadRoute);
-// app.get('/hostel-images', displayHostelRoute);
 app.delete('/delete-hostel', deleteHostelRoute);
 
 

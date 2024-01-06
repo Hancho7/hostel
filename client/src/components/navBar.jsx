@@ -63,15 +63,18 @@ export default function Navbar() {
             <>
               {
                 role === "user" ? (
-                  <button
-                    className="bg-[#b03434] w-20 h-8 font-semibold text-white rounded hover:bg-[#7a95c7]"
-                    onClick={() => {
-                      Navigate("/");
-                      dispatch(logout());
-                    }}
-                  >
-                    Logout
-                  </button>
+                  <>
+                    <Link to={`/user/${user._id}`}>Bookings</Link>
+                    <button
+                      className="bg-[#b03434] w-20 h-8 font-semibold text-white rounded hover:bg-[#7a95c7]"
+                      onClick={() => {
+                        Navigate("/");
+                        dispatch(logout());
+                      }}
+                    >
+                      Logout
+                    </button>
+                  </>
                 ) : role === "manager" ? (
                   <>
                     <Link to="/admin">Admin</Link>

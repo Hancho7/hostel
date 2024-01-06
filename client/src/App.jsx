@@ -10,6 +10,7 @@ import NotFound from "./pages/404.jsx";
 import ResetEmail from "./pages/resetEmail.jsx";
 import NewPassword from "./pages/newPassword.jsx";
 import Components from "./pages/components.jsx";
+import UserBookings from "./pages/bookings.jsx";
 
 // ADMIN DASHBOARD IMPORTS
 import Admin from "./adminDashboard/Admin";
@@ -29,6 +30,10 @@ function App() {
           <Route element={<RequireAuth allowedRoles={["user", "manager"]} />}>
             <Route path="/:hostelID" element={<HostelDetail />} />
           </Route>
+          <Route element={<RequireAuth allowedRoles={["user"]} />}>
+            <Route path="/user/:userID" element={<UserBookings />} />
+          </Route>
+
           <Route path="/contact-us" element={<ContactUs />} />
           <Route path="/sign-in" element={<LoginWrapper />} />
           <Route path="/sign-up" element={<SignUpWrapper />} />

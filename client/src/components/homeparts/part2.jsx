@@ -1,4 +1,4 @@
-import { useEffect} from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import HashLoader from "react-spinners/HashLoader";
@@ -6,7 +6,6 @@ import { getHostels } from "../../features/hostels/displayHostels.jsx";
 import { Link } from "react-router-dom";
 import { GrLinkNext } from "react-icons/gr";
 import { addID } from "../../features/hostels/hostelID.jsx";
-import { animated, useSpring } from "@react-spring/web";
 
 function Part2() {
   const dispatch = useDispatch();
@@ -35,18 +34,9 @@ function Part2() {
     navigate(currentLocation);
   };
 
-  const styles = useSpring({
-    from: {
-      opacity: 0,
-    },
-    to: {
-      opacity: 1,
-    },
-  });
-
   console.log(hostels);
   return (
-    <animated.div className="flex flex-col" style={styles}>
+    <div className="flex flex-col">
       <h1 className="font-bold text-3xl mb-6 text-center">Available Hostels</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
         {!error ? (
@@ -95,7 +85,7 @@ function Part2() {
           <div></div>
         )}
       </div>
-    </animated.div>
+    </div>
   );
 }
 
