@@ -5,7 +5,7 @@ import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
 // AUTHENTICATION
-import SignupSlice from "../features/logs/signupSlice";
+import SignupSlice from '../features/logs/signupSlice';
 import loginReducer from "../features/logs/loginSlice";
 import verifyEmail from "../features/logs/verifyEmail";
 
