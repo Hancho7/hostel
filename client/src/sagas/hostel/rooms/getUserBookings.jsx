@@ -11,7 +11,6 @@ import {
 function* handleGetUserBookings(action) {
   try {
     yield put(getUserBookloading());
-    console.log("payload", action.payload);
     const response = yield call(
       axios.get,
       `${GETUSERBOOKING}/${action.payload}`
