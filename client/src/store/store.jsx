@@ -5,7 +5,7 @@ import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
 // AUTHENTICATION
-import signupSlice from "../features/logs/signupSlice";
+import SignupSlice from "../features/logs/signupSlice";
 import loginReducer from "../features/logs/loginSlice";
 import verifyEmail from "../features/logs/verifyEmail";
 
@@ -48,7 +48,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   // AUTHENTICATION
   user: loginReducer,
-  signup: signupSlice,
+  signup: SignupSlice,
   verification: verifyEmail,
 
   // COMMENT MANAGEMENT
