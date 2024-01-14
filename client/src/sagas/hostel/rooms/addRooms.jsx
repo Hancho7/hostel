@@ -3,9 +3,9 @@ import {
   addRoomSuccess,
   addRoomError,
   addRoomAction,
-} from "../../../features/hostels/rooms/addRooms.jsx";
-import axios from "../../../apis/main.jsx";
-import { ADDROOMS } from "../../../apis/endpoints.jsx";
+} from "../../../features/hostels/rooms/addRooms";
+import axios from "../../../apis/main";
+import { ADDROOMS } from "../../../apis/endpoints";
 import { takeLatest, put, call } from "redux-saga/effects";
 
 function* handleAddRooms(action) {

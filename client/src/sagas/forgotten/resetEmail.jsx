@@ -1,7 +1,7 @@
-import { loading, emailSent, emailError, forgottenEmail } from '../../features/resetPassword/resetEmail.jsx'
+import { loading, emailSent, emailError, forgottenEmail } from '../../features/resetPassword/resetEmail'
 import {takeLatest, put, call} from 'redux-saga/effects'
-import axios from "../../apis/main.jsx"
-import {ENTEREMAIL} from "../../apis/endpoints.jsx"
+import axios from "../../apis/main"
+import {ENTEREMAIL} from "../../apis/endpoints"
 function* handleEmail(action){
     try {
         yield put(loading())

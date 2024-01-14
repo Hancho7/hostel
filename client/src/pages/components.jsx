@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
-import Navbar from "../components/navBar.jsx";
-import Footer from "../components/footer.jsx";
+import Navbar from "../components/navBar";
+import Footer from "../components/footer";
 
 export function Components() {
   return (

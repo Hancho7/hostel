@@ -1,8 +1,8 @@
 import {
     bookAction, bookFailure, bookloading, bookSuccess
-  } from '../../../features/hostels/rooms/booking.jsx';
-  import axios from '../../../apis/main.jsx';
-  import { BOOKING } from '../../../apis/endpoints.jsx';
+  } from '../../../features/hostels/rooms/booking';
+  import axios from '../../../apis/main';
+  import { BOOKING } from '../../../apis/endpoints';
   import { takeLatest, put, call } from 'redux-saga/effects';
 
   function* handleBooking (action){

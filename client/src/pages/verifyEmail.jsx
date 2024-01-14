@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import {
   verify,
-} from "../features/logs/verifyEmail.jsx";
+} from "../features/logs/verifyEmail";
 import Lottie from 'lottie-react'
 import animationData from '../assets/correct.json'
 import loadingGif from '../assets/loading.json'

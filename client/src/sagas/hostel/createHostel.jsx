@@ -3,9 +3,9 @@ import {
   uploadHostelLoading,
   uploadHostelSuccess,
   uploadHostelAction,
-} from "../../features/hostels/createHostel.jsx";
-import axios from "../../apis/main.jsx";
-import { UPLOADHOSTEL } from "../../apis/endpoints.jsx";
+} from "../../features/hostels/createHostel";
+import axios from "../../apis/main";
+import { UPLOADHOSTEL } from "../../apis/endpoints";
 import { call, put, takeLatest } from "redux-saga/effects";
 
 function* handleHostelUpload(action) {

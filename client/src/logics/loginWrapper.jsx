@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { startLogin } from "../features/logs/loginSlice.jsx";
-import SignIn from "../pages/signIn.jsx";
-import { addID } from "../features/hostels/hostelID.jsx";
+import { startLogin } from "../features/logs/loginSlice";
+import SignIn from "../pages/signIn";
+import { addID } from "../features/hostels/hostelID";
 
 export default function LoginWrapper() {
   const location = useLocation();

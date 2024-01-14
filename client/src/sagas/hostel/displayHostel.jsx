@@ -1,6 +1,6 @@
 // hostelsSaga.js
 import { takeLatest, put, call } from "redux-saga/effects";
-import axios from "../../apis/main.jsx"; // Import your Axios instance
+import axios from "../../apis/main"; // Import your Axios instance
 import { HOSTEL } from "../../apis/endpoints";
 
 import {
@@ -8,7 +8,7 @@ import {
   hostelSuccess,
   error,
   loading,
-} from "../../features/hostels/displayHostels.jsx";
+} from "../../features/hostels/displayHostels";
 
 function* fetchHostels() {
   try {

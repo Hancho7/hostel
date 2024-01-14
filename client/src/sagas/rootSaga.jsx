@@ -1,32 +1,32 @@
 // rootSaga.js
 import { all } from "redux-saga/effects";
-import { watchLogin } from "./logs/loginsaga.jsx";
+import { watchLogin } from "./logs/loginsaga";
 
-import { watchSignup } from "./logs/signupSaga.jsx";
-import { watchVerification } from "./logs/verifyEmailSaga.jsx";
-import { watchCommentCreation } from "./comments/createComments.jsx";
-import { watchGetComments } from "./comments/getComments.jsx";
-import { watchEmailForResetPassword } from "./forgotten/resetEmail.jsx";
-import { watchResetPassword } from "./forgotten/resetPassword.jsx";
+import { watchSignup } from "./logs/signupSaga";
+import { watchVerification } from "./logs/verifyEmailSaga";
+import { watchCommentCreation } from "./comments/createComments";
+import { watchGetComments } from "./comments/getComments";
+import { watchEmailForResetPassword } from "./forgotten/resetEmail";
+import { watchResetPassword } from "./forgotten/resetPassword";
 
 // HOSTEL MANAGEMENT
-import { watchFetchHostels } from "./hostel/displayHostel.jsx";
-import { watchHostelUpload } from "./hostel/createHostel.jsx";
-import { watchUserFetchHostelDetail } from "./hostel/hostelDetail.jsx";
+import { watchFetchHostels } from "./hostel/displayHostel";
+import { watchHostelUpload } from "./hostel/createHostel";
+import { watchUserFetchHostelDetail } from "./hostel/hostelDetail";
 
 //ROOM MANAGEMENT
 // CREATING ROOM
-import { watchAddRoom } from "./hostel/rooms/addRooms.jsx";
+import { watchAddRoom } from "./hostel/rooms/addRooms";
 // BOOKING ROOM
-import { watchBooking } from "./hostel/rooms/booking.jsx";
+import { watchBooking } from "./hostel/rooms/booking";
 //USER REQUESTING FOR ROOMS THROUGH PARAMS
 import { watchGetUserBookings } from "./hostel/rooms/getUserBookings";
 //DEIPLAYING BOOKINGS
-import { watchGetBookings } from "./hostel/rooms/getBookings.jsx";
+import { watchGetBookings } from "./hostel/rooms/getBookings";
 // ADMIN RQUESTING FOR HOSTELS THROUGH PARAMS
-import { watchAdminFetchHostels } from "./hostel/adminHostels.jsx";
+import { watchAdminFetchHostels } from "./hostel/adminHostels";
 // // ADMIN RQUESTING FOR ROOMS THROUGH PARAMS
-import watchGetAdminRooms from "./hostel/rooms/adminGetRooms.jsx";
+import watchGetAdminRooms from "./hostel/rooms/adminGetRooms";
 
 export default function* rootSaga() {
   yield all([

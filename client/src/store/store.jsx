@@ -1,41 +1,41 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import createSagaMiddleware from "redux-saga";
-import rootSaga from "../sagas/rootSaga.jsx";
+import rootSaga from "../sagas/rootSaga";
 import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
 // AUTHENTICATION
-import signupSlice from "../features/logs/signupSlice.jsx";
-import loginReducer from "../features/logs/loginSlice.jsx";
-import verifyEmail from "../features/logs/verifyEmail.jsx";
+import signupSlice from "../features/logs/signupSlice";
+import loginReducer from "../features/logs/loginSlice";
+import verifyEmail from "../features/logs/verifyEmail";
 
 // COMMENT MANAGEMENT
-import createCommentSlice from "../features/comments/createCommentSlice.jsx";
-import getCommentslice from "../features/comments/getCommentslice.jsx";
-import hosteID from "../features/hostels/hostelID.jsx";
+import createCommentSlice from "../features/comments/createCommentSlice";
+import getCommentslice from "../features/comments/getCommentslice";
+import hosteID from "../features/hostels/hostelID";
 
 // RESET PASSWORD MANAGEMENT
-import resetEmail from "../features/resetPassword/resetEmail.jsx";
-import resetPasswordSlice from "../features/resetPassword/resetPassword.jsx";
+import resetEmail from "../features/resetPassword/resetEmail";
+import resetPasswordSlice from "../features/resetPassword/resetPassword";
 
 // HOSTEL MANAGEMENT
-import uploadHostelSlice from "../features/hostels/createHostel.jsx";
-import hostelDisplayReducer from "../features/hostels/displayHostels.jsx";
-import hostelDetailSlice from "../features/hostels/hostelDetail.jsx";
+import uploadHostelSlice from "../features/hostels/createHostel";
+import hostelDisplayReducer from "../features/hostels/displayHostels";
+import hostelDetailSlice from "../features/hostels/hostelDetail";
 // ADMIN HOSTEL PARAMS REQUEST
-import adminHostelSlice from "../features/hostels/adminHostels.jsx";
+import adminHostelSlice from "../features/hostels/adminHostels";
 
 //ROOMS
-import addRoomSlice from "../features/hostels/rooms/addRooms.jsx";
-import bookingSlice from "../features/hostels/rooms/booking.jsx";
+import addRoomSlice from "../features/hostels/rooms/addRooms";
+import bookingSlice from "../features/hostels/rooms/booking";
 
 // USER REQUESTING BOOKINGS THROUGH PARAMS
-import getUserBookSlice from "../features/hostels/rooms/getUserBookings.jsx";
+import getUserBookSlice from "../features/hostels/rooms/getUserBookings";
 // ADMIN ROOMS
-import adminRoomSlice from "../features/hostels/rooms/adminGetRooms.jsx";
+import adminRoomSlice from "../features/hostels/rooms/adminGetRooms";
 
 // DISPLAYING BOOKINGS
-import getBookingSlice from "../features/hostels/rooms/getBookings.jsx";
+import getBookingSlice from "../features/hostels/rooms/getBookings";
 
 // SAGA CONFIGURATION
 const sagaMiddleware = createSagaMiddleware();

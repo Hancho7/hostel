@@ -1,16 +1,16 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/home";
 import ContactUs from "./pages/contactUs";
-import LoginWrapper from "./logics/loginWrapper.jsx";
-import SignUpWrapper from "./logics/signupWrapper.jsx";
-import EmailVerification from "./pages/verifyEmail.jsx";
+import LoginWrapper from "./logics/loginWrapper";
+import SignUpWrapper from "./logics/signupWrapper";
+import EmailVerification from "./pages/verifyEmail";
 import HostelDetail from "./components/homeparts/hostelDetail";
 import RequireAuth from "./routes/privateRoute";
-import NotFound from "./pages/404.jsx";
-import ResetEmail from "./pages/resetEmail.jsx";
-import NewPassword from "./pages/newPassword.jsx";
-import Components from "./pages/components.jsx";
-import UserBookings from "./pages/bookings.jsx";
+import NotFound from "./pages/404";
+import ResetEmail from "./pages/resetEmail";
+import NewPassword from "./pages/newPassword";
+import Components from "./pages/components";
+import UserBookings from "./pages/bookings";
 
 // ADMIN DASHBOARD IMPORTS
 import Admin from "./adminDashboard/Admin";

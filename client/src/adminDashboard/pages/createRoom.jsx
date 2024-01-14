@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { adminGetHostels } from "../../features/hostels/adminHostels.jsx";
+import { adminGetHostels } from "../../features/hostels/adminHostels";
 import { useParams } from "react-router-dom";
 
 function CreateRooms() {

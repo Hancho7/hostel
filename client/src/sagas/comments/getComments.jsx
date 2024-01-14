@@ -1,7 +1,7 @@
-import { loading, comments, commentsError, readCommentAction } from "../../features/comments/getCommentslice.jsx";
+import { loading, comments, commentsError, readCommentAction } from "../../features/comments/getCommentslice";
 import {call, put, takeLatest} from 'redux-saga/effects'
-import axios from '../../apis/main.jsx'
-import {READCOMMENTS} from '../../apis/endpoints.jsx'
+import axios from '../../apis/main'
+import {READCOMMENTS} from '../../apis/endpoints'
 
 
 function* handleReadComments(){

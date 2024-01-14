@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getBookingsAction } from "../../features/hostels/rooms/getBookings.jsx";
+import { getBookingsAction } from "../../features/hostels/rooms/getBookings";
 
 function Bookings() {
   const user = useSelector((state) => state.user.user);

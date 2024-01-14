@@ -1,7 +1,7 @@
 import {call, put, takeLatest} from 'redux-saga/effects'
-import { createCommentAction,loading, comments, commentsError } from '../../features/comments/createCommentSlice.jsx'
-import {CREATECOMMENTS} from '../../apis/endpoints.jsx'
-import axios from '../../apis/main.jsx'
+import { createCommentAction,loading, comments, commentsError } from '../../features/comments/createCommentSlice'
+import {CREATECOMMENTS} from '../../apis/endpoints'
+import axios from '../../apis/main'
 
 function* handleComments(action){
     yield loading()

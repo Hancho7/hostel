@@ -4,9 +4,9 @@ import {
   passwordSuccessful,
   passwordError,
   resetPasswordAction,
-} from "../../features/resetPassword/resetPassword.jsx";
-import axios from "../../apis/main.jsx";
-import { NEWPASSWORD } from "../../apis/endpoints.jsx";
+} from "../../features/resetPassword/resetPassword";
+import axios from "../../apis/main";
+import { NEWPASSWORD } from "../../apis/endpoints";
 
 function* handleResetPassword(action) {
   try {

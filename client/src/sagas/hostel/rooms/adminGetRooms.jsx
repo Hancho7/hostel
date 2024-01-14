@@ -5,8 +5,8 @@ import {
   adminGetRooms,
 } from "../../../features/hostels/rooms/adminGetRooms";
 import { put, call, takeLatest } from "redux-saga/effects";
-import axios from "../../../apis/main.jsx";
-import { ADDROOMS } from "../../../apis/endpoints.jsx";
+import axios from "../../../apis/main";
+import { ADDROOMS } from "../../../apis/endpoints";
 
 function* handleAdminGetRooms(action) {
   try {

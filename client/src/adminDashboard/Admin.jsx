@@ -9,7 +9,7 @@ import { AiFillDelete, AiFillRead } from "react-icons/ai";
 import { MdOutlineAddHome } from "react-icons/md";
 import { TbBrandBooking } from "react-icons/tb";
 import { BiLogOut } from "react-icons/bi";
-import DropdownMenu from "./dropdownMenu.jsx";
+import DropdownMenu from "./dropdownMenu";
 
 export default function Admin() {
   const user = useSelector((state) => state.user.user);

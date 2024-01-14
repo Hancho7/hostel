@@ -1,12 +1,12 @@
-import { GETBOOKING } from "../../../apis/endpoints.jsx";
-import axios from "../../../apis/main.jsx";
+import { GETBOOKING } from "../../../apis/endpoints";
+import axios from "../../../apis/main";
 import { put, call, takeLatest } from "redux-saga/effects";
 import {
   getBookingsAction,
   bookingsLoading,
   bookingDataSuccessful,
   bookingDataFailure,
-} from "../../../features/hostels/rooms/getBookings.jsx";
+} from "../../../features/hostels/rooms/getBookings";
 
 function* handleGetBookings(action) {
   try {
