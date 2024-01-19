@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/home";
 import ContactUs from "./pages/contactUs";
 import LoginWrapper from "./logics/loginWrapper";
-import SignUpWrapper from "./logics/signupWrapper";
+import SignUp from "./pages/signUp";
 import EmailVerification from "./pages/verifyEmail";
 import HostelDetail from "./components/homeparts/hostelDetail";
 import RequireAuth from "./routes/privateRoute";
@@ -14,12 +14,16 @@ import UserBookings from "./pages/bookings";
 
 // ADMIN DASHBOARD IMPORTS
 import Admin from "./adminDashboard/Admin";
-import GetHostel from "./adminDashboard/pages/readHostel";
-import DeleteHostel from "./adminDashboard/pages/deleteHostel";
-import CreateRooms from "./adminDashboard/pages/createRoom";
-import UploadHostel from "./adminDashboard/logic/createHostel";
-import Bookings from "./adminDashboard/pages/bookings";
-import Room from "./adminDashboard/pages/roomRoute";
+import Overview from "./adminDashboard/pages/Overview";
+import Rooms from "./adminDashboard/pages/Rooms";
+import Payments from "./adminDashboard/pages/Payments";
+import RoomAllotment from "./adminDashboard/pages/RoomAllotment";
+import Student from "./adminDashboard/pages/Student";
+import Review from "./adminDashboard/pages/Review";
+import Profile from "./adminDashboard/pages/Profile";
+import Unit from "./adminDashboard/pages/Unit";
+import Booking from "./adminDashboard/pages/Bookings";
+import AdminAdd from "./adminDashboard/pages/AdminAdd";
 
 function App() {
   return (
@@ -36,7 +40,7 @@ function App() {
 
           <Route path="/contact-us" element={<ContactUs />} />
           <Route path="/sign-in" element={<LoginWrapper />} />
-          <Route path="/sign-up" element={<SignUpWrapper />} />
+          <Route path="/sign-up" element={<SignUp />} />
 
           {/* RESETTING FORGOTTEN PASSWORD */}
           <Route path="/forgotten-password" element={<ResetEmail />} />
@@ -45,20 +49,25 @@ function App() {
             element={<NewPassword />}
           />
           {/* E-MAIL VERIFICATION */}
-          <Route path="/verify/:id/:token" element={<EmailVerification />} />
+          
           {/* 404 Catch-all route */}
           <Route path="*" element={<NotFound />} />
         </Route>
+        <Route path="/verify/:id/:token" element={<EmailVerification />} />
 
         {/* ADMIN DASHBOARD */}
         <Route element={<RequireAuth allowedRoles={["manager"]} />}>
           <Route path="/admin" element={<Admin />}>
-            <Route path="/admin/create-hostel" element={<UploadHostel />} />
-            <Route path="/admin/" element={<GetHostel />} />
-            <Route path="/admin/delete-hostel" element={<DeleteHostel />} />
-            <Route path="/admin/add-rooms/:userID" element={<CreateRooms />} />
-            <Route path="/admin/bookings/:id" element={<Bookings />} />
-            <Route path="/admin/add-rooms/:userID/:id" element={<Room />} />
+            <Route path="/admin/Overview" element={<Overview />} />
+            <Route path="/admin/Add" element={<AdminAdd />} />
+            <Route path="/admin/Rooms" element={<Rooms />} />
+            <Route path="/admin/Payments" element={<Payments />} />
+            <Route path="/admin/Room-Allotment" element={<RoomAllotment />} />
+            <Route path="/admin/Student" element={<Student />} />
+            <Route path="/admin/Review" element={<Review />} />
+            <Route path="/admin/Profile" element={<Profile />} />
+            <Route path="/admin/Unit" element={<Unit />} />
+            <Route path="/admin/Bookings" element={<Booking />} />
           </Route>
         </Route>
       </Routes>

@@ -1,17 +1,23 @@
 /* eslint-disable react/prop-types */
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import { Link, Outlet, useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { IoIosArrowBack } from "react-icons/io";
 import logo from "../assets/Logo.png";
-import { FaHotel } from "react-icons/fa";
-import { AiFillDelete, AiFillRead } from "react-icons/ai";
-import { MdOutlineAddHome } from "react-icons/md";
+import { MdAdminPanelSettings, MdOutlinePayment } from "react-icons/md";
 import { TbBrandBooking } from "react-icons/tb";
+import { IoAdd } from "react-icons/io5";
+import { CgProfile } from "react-icons/cg";
+import { GoCodeReview } from "react-icons/go";
+import { GrOverview } from "react-icons/gr";
+import { FaPeopleArrows } from "react-icons/fa6";
+import { TfiWrite } from "react-icons/tfi";
+import { PiStudentBold } from "react-icons/pi";
 import { BiLogOut } from "react-icons/bi";
 import DropdownMenu from "./dropdownMenu";
 
 export default function Admin() {
+  const { pathname } = useLocation();
   const user = useSelector((state) => state.user.user);
   const navigate = useNavigate();
   console.log(user);
@@ -35,38 +41,58 @@ export default function Admin() {
 
   const pages = [
     {
-      title: "Hostel",
-      icons: null,
+      title: "Overview",
+      icons: <GrOverview />,
+      path: "/admin/Overview",
     },
     {
-      title: "Add Hostel",
-      icons: <FaHotel />,
-      path: "/admin/create-hostel",
-    },
-    {
-      title: "Delete",
-      icons: <AiFillDelete />,
-      path: "/admin/delete-hostel",
-    },
-    {
-      title: "Read",
-      icons: <AiFillRead />,
-      path: "/admin/",
+      title: "Admins",
+      icons: <MdAdminPanelSettings />,
+      path: "/admin/Add",
     },
     {
       title: "Rooms",
+      icons: <IoAdd />,
+      path: "/admin/Rooms",
+    },
+    {
+      title: "Units",
+      icons: <FaPeopleArrows />,
+      path: "/admin/Unit",
+    },
+    {
+      title: "Bookings",
+      icons: <TbBrandBooking />,
+      path: "/admin/Bookings",
+    },
+    {
+      title: "Payments",
+      icons: <MdOutlinePayment />,
+      path: "/admin/Payments",
+    },
+    {
+      title: "Room Allotment",
+      icons: <TfiWrite />,
+      path: "/admin/Room-Allotment",
+    },
+    {
+      title: "Students",
+      icons: <PiStudentBold />,
+      path: "/admin/Student",
+    },
+    {
+      title: "Review",
+      icons: <GoCodeReview />,
+      path: "/admin/Review",
+    },
+    {
+      title: "",
       icons: null,
     },
     {
-      title: "Add",
-      icons: <MdOutlineAddHome />,
-      path: `/admin/add-rooms/${user._id}`,
-    },
-    // navigate(`/${hostel}`);
-    {
-      title: "Booking",
-      icons: <TbBrandBooking />,
-      path: `/admin/bookings/${user._id}`,
+      title: "Profile",
+      icons: <CgProfile />,
+      path: "/admin/Profile",
     },
   ];
 
@@ -108,7 +134,7 @@ export default function Admin() {
       <div
         className={`${
           open ? " w-60" : " w-20"
-        } h-screen bg-[#E1E1E1] duration-500 p-4 md:flex flex-col justify-between hidden`}
+        } h-screen overflow-y-auto overflow-x-hidden bg-[#E1E1E1] duration-500 p-4 md:flex flex-col justify-between hidden`}
         style={{ gridArea: "sidebar", position: "relative" }}
       >
         <IoIosArrowBack
@@ -119,7 +145,11 @@ export default function Admin() {
         />
         <div className="flex items-center justify-center text-white gap-2">
           <img src={logo} className="w-8" />
-          <span className={`${!open && " hidden"} duration-700 font-semibold text-[#636363]`}>
+          <span
+            className={`${
+              !open && " hidden"
+            } duration-700 font-semibold text-[#636363]`}
+          >
             Nice home
           </span>
         </div>
@@ -142,9 +172,11 @@ export default function Admin() {
               <Link
                 key={title}
                 to={path}
-                className={`${
-                  !open && "justify-center"
-                } flex gap-x-4 py-2 px-6 items-center font-semibold rounded-md hover:bg-slate-400 active:bg-slate-400 duration-500`}
+                className={`flex gap-x-4 py-2 px-6 items-center font-semibold rounded-md ${
+                  pathname === path
+                    ? "bg-slate-400"
+                    : "hover:bg-slate-400 active:bg-slate-400 duration-500"
+                } ${!open && "justify-center"}`}
               >
                 <span>{icons}</span>
                 <p className={`${!open && "hidden"} duration-500`}>{title}</p>

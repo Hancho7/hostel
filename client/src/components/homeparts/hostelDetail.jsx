@@ -221,9 +221,9 @@ function HostelDetail() {
                   >
                     <div
                       disabled={room.remainingCapacity === 0}
-                      className={`shadow-lg bg-${
-                        room.remainingCapacity === 0 ? "red" : "blue"
-                      } w-14 h-14 text-center hover:cursor-pointer rounded-md mx-auto relative`}
+                      className={`shadow-lg w-14 h-14 text-center hover:cursor-pointer rounded-md mx-auto relative ${
+                        room.remainingCapacity === 0 ? "bg-red-500" : "bg-blue-500"
+                      }`}
                     >
                       <h1 className="bg-blue-100 border">{room.name}</h1>
                       <p className="border">{room.capacity} in 1</p>

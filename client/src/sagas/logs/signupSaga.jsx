@@ -1,12 +1,17 @@
 import { put, call, takeLatest } from "redux-saga/effects";
-import axios from "../../apis/main"
-import { signup, loading, signupSuccess, error } from "../../features/logs/signupSlice"
+import axios from "../../apis/main";
+import {
+  signup,
+  startLoading,
+  signupSuccess,
+  signupError,
+} from "../../features/logs/signupSlice";
 import { SIGNUP } from "../../apis/endpoints";
 
 // Define the Redux-Saga generator function for signup
 function* handleSignup(actions) {
   try {
-    yield put(loading());
+    yield put(startLoading());
     const response = yield call(axios.post, SIGNUP, actions.payload);
 
     if (response.status === 200) {
@@ -15,7 +20,7 @@ function* handleSignup(actions) {
     } else {
       // Handle error if the response status is not 200
       // You can dispatch an error action here if needed
-      yield put(error("Signup failed"));
+      yield put(signupError("Signup failed"));
     }
   } catch (error) {
     // Handle network errors or other exceptions

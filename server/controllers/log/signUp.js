@@ -19,7 +19,11 @@ export const signUp = async (req, res) => {
     if (user) {
       // Check if the account is verified
       if (user.verified) {
-        res.json("verified"); // User should log in directly
+        res.status(409).json({
+          status: "success",
+          message: "This email has already been verified",
+          code: 409,
+        });
       } else {
         // Check if a verification token exists and is not expired
         const token = await Token.findOne({
@@ -28,9 +32,13 @@ export const signUp = async (req, res) => {
         });
 
         if (token) {
-          res.json("checkEmail"); // User should check their email for verification
+          res.status(200).json({
+            status: "success",
+            message: "Verify your email, a token has been sent",
+            code: 200,
+          });
         } else {
-          await Token.deleteOne({userId: user._id})
+          await Token.deleteOne({ userId: user._id });
           // Create a new verification token
           const newToken = await new Token({
             userId: user._id,
@@ -47,9 +55,16 @@ export const signUp = async (req, res) => {
           );
 
           if (emailSent === "sendEmailError") {
-            res.json("emailNotSent");
+            res.status(500).json({
+              status: "error",
+              message: "Error occurred during email sending",
+              code: 500,
+            });
           } else {
-            res.json("checkEmail"); // Inform the user to check their email for verification
+            res.status(200).json({
+              status: "success",
+              message: "Check your email for verification",
+            });
           }
         }
       }
@@ -78,17 +93,52 @@ export const signUp = async (req, res) => {
         );
 
         if (emailSent === "sendEmailError") {
-          res.json("emailNotSent");
+          res.status(500).json({
+            status: "error",
+            message: "Error occurred during sending of email",
+            code: 500,
+          });
         } else {
-          res.json("checkEmail"); // Inform the user to check their email for verification
+          res.status(200).json({
+            status: "success",
+            message: "Check your email for verification",
+            code: 200,
+          });
         }
+        // ...
       } catch (e) {
         console.log(e);
-        res.status(500).json("Error occurred during registration");
+
+        if (e instanceof Error) {
+          res.status(500).json({
+            status: "error",
+            message: e.message,
+            code: 500,
+          });
+        } else {
+          res.status(500).json({
+            status: "error",
+            message: "An error occured during registration",
+            code: 500,
+          });
+        }
       }
     }
   } catch (e) {
     console.log(e);
-    res.status(500).json("Error occurred");
+
+    if (e instanceof Error) {
+      res.status(500).json({
+        status: "error",
+        message: e.message,
+        code: 500,
+      });
+    } else {
+      res.status(500).json({
+        status: "error",
+        message: "An unexpected error occurred",
+        code: 500,
+      });
+    }
   }
 };
