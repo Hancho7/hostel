@@ -9,27 +9,35 @@ import {
 import { SIGNUP } from "../../apis/endpoints";
 
 // Define the Redux-Saga generator function for signup
-function* handleSignup(actions) {
+function* handleSignup(action) {
   try {
     yield put(startLoading());
-    const response = yield call(axios.post, SIGNUP, actions.payload);
+
+    const formData = new FormData();
+    formData.append("profilePicture", action.payload.profilePicture);
+    formData.append("name", action.payload.name);
+    formData.append("email", action.payload.email);
+    formData.append("password", action.payload.password);
+
+    console.log("formData after appending data", formData); // Log the formData object after appending data
+
+    const response = yield call(axios.post, SIGNUP, formData);
 
     if (response.status === 200) {
-      // Dispatch a success action with the response data
       yield put(signupSuccess(response.data));
     } else {
-      // Handle error if the response status is not 200
-      // You can dispatch an error action here if needed
-      yield put(signupError("Signup failed"));
+      yield put(signupError(response.data));
     }
   } catch (error) {
-    // Handle network errors or other exceptions
     console.error(error);
-    yield put(error("Signup failed"));
+
+    // Handle network errors or unexpected errors
+    const errorMessage = error.response?.data?.message || "An unexpected error occurred";
+
+    yield put(signupError(errorMessage));
   }
 }
 
-// Watch for SIGNUP action and run handleSignup when it occurs
 export function* watchSignup() {
-  yield takeLatest(signup.type, handleSignup);
+  yield takeLatest(signup, handleSignup);
 }

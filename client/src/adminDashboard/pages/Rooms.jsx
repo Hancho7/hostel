@@ -185,7 +185,7 @@ function Rooms() {
         </div>
         <button
           type="submit"
-          className=" bg-slate-900 border-2 p-1 rounded hover:cursor-pointer hover:bg-slate-500"
+          className=" text-white bg-slate-900 border-2 p-1 rounded hover:cursor-pointer hover:bg-slate-500"
         >
           Add
         </button>

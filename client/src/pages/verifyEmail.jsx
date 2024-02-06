@@ -12,14 +12,13 @@ function EmailVerification() {
   console.log("user id", id);
   console.log("token", token);
   const dispatch = useDispatch();
-  const verificationState = useSelector((state) => state.verification);
+  const { message,  loading, success, error} = useSelector((state) => state.verification);
 
   useEffect(() => {
     // Dispatch the `verify` action with id and token to initiate email verification
     dispatch(verify({ id, token }));
   }, [dispatch, id, token]);
 
-  const { loading, success, error } = verificationState;
 
   return (
     <div>
@@ -33,14 +32,14 @@ function EmailVerification() {
         <div className="flex flex-col justify-center items-center w-[80%] my-40 mr-auto ml-auto bg-[#f0f8ff]">
           <Lottie size={20} color="#476faf" animationData={animationData} />
           <h1 className=" text-2xl font-semibold">
-            email has been verified proceed to login
+            {message}
           </h1>
           <h2 className=" text-xl font-semibold text-[#476faf]">
             <Link to="/sign-in">sign in</Link>
           </h2>
         </div>
       )}
-      {error && <p>{error}</p>}
+      {error && <p>{message}</p>}
     </div>
   );
 }

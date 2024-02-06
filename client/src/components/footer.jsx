@@ -3,7 +3,7 @@ import { AiOutlineSend } from "react-icons/ai";
 
 export default function Footer() {
   return (
-    <footer className=" relative grid grid-rows-4 sm:grid-cols-2 sm:grid-rows-2 xl:grid-cols-4 xl:grid-rows-1 p-4 gap-3 bg-[#18428f] text-white from-neutral-50">
+    <footer className=" relative grid grid-rows-4 sm:grid-cols-2 sm:grid-rows-2 xl:grid-cols-4 xl:grid-rows-1 p-4 gap-3 bg-[#18223C] text-white from-neutral-50">
       <div>
         <h4 className="font-semibold">ABOUT NICE HOME</h4>
         <p>

@@ -7,11 +7,10 @@ import { logout } from "../features/logs/loginSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-export default function Navbar() {
+export default function Navbar({ bgColor, position, zIndex }) {
   const Navigate = useNavigate();
   const [nav, setNav] = useState(false);
   const user = useSelector((state) => state.user.user);
-  const { role } = user || {}; // Ensure 'user' is defined, and if not, provide an empty object
   const dispatch = useDispatch();
 
   const handleMediaQueryChange = (e) => {
@@ -25,7 +24,6 @@ export default function Navbar() {
   useEffect(() => {
     const mediaQuery = window.matchMedia("(max-width: 768px)");
 
-    // Initial check and state setting
     handleMediaQueryChange(mediaQuery);
 
     mediaQuery.addEventListener("change", handleMediaQueryChange);
@@ -41,8 +39,18 @@ export default function Navbar() {
     }, 500);
   };
 
+  const navbarStyle = {
+    backgroundColor: bgColor || "transparent",
+    position: position === "sticky" ? "sticky" : "static",
+    top: position === "sticky" ? 0 : "auto",
+    zIndex: zIndex || 0,
+  };
+
   return (
-    <div className="p-4 bg-[#f8f9fa] md:flex md:flex-row md:items-center md:justify-between">
+    <div
+      className="py-8 px-3 lg:px-7 md:flex md:flex-row md:items-center md:justify-between"
+      style={navbarStyle}
+    >
       <div className="flex items-center justify-between">
         <img
           src={logo}
@@ -53,43 +61,25 @@ export default function Navbar() {
         <AiOutlineMenu onClick={handleNav} className="md:hidden duration-700" />
       </div>
       {nav ? (
-        <div className="flex flex-col items-center gap-y-4 md:flex-row md:gap-x-20 duration-700">
+        <div className="flex text-white font-semibold flex-col items-center gap-y-4 md:flex-row md:gap-x-20 duration-700">
           <Link className="h-full" to="/">
             Home
           </Link>
           <Link to="/contact-us">Contact</Link>
           {user ? (
-            // User is logged in
             <>
-              {
-                role === "user" ? (
-                  <>
-                    <Link to={`/user/${user._id}`}>Bookings</Link>
-                    <button
-                      className="bg-[#b03434] w-20 h-8 font-semibold text-white rounded hover:bg-[#7a95c7]"
-                      onClick={() => {
-                        Navigate("/");
-                        dispatch(logout());
-                      }}
-                    >
-                      Logout
-                    </button>
-                  </>
-                ) : role === "manager" ? (
-                  <>
-                    <Link to="/admin">Admin</Link>
-                    <button
-                      className="bg-[#b03434] w-20 h-8 font-semibold text-white rounded hover:bg-[#7a95c7]"
-                      onClick={() => {
-                        Navigate("/");
-                        dispatch(logout());
-                      }}
-                    >
-                      Logout
-                    </button>
-                  </>
-                ) : null /* Handle other roles if needed */
-              }
+              <Link to={`/user/${user._id}`}>Bookings</Link>
+
+              <Link to="/hostels">Hostels</Link>
+              <button
+                className="bg-[#b03434] w-20 h-8 font-semibold text-white rounded hover:bg-[#7a95c7]"
+                onClick={() => {
+                  Navigate("/");
+                  dispatch(logout());
+                }}
+              >
+                Logout
+              </button>
             </>
           ) : (
             // User is not logged in

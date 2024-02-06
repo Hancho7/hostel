@@ -12,13 +12,12 @@ const initialState = {
 
 export const signup = createAction("user/signup");
 
-const SignupSlice = createSlice({
+const signupSlice = createSlice({
   name: "signup",
   initialState,
   reducers: {
     startLoading: (state) => {
       state.loading = true;
-      state.success = false;
       state.error = null;
     },
     signupSuccess: (state, action) => {
@@ -42,5 +41,5 @@ const SignupSlice = createSlice({
   },
 });
 
-export const { startLoading, signupSuccess, signupError } = SignupSlice.actions;
-export default SignupSlice.reducer;
+export const { startLoading, signupSuccess, signupError } = signupSlice.actions;
+export default signupSlice.reducer;

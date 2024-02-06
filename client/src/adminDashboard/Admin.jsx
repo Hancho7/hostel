@@ -6,6 +6,7 @@ import { IoIosArrowBack } from "react-icons/io";
 import logo from "../assets/Logo.png";
 import { MdAdminPanelSettings, MdOutlinePayment } from "react-icons/md";
 import { TbBrandBooking } from "react-icons/tb";
+import { FaHotel } from "react-icons/fa";
 import { IoAdd } from "react-icons/io5";
 import { CgProfile } from "react-icons/cg";
 import { GoCodeReview } from "react-icons/go";
@@ -46,7 +47,7 @@ export default function Admin() {
       path: "/admin/Overview",
     },
     {
-      title: "Admins",
+      title: "Staffs",
       icons: <MdAdminPanelSettings />,
       path: "/admin/Add",
     },
@@ -54,6 +55,11 @@ export default function Admin() {
       title: "Rooms",
       icons: <IoAdd />,
       path: "/admin/Rooms",
+    },
+    {
+      title: "New Hostel",
+      icons: <FaHotel />,
+      path: "/admin/Add-New-hostel",
     },
     {
       title: "Units",

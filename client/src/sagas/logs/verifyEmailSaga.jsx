@@ -13,16 +13,18 @@ function* verifyEmail(action) {
   try {
     // Make the API request to verify the email with correct URL
     const response = yield call(
-      axios.get,
-      `${VERIFY_EMAIL}/${action.payload.id}/${action.payload.token}`
+      axios.post,
+      `${VERIFY_EMAIL}/${action.payload.id}/${action.payload.token}`, action.payload
     );
+    console.log("response", response);
     if (response.status === 200) {
-      yield put(verificationSuccess());
+      yield put(verificationSuccess(response.data));
     } else {
-      yield put(verificationFailure("Email verification failed."));
+      yield put(verificationFailure(response.data));
     }
   } catch (error) {
-    yield put(verificationFailure("Email verification failed."));
+    console.log('error',error)
+    yield put(verificationFailure(error.response.data));
   }
 }
 

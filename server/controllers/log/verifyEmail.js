@@ -1,5 +1,5 @@
-import Token from "../../models/token.js";
-import Users from "../../models/user.js";
+const Token = require( "../../models/token.js");
+const {Users} = require( "../../models/user.js");
 
 export const verifyEmail = async (req, res) => {
   try {

@@ -1,15 +1,16 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/home";
 import ContactUs from "./pages/contactUs";
-import LoginWrapper from "./logics/loginWrapper";
 import SignUp from "./pages/signUp";
+import SignIn from "./pages/signIn";
 import EmailVerification from "./pages/verifyEmail";
 import HostelDetail from "./components/homeparts/hostelDetail";
-import RequireAuth from "./routes/privateRoute";
+import { AdminAuth, StudentAuth } from "./routes/privateRoute";
 import NotFound from "./pages/404";
 import ResetEmail from "./pages/resetEmail";
 import NewPassword from "./pages/newPassword";
-import Components from "./pages/components";
+import Hostels from "./pages/hostels";
+// import Components from "./pages/components";
 import UserBookings from "./pages/bookings";
 
 // ADMIN DASHBOARD IMPORTS
@@ -24,39 +25,52 @@ import Profile from "./adminDashboard/pages/Profile";
 import Unit from "./adminDashboard/pages/Unit";
 import Booking from "./adminDashboard/pages/Bookings";
 import AdminAdd from "./adminDashboard/pages/AdminAdd";
+import AddNewHostel from "./adminDashboard/pages/AddNewHostel";
+
+import AdminSignUp from "./adminDashboard/adminlogs/signUp";
+import AdminSignIn from "./adminDashboard/adminlogs/signIn";
+import VerifyEmail from "./adminDashboard/adminlogs/verifyEmail";
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route element={<Components />}>
-          <Route path="/" element={<Home />} />
-          <Route element={<RequireAuth allowedRoles={["user", "manager"]} />}>
-            <Route path="/:hostelID" element={<HostelDetail />} />
-          </Route>
-          <Route element={<RequireAuth allowedRoles={["user"]} />}>
-            <Route path="/user/:userID" element={<UserBookings />} />
-          </Route>
-
-          <Route path="/contact-us" element={<ContactUs />} />
-          <Route path="/sign-in" element={<LoginWrapper />} />
-          <Route path="/sign-up" element={<SignUp />} />
-
-          {/* RESETTING FORGOTTEN PASSWORD */}
-          <Route path="/forgotten-password" element={<ResetEmail />} />
-          <Route
-            path="/forgotten-password/:id/verify/:token"
-            element={<NewPassword />}
-          />
-          {/* E-MAIL VERIFICATION */}
-          
-          {/* 404 Catch-all route */}
-          <Route path="*" element={<NotFound />} />
+        <Route path="/" element={<Home />} />
+        <Route element={<StudentAuth />}>
+          <Route path="/:hostelID" element={<HostelDetail />} />
         </Route>
+        <Route element={<StudentAuth />}>
+          <Route path="/hostels" element={<Hostels />} />
+        </Route>
+        <Route element={<StudentAuth />}>
+          <Route path="/user/:userID" element={<UserBookings />} />
+        </Route>
+
+        <Route path="/contact-us" element={<ContactUs />} />
+        <Route path="/sign-in" element={<SignIn />} />
+        <Route path="/sign-up" element={<SignUp />} />
+
+        {/* RESETTING FORGOTTEN PASSWORD */}
+        <Route path="/forgotten-password" element={<ResetEmail />} />
+        <Route
+          path="/forgotten-password/:id/verify/:token"
+          element={<NewPassword />}
+        />
+        {/* E-MAIL VERIFICATION */}
+
+        {/* 404 Catch-all route */}
+        <Route path="*" element={<NotFound />} />
+
         <Route path="/verify/:id/:token" element={<EmailVerification />} />
 
         {/* ADMIN DASHBOARD */}
-        <Route element={<RequireAuth allowedRoles={["manager"]} />}>
+        <Route path="/admin/sign-up" element={<AdminSignUp />} />
+        <Route path="/admin/sign-in" element={<AdminSignIn />} />
+        <Route
+          path="/admin/verifying-your-email/:id/hostel-search-admin/:token"
+          element={<VerifyEmail />}
+        />
+        <Route element={<AdminAuth />}>
           <Route path="/admin" element={<Admin />}>
             <Route path="/admin/Overview" element={<Overview />} />
             <Route path="/admin/Add" element={<AdminAdd />} />
@@ -68,6 +82,7 @@ function App() {
             <Route path="/admin/Profile" element={<Profile />} />
             <Route path="/admin/Unit" element={<Unit />} />
             <Route path="/admin/Bookings" element={<Booking />} />
+            <Route path="/admin/Add-New-hostel" element={<AddNewHostel />} />
           </Route>
         </Route>
       </Routes>

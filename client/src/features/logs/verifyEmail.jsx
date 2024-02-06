@@ -6,7 +6,10 @@ const verificationSlice = createSlice({
   name: 'verification',
   initialState: {
     loading: false,
-    error: null,
+    status:null,
+    code:null,
+    message:null,
+    error: false,
     success: false,
   },
   reducers: {
@@ -15,13 +18,22 @@ const verificationSlice = createSlice({
       state.error = null;
       state.success = false;
     },
-    verificationSuccess: (state) => {
+    verificationSuccess: (state,action) => {
       state.loading = false;
       state.success = true;
+      const {code, message, status}= action.payload
+      state.status=status
+      state.message=message
+      state.code=code
     },
     verificationFailure: (state, action) => {
       state.loading = false;
-      state.error = action.payload;
+      console.log('action.payload', action.payload)
+      const {code, message, status}= action.payload
+      state.status=status
+      state.message=message
+      state.code=code
+      state.error = true;
     },
     
   },

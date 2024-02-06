@@ -1,14 +1,9 @@
 import * as yup from "yup";
 
 export const userValidationSchema = yup.object({
-  firstName: yup
+  name: yup
     .string("First name must be letters only")
     .required("This field is required"),
-
-  lastName: yup
-    .string("Last name must be letters only")
-    .required("This field is required"),
-
   email: yup
     .string()
     .email("Invalid email address")
@@ -17,12 +12,6 @@ export const userValidationSchema = yup.object({
       /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
       "Names must only contain letters"
     ),
-
-  phone: yup
-    .string()
-    .required("Phone number is required")
-    .matches(/^[0-9]{10}$/, "Phone number must be exactly 10 digits"),
-
   password: yup
     .string()
     .required("Password is required")

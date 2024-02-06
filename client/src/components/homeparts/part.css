@@ -1,0 +1,32 @@
+.timeline {
+  content: "";
+  background-color: white;
+  position: absolute;
+  height: 100%;
+  z-index: 0;
+  width: 3px;
+  left: 50%;
+  animation: movedown 6s linear forwards;
+}
+
+@keyframes movedown {
+  0% {
+    height: 0%;
+  }
+  100% {
+    height: 100%;
+  }
+}
+
+.Cont{
+  animation: movecont 6s linear forwards;
+}
+
+@keyframes movecont {
+  0% {
+    opacity:  0;
+  }
+  100% {
+    opacity:  1;
+  }
+}

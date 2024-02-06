@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
-import Users from "./user.js";
+const mongoose = require("mongoose");
+// import Users from "./user.js";
 
 const HostelSchema = mongoose.Schema({
   name: {
@@ -7,13 +7,18 @@ const HostelSchema = mongoose.Schema({
     required: true,
     min: 2,
   },
-  location: {
+  phone: {
     type: String,
     required: true,
-    min: 10,
-    max: 50,
+    unique: true,
   },
-  hostelDescription: [
+  images: [
+    {
+      type: String,
+      unique: true,
+    },
+  ],
+  description: [
     {
       type: String,
       required: true,
@@ -21,42 +26,33 @@ const HostelSchema = mongoose.Schema({
       max: 100,
     },
   ],
-  prices: [
-    {
-      numberInRoom: { type: String },
-      price: { type: Number },
-    },
-  ],
-  imageUrl: [
-    {
+  address: {
+    latitude: {
       type: String,
-      unique: true,
     },
-  ],
-  phone: {
+    longitude: {
+      type: String,
+    },
+    formattedAddress: {
+      type: String,
+    },
+  },
+
+  adminID: {
     type: String,
-    required: true,
-    unique: true,
-  },
-  admin: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Users", // Reference to the User model
-    required: true,
   },
 });
 
+// // Define a virtual field for 'fullRooms' to populate rooms
+// HostelSchema.virtual("fullRooms", {
+//   ref: "Room",
+//   localField: "_id",
+//   foreignField: "hostel",
+// });
 
-// Define a virtual field for 'fullRooms' to populate rooms
-HostelSchema.virtual("fullRooms", {
-  ref: "Room",
-  localField: "_id",
-  foreignField: "hostel",
-});
-
-// Optionally, ensure virtuals are included when converting the document to an object
-HostelSchema.set("toObject", { virtuals: true });
-HostelSchema.set("toJSON", { virtuals: true });
-
+// // Optionally, ensure virtuals are included when converting the document to an object
+// HostelSchema.set("toObject", { virtuals: true });
+// HostelSchema.set("toJSON", { virtuals: true });
 
 const Hostel = mongoose.model("Hostel", HostelSchema);
-export default Hostel;
+module.exports= Hostel;
