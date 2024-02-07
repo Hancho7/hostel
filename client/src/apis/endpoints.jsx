@@ -1,7 +1,7 @@
 // AUTHENTICATION AND LOGIN
-export const LOGIN = "/log-In";
+export const LOGIN = "/student-logs/sign-in";
 export const SIGNUP = "/student-logs/sign-up";
-export const VERIFY_EMAIL = "/verify-your-email";
+export const VERIFY_EMAIL = "/student-logs/verify-your-email";
 
 // RESETTING PASSWORD AND EMAIL
 export const ENTEREMAIL = "/forgotten-password";
@@ -12,7 +12,7 @@ export const CREATECOMMENTS = "/create-comments";
 export const READCOMMENTS = "/read-comments";
 
 // MANAGING HOSTELS
-export const UPLOADHOSTEL = "/upload-hostel";
+export const ADDNEWHOSTEL = "/admin/hostel/add-new-hostel";
 export const HOSTEL = "/hostel/home";
 export const HOSTELDETAIL = "/hostel";
 // ROOM MANAGMENT

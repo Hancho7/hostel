@@ -65,12 +65,13 @@ export default function Navbar({ bgColor, position, zIndex }) {
           <Link className="h-full" to="/">
             Home
           </Link>
-          <Link to="/contact-us">Contact</Link>
+
           {user ? (
             <>
+              <Link to="/hostels">Hostels</Link>
+              <Link to="/contact-us">Contact</Link>
               <Link to={`/user/${user._id}`}>Bookings</Link>
 
-              <Link to="/hostels">Hostels</Link>
               <button
                 className="bg-[#b03434] w-20 h-8 font-semibold text-white rounded hover:bg-[#7a95c7]"
                 onClick={() => {
@@ -84,6 +85,7 @@ export default function Navbar({ bgColor, position, zIndex }) {
           ) : (
             // User is not logged in
             <>
+              <Link to="/contact-us">Contact</Link>
               <Link to="/sign-in">Sign In</Link>
               <Link to="/sign-up">Sign Up</Link>
             </>

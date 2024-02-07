@@ -4,6 +4,7 @@ const crypto = require("crypto");
 const { sendEmail } = require("../../utils/sendEmail.js");
 const { saveToBucket, getFromBucket } = require("../../utils/AWSbucket.js");
 const { error } = require("console");
+const verifyEmail = require("../../utils/emailVerification.js")
 
 module.exports = {
   signUp: async (req, res) => {

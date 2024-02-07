@@ -1,15 +1,15 @@
 import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { adminSignIn } from "../../features/admin/signin";
-import { useEffect, useState } from "react";
+
+import ClipLoader from "react-spinners/ClipLoader";
+import { useEffect } from "react";
 
 function AdminSignIn() {
-  const { loading, success, message } = useSelector(
-    (state) => state.adminSignIn
-  );
-  const [btnText, setBtnText] = useState("Sign in");
   const navigate = useNavigate();
+  const location = useLocation();
+  
   const dispatch = useDispatch();
   const formik = useFormik({
     initialValues: {
@@ -22,18 +22,19 @@ function AdminSignIn() {
     },
   });
 
+  const { loading, status, message } = useSelector(
+    (state) => state.adminSignIn
+  );
+
+  const { from } = location.state || { from: { pathname: "/admin" } };
+  console.log("from", from);
+  const { pathname } = from;
+
   useEffect(() => {
-    if (loading) {
-      setBtnText("Signing in...");
-    } else if (success) {
-      navigate("/admin");
-      window.location.reload();
-    
-    } else {
-      setBtnText("Sign in");
+    if (status==="success") {
+      navigate(pathname);
     }
-  }, [loading, success, navigate]);
-  
+  }, [navigate, pathname, status]);
 
   return (
     <div className="flex items-center justify-center h-screen bg-[#1C2841]">
@@ -104,9 +105,15 @@ function AdminSignIn() {
 
             <button
               type="submit"
-              className="font-semibold text-white bg-slate-900 border-2 p-1 rounded hover:cursor-pointer hover:bg-slate-500"
+              className="flex flex-row justify-center gap-2 font-semibold text-white bg-slate-900 border-2 p-1 rounded hover:cursor-pointer hover:bg-slate-500"
             >
-              {btnText}
+              {" "}
+              {loading ? (
+                <ClipLoader size="1.5rem" className=" mt-auto mb-auto" />
+              ) : (
+                <></>
+              )}
+              <span className=" mt-auto mb-auto"> sign in </span>
             </button>
           </form>
         </div>

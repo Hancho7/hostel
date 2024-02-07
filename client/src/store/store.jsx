@@ -13,7 +13,6 @@ const persistConfig = {
   key: "root",
   storage,
   blacklist: [
-    "user",
     "signup",
     "verification",
     "adminSignUp",

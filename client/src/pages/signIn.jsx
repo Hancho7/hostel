@@ -1,27 +1,41 @@
 /* eslint-disable react/no-unescaped-entities */
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import signUp from "../assets/signUp.jpg";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import ClipLoader from "react-spinners/ClipLoader";
 import { NavBarLayout } from "../components/Layouts";
 import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
-import {startLogin} from "../features/logs/loginSlice"
+import { startLogin } from "../features/logs/loginSlice";
+import { useEffect } from "react";
 
 export default function SignIn() {
-  const dispatch = useDispatch()
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { loading, error, message, isAuthenticated } = useSelector(
+    (state) => state.user
+  );
+  console.log("location", location);
+  const dispatch = useDispatch();
   const formik = useFormik({
-    initialValues:{
-      email:"",
-      password: ""
+    initialValues: {
+      email: "",
+      password: "",
     },
-    onSubmit:(values)=>{
-      console.log(values)
-      dispatch(startLogin(values))
-      
+    onSubmit: (values) => {
+      console.log(values);
+      dispatch(startLogin(values));
+    },
+  });
+  const { from } = location.state || { from: { pathname: "/" } };
+  console.log("from", from);
+  const { pathname } = from;
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate(pathname);
     }
-  })
-  const {loading, error ,message}= useSelector((state)=>state.user)
+  }, [navigate, isAuthenticated, pathname]);
   return (
     <NavBarLayout bgColor="#18223C">
       <div className="flex flex-col-reverse gap-y-8 md:gap-y-0 md:flex-row items-center py-8 md:h-screen">
@@ -36,8 +50,7 @@ export default function SignIn() {
             </div>
 
             <p>Login your account</p>
-            {error&&(<p>{message}</p>)}
-            
+            {error && <p>{message}</p>}
 
             {/* Taking the inputs */}
             <input
