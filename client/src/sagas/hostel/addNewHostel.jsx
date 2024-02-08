@@ -15,8 +15,8 @@ function* handleAddNewHostel(action) {
     const formData = new FormData();
     formData.append("nameOfHostel", action.payload.nameOfHostel);
     formData.append("phoneNumber", action.payload.phoneNumber);
-    action.payload.images.forEach((image, index) => {
-      formData.append(`image${index}`, image);
+    action.payload.images.forEach((image) => {
+      formData.append('images', image);
     });
     formData.append("description", action.payload.description);
     formData.append("address[Latitude]", action.payload.address.Latitude);
@@ -28,7 +28,7 @@ function* handleAddNewHostel(action) {
     formData.append("address", action.payload.address);
     formData.append("description", action.payload.description || "");
     const response = yield call(axios.post, ADDNEWHOSTEL, formData);
-    if (response.status === 201) {
+    if (response.status === 201|| response.status === 200) {
       yield put(addNewHostelSuccess(response.data));
     } else {
         yield put(addNewHostelFail(response.data));

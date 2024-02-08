@@ -4,15 +4,17 @@ const { AdminUsers } = require("../../models/adminUser.js");
 
 module.exports = {
   pushHostel: async (req, res) => {
-    const { name, phone, address, description, prices, adminId } = req.body;
-    const { images } = req.files;
-
     console.log("request body", req.body);
     console.log("request files", req.files);
+    const { nameOfHostel, phoneNumber, address, description, secondID } = req.body;
+    const  images  = req.files;
+    console.log(images)
+
+    
 
     try {
       // Find the admin user by their ID
-      const admin = await AdminUsers.findOne({ secondID: adminId });
+      const admin = await AdminUsers.findOne({ adminId: secondID });
 
       if (!admin) {
         return res.status(404).json({
@@ -24,12 +26,11 @@ module.exports = {
 
       // Create a new Hostel object
       const hostelData = new Hostel({
-        name,
+        name: nameOfHostel, 
         address,
         description,
-        prices,
-        phone,
-        adminId,
+        phone:phoneNumber,
+        adminId:secondID,
       });
 
       // Upload files to S3 and retrieve the object keys

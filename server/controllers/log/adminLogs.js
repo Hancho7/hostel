@@ -186,13 +186,14 @@ module.exports = {
 
         if (isMatch) {
           // Login successful
-          const { name, profilePicture, hostelLogo } = user;
+          const { name, profilePicture, hostelLogo, secondID } = user;
           const [newProfilePicture, newHostelLogo] = await Promise.all([
             getFromBucket(profilePicture),
             getFromBucket(hostelLogo),
           ]);
           const response = {
             name,
+            secondID,
             newProfilePicture,
             newHostelLogo,
           };

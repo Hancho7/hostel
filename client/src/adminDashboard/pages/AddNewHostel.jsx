@@ -1,6 +1,10 @@
 import { useState } from "react";
+import ClipLoader from "react-spinners/ClipLoader";
 import { useFormik } from "formik";
+import { useDispatch, useSelector } from "react-redux";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
+import {addNewHostelAction} from "../../features/hostels/addNewHostel"
+
 import { MdAdd } from "react-icons/md";
 import { validationSchema } from "../schemas/newHostelSchema";
 
@@ -17,12 +21,16 @@ const center = {
 const apiKey = import.meta.env.VITE_API_KEY;
 
 function AddNewHostel() {
+  const dispatch = useDispatch();
+  const {data} = useSelector((state)=>state.adminSignIn)
+  const {loading, message, success} = useSelector(state=>state.addnewhostel)
   const [position, setPosition] = useState(null);
   const [descriptions, setDescriptions] = useState([""]);
 
   const formik = useFormik({
     initialValues: {
       nameOfHostel: "",
+      secondID: data.secondID,
       phoneNumber: "",
       images: [],
       description: [""],
@@ -34,6 +42,7 @@ function AddNewHostel() {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
+      dispatch(addNewHostelAction(values))
       console.log("values", values);
     },
   });
@@ -92,9 +101,10 @@ function AddNewHostel() {
 
       <form
         onSubmit={formik.handleSubmit}
-        encType="multipart"
+        encType="multipart/form-data"
         className="flex flex-col gap-7"
       >
+      {success&&(<p className=" text-green-500">{message}</p>)}
         <div className="flex flex-row gap-x-1">
           <div className="flex flex-col flex-1">
             <label htmlFor="name">Name Of Hostel</label>
@@ -232,7 +242,13 @@ function AddNewHostel() {
             className="text-white font-semibold bg-slate-900 w-full border-2 p-1 rounded hover:cursor-pointer hover:bg-slate-500"
             type="submit"
           >
-            Submit
+            {" "}
+              {loading ? (
+                <ClipLoader size="1.5rem" className=" mt-auto mb-auto" />
+              ) : (
+                <></>
+              )}
+              <span className=" mt-auto mb-auto"> Submit </span>
           </button>
         </div>
       </form>
