@@ -1,53 +1,56 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import HashLoader from "react-spinners/HashLoader";
-import { getHostels } from "../../features/hostels/displayHostels.jsx";
-import { addID } from "../../features/hostels/hostelID.jsx";
+import Cliploader from "react-spinners/ClipLoader";
+import { homePageGetHostelsAction } from "../../features/hostels/homePageHostels";
+// import { addID } from "../../features/hostels/hostelID.jsx";
 
 function Part2() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   // Get the hostel data from the Redux store
-  const loading = useSelector((state) => state.hostel.loading);
-  const hostels = useSelector((state) => state.hostel.hostel);
-  const error = useSelector((state) => state.hostel.error);
+  const { success, loading, data } = useSelector(
+    (state) => state.homePageHostels
+  );
 
   // Authenticate user
-  const user = useSelector((state) => state.user.user);
+  // const user = useSelector((state) => state.user.user);
 
   useEffect(() => {
-    dispatch(getHostels());
+    dispatch(homePageGetHostelsAction());
   }, [dispatch]);
 
-  const handleLearnMore = (hostel, currentLocation) => {
-    console.log("currentLocation", currentLocation);
-    if (!user) {
-      navigate("/sign-in", { state: { from: currentLocation } });
-      return;
-    }
+  // const handleLearnMore = (hostel, currentLocation) => {
+  //   console.log("currentLocation", currentLocation);
+  //   if (!user) {
+  //     navigate("/sign-in", { state: { from: currentLocation } });
+  //     return;
+  //   }
 
-    dispatch(addID(hostel));
-    navigate(currentLocation);
+  //   dispatch(addID(hostel));
+  //   navigate(currentLocation);
+  // };
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    navigate("/hostels");
   };
 
-  const handleClick=(e)=>{
-    e.preventDefault();
-    navigate("/hostels")
-
-  }
-
-  console.log(hostels);
+  console.log("data", data);
+  console.log("loading", loading);
   return (
-    <div className="flex flex-col justify-around py-12 px-6">
+    <div className="flex flex-col justify-around py-12 px-6 min-h-screen">
       <h1 className="font-bold text-3xl mb-6 text-center">Featured Hostels</h1>
       <div className="flex flex-col">
-        <button onClick={handleClick} className=" bg-amber-600 self-end hover:bg-amber-400 w-fit font-semibold py-3 px-8 rounded-sm">
+        <button
+          onClick={handleClick}
+          className=" bg-amber-600 self-end hover:bg-amber-400 w-fit font-semibold py-3 px-8 rounded-sm"
+        >
           See more
         </button>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-          {!error ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 ">
+          {/* {!error ? (
             hostels && hostels.length > 0 ? (
               hostels.map((hostel) => (
                 <div
@@ -85,6 +88,40 @@ function Part2() {
             )
           ) : (
             <div></div>
+          )} */}
+
+          {success ? (
+            <>
+              {data.map((hostel) => {
+                // Add curly braces here
+                return (
+                  // Add return statement here
+                  <div key={hostel._id} className="hover:cursor-pointer">
+                    <section>
+                      {loading ? (
+                        <section className="flex items-center justify-center h-56">
+                          <Cliploader className=" text-[]" />
+                        </section>
+                      ) : (
+                        <img
+                          src={hostel.firstImageUrl}
+                          alt={hostel.name}
+                          className="rounded-md w-full"
+                        />
+                      )}
+                    </section>
+                    <section className="flex flex-col items-center">
+                      <h1 className=" text-lg font-medium">{hostel.name}</h1>
+                      <p className=" text-xl font-semibold">{hostel.address}</p>
+                    </section>
+                  </div>
+                );
+              })}
+            </>
+          ) : (
+            <div className="h-screen">
+              No Hostels Available At The Moment...
+            </div>
           )}
         </div>
       </div>

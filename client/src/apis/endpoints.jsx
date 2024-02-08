@@ -13,7 +13,7 @@ export const READCOMMENTS = "/read-comments";
 
 // MANAGING HOSTELS
 export const ADDNEWHOSTEL = "/admin/hostel/add-new-hostel";
-export const HOSTEL = "/hostel/home";
+export const HOMEPAGEHOSTEL = "/student-hostel/get-hostels-for-homepage";
 export const HOSTELDETAIL = "/hostel";
 // ROOM MANAGMENT
 export const ADDROOMS = "/admin/add-rooms";

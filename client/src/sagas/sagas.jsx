@@ -5,7 +5,8 @@ import { watchVerification } from "./logs/verifyEmailSaga";
 import { watchEmailForResetPassword } from "./forgotten/resetEmail";
 import { watchResetPassword } from "./forgotten/resetPassword";
 
-
+// HOME PAGE HOSTELS
+import {watchHomePageHostels} from "./hostel/homePageHostels"
 
 //ADMIN SIGNING UP
 import adminSignupSaga from "./admin/signup"
@@ -32,5 +33,8 @@ export const sagas = [
     adminSignin(),
 
     // ADMIN HOSTEL MANAGEMENT
-    watchAddNewHostel()
+    watchAddNewHostel(),
+
+    // HOME PAGE HOSTELS
+    watchHomePageHostels()
   ]

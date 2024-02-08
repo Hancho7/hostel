@@ -6,13 +6,15 @@ module.exports = {
   // RETRIEVING ONLY THE NAME AND FIRST PICTURE OF ALL HOSTELS
   retrieveHostelsForHomePage: async (req, res) => {
     try {
-      const hostels = await Hostel.find().limit(6);
+      const hostels = await Hostel.find();
 
       const updatedHostels = [];
 
       for (let i = 0; i < hostels.length; i++) {
         const hostel = hostels[i];
-        const firstImageUrl = hostel.imageUrl[0]; // Retrieve only the first image URL
+        const firstImageUrl =
+          hostel.images && hostel.images.length > 0 ? hostel.images[0] : null;
+
         const link = await getFromBucket(firstImageUrl);
 
         // Create a new hostel object with specific data and the first image URL
@@ -20,6 +22,7 @@ module.exports = {
           _id: hostel._id,
           name: hostel.name,
           firstImageUrl: link, // Include only the first image URL
+          address: hostel.address.formattedAddress,
         };
 
         updatedHostels.push(updatedHostel);
@@ -40,10 +43,6 @@ module.exports = {
       });
     }
   },
-
-
-
-
 
   // #########################################################################################
   // USER REQUESTING FOR SPECIFIC HOSTEL
@@ -95,10 +94,6 @@ module.exports = {
     }
   },
 
-
-
-
-
   //##############################################################################
   //ADMIN PAGE REQUESTING THE NAME OF HOSTELS ONLY FOR INPUT
   getNamesOfHostelForthisAdmin: async (req, res) => {
@@ -142,9 +137,6 @@ module.exports = {
     }
   },
 
-
-
-
   //#################################################################################
   // ADMIN REQUESTING FOR HOSTELS
-  };
+};

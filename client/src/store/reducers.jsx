@@ -12,8 +12,6 @@ import hosteID from "../features/hostels/hostelID";
 import resetEmail from "../features/resetPassword/resetEmail";
 import resetPasswordSlice from "../features/resetPassword/resetPassword";
 
-
-
 // ADMIN SIGNING UP AND VERIFYING
 import adminSignupSlice from "../features/admin/signup";
 import adminSigninSlice from "../features/admin/signin";
@@ -22,6 +20,8 @@ import adminEmailVerificationSlice from "../features/admin/verifyEmail";
 // ADMIN HOSTEL
 import addNewHostelSlice from "../features/hostels/addNewHostel";
 
+// HOME PAGE HOSTELS
+import homePageGetHostelsSlice from "../features/hostels/homePageHostels";
 
 export const reducers = {
   // AUTHENTICATION
@@ -37,7 +37,6 @@ export const reducers = {
   // RESET PASSWORD MANAGEMENT
   email: resetEmail,
   resetPassword: resetPasswordSlice,
-  
 
   //ADMIN SIGNING UP
   adminSignUp: adminSignupSlice,
@@ -46,4 +45,7 @@ export const reducers = {
 
   // ADMIN HOSTEL
   addnewhostel: addNewHostelSlice,
+
+  // HOME PAGE HOSTEL
+  homePageHostels: homePageGetHostelsSlice,
 };
