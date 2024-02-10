@@ -26,6 +26,9 @@ const HostelSchema = mongoose.Schema({
       max: 100,
     },
   ],
+  adminID: {
+    type: String,
+  },
   address: {
     latitude: {
       type: String,
@@ -36,10 +39,6 @@ const HostelSchema = mongoose.Schema({
     formattedAddress: {
       type: String,
     },
-  },
-
-  adminID: {
-    type: String,
   },
 });
 
@@ -55,4 +54,4 @@ const HostelSchema = mongoose.Schema({
 // HostelSchema.set("toJSON", { virtuals: true });
 
 const Hostel = mongoose.model("Hostel", HostelSchema);
-module.exports= Hostel;
+module.exports = Hostel;

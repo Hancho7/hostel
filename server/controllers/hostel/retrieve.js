@@ -47,13 +47,12 @@ module.exports = {
   // #########################################################################################
   // USER REQUESTING FOR SPECIFIC HOSTEL
   getSpecificHostelDetails: async (req, res) => {
+    console.log(req.params);
     const { hostelID } = req.params;
     console.log(hostelID);
 
     try {
-      const hostel = await Hostel.findOne({ _id: hostelID }).populate(
-        "fullRooms"
-      );
+      const hostel = await Hostel.findOne({ _id: hostelID });
 
       const manager = await AdminUsers.findOne({ secondID: hostel.adminID });
 
@@ -72,10 +71,12 @@ module.exports = {
       //UPDATING THE UPDATED OBJECT WITH THE HOSTEL OBJECT
       const updatedHostel = {
         ...hostel.toObject(),
-        name: manager.name,
-        email: manager.email,
         imageUrl: updatedImageUrls,
-        profilePic: managerProfilePhotoLink,
+        manager: {
+          name: manager.name,
+          email: manager.email,
+          profilePic: managerProfilePhotoLink || null,
+        },
       };
 
       res.status(200).json({
@@ -106,7 +107,8 @@ module.exports = {
           message: "Invalid second ID",
         });
       }
-      const hostels = await Hostel.findOne({ adminID: secondID });
+      const hostels = await Hostel.find({ adminID: secondID });
+      console.log("hostels", hostels);
       if (!hostels) {
         return res.status(404).json({
           status: "Not found",
@@ -115,9 +117,11 @@ module.exports = {
         });
       }
       const names = [];
-      for (hostel in hostels) {
+      for (let i = 0; i < hostels.length; i++) {
+        const hostel = hostels[i];
         names.push(hostel.name);
       }
+      console.log("names", names);
       res.status(200).json({
         status: "success",
         data: names,
@@ -138,5 +142,5 @@ module.exports = {
   },
 
   //#################################################################################
-  // ADMIN REQUESTING FOR HOSTELS
+  // ADMIN REQUESTING FOR HOSTEL NAMES FOR ROOMS INPUT
 };

@@ -1,11 +1,19 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 const RoomSchema = mongoose.Schema({
-  name: {
+  nameOfHostel: {
     type: String,
     required: true,
   },
-  capacity: {
+  price: {
+    type: Number,
+    required: true,
+  },
+  numberInRoom: {
+    type: Number,
+    required: true,
+  },
+  available: {
     type: Number,
     required: true,
   },
@@ -13,14 +21,18 @@ const RoomSchema = mongoose.Schema({
     type: Number,
     required: true,
   },
+  gender: {
+    type: String,
+    required: true,
+  },
   description: {
     type: String,
   },
   hostel: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Hostel'
+    ref: "Hostel",
   },
 });
 
 const Room = mongoose.model("Room", RoomSchema);
-export default Room;
+module.exports = Room;

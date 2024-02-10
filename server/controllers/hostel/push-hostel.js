@@ -6,15 +6,15 @@ module.exports = {
   pushHostel: async (req, res) => {
     console.log("request body", req.body);
     console.log("request files", req.files);
-    const { nameOfHostel, phoneNumber, address, description, secondID } = req.body;
-    const  images  = req.files;
-    console.log(images)
-
-    
+    const { nameOfHostel, phoneNumber, address, description, secondID } =
+      req.body;
+      console.log('address', address)
+    const images = req.files;
+    console.log(images);
 
     try {
       // Find the admin user by their ID
-      const admin = await AdminUsers.findOne({ adminId: secondID });
+      const admin = await AdminUsers.findOne({ secondID: secondID });
 
       if (!admin) {
         return res.status(404).json({
@@ -26,11 +26,15 @@ module.exports = {
 
       // Create a new Hostel object
       const hostelData = new Hostel({
-        name: nameOfHostel, 
-        address,
+        name: nameOfHostel,
+        address: {
+          latitude: address.Latitude,
+          longitude: address.Longitude,
+          formattedAddress: address.formattedAddress,
+        },
         description,
-        phone:phoneNumber,
-        adminId:secondID,
+        phone: phoneNumber,
+        adminID: secondID,
       });
 
       // Upload files to S3 and retrieve the object keys

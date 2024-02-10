@@ -7,7 +7,7 @@ const adminRouter = express.Router();
 const studentRouter = express.Router();
 
 adminRouter.post("/add-new-hostel", upload.array("images"), pushHostel);
-adminRouter.post("/get-admin-hostel-names", getNamesOfHostelForthisAdmin);
+adminRouter.get("/get-admin-hostel-names/:secondID", getNamesOfHostelForthisAdmin);
 
 
 //STUDENT ROUTES
