@@ -15,6 +15,7 @@ function* handleAddNewHostel(action) {
     const formData = new FormData();
     formData.append("nameOfHostel", action.payload.nameOfHostel);
     formData.append("phoneNumber", action.payload.phoneNumber);
+    formData.append("secondID", action.payload.secondID);
     action.payload.images.forEach((image) => {
       formData.append('images', image);
     });

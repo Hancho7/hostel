@@ -19,9 +19,16 @@ import adminEmailVerificationSlice from "../features/admin/verifyEmail";
 
 // ADMIN HOSTEL
 import addNewHostelSlice from "../features/hostels/addNewHostel";
+import namesOfHostelSlice from "../features/hostels/nameOfHostelForAdmin";
 
 // HOME PAGE HOSTELS
 import homePageGetHostelsSlice from "../features/hostels/homePageHostels";
+
+// USER REQUESTING FOR SPECIFIC HOSTEL DETAIL
+import specificHostelDetailSlice from "../features/hostels/specificHostelDetail";
+
+// ROOM MANAGMENT
+import addnewhostelRoomSlice from "../features/rooms/adminAddRooms"
 
 export const reducers = {
   // AUTHENTICATION
@@ -45,7 +52,14 @@ export const reducers = {
 
   // ADMIN HOSTEL
   addnewhostel: addNewHostelSlice,
+  namesOfHostel: namesOfHostelSlice,
 
   // HOME PAGE HOSTEL
   homePageHostels: homePageGetHostelsSlice,
+
+  // USER REQUESTING FOR SPECIFIC HOSTEL DETAILS
+  specificHostelDetail: specificHostelDetailSlice,
+
+  // ROOMS
+  addnewhostelRoom:addnewhostelRoomSlice,
 };

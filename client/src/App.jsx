@@ -4,7 +4,7 @@ import ContactUs from "./pages/contactUs";
 import SignUp from "./pages/signUp";
 import SignIn from "./pages/signIn";
 import EmailVerification from "./pages/verifyEmail";
-import HostelDetail from "./components/homeparts/hostelDetail";
+import HostelDetail from "./components/specificHostelDetail";
 import { AdminAuth, StudentAuth } from "./routes/privateRoute";
 import NotFound from "./pages/404";
 import ResetEmail from "./pages/resetEmail";
@@ -37,7 +37,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route element={<StudentAuth />}>
-          <Route path="/:hostelID" element={<HostelDetail />} />
+          <Route path="/hostels/:hostelID" element={<HostelDetail />} />
         </Route>
         <Route element={<StudentAuth />}>
           <Route path="/hostels" element={<Hostels />} />

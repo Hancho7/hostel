@@ -37,6 +37,11 @@ function Part2() {
     navigate("/hostels");
   };
 
+  const handleHostelClick = (e, hostelID) => {
+    e.preventDefault();
+    navigate(`/hostels/${hostelID}`);
+  };
+
   console.log("data", data);
   console.log("loading", loading);
   return (
@@ -45,7 +50,7 @@ function Part2() {
       <div className="flex flex-col">
         <button
           onClick={handleClick}
-          className=" bg-amber-600 self-end hover:bg-amber-400 w-fit font-semibold py-3 px-8 rounded-sm"
+          className=" bg-amber-600 self-end transition duration-300 hover:bg-amber-400 w-fit font-semibold py-3 px-8 rounded-sm"
         >
           See more
         </button>
@@ -96,7 +101,11 @@ function Part2() {
                 // Add curly braces here
                 return (
                   // Add return statement here
-                  <div key={hostel._id} className="hover:cursor-pointer">
+                  <div
+                    key={hostel._id}
+                    onClick={(e) => handleHostelClick(e, hostel._id)}
+                    className="hover:cursor-pointer"
+                  >
                     <section>
                       {loading ? (
                         <section className="flex items-center justify-center h-56">

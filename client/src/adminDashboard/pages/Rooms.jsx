@@ -1,6 +1,11 @@
 import { useFormik } from "formik";
 import { validationSchema } from "../schemas/roomsSchema";
+import { nameOfHostelAction } from "../../features/hostels/nameOfHostelForAdmin";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 function Rooms() {
+  const dispatch = useDispatch();
+  let { data } = useSelector((state) => state.adminSignIn);
   const formik = useFormik({
     initialValues: {
       nameOfHostel: "",
@@ -20,6 +25,14 @@ function Rooms() {
     formik.handleChange(event);
     formik.setFieldTouched("role", true);
   };
+
+  useEffect(() => {
+    dispatch(nameOfHostelAction(data.secondID));
+    // console.log(data)
+  }, [data.secondID, dispatch]);
+
+  const { names } = useSelector((state) => state.namesOfHostel);
+  console.log("namesOfHostel", names);
   function handleOnclickAll() {}
   function handleEachHostelOnclick() {}
   return (
@@ -56,9 +69,13 @@ function Rooms() {
               value={formik.values.nameOfHostel}
             >
               <option value="">Select the hostel</option>
-              <option value="Bilson">Bilson</option>
-              <option value="Starleys">Starleys</option>
+              {names?.map((name, index) => (
+                <option key={index} value={name}>
+                  {name}
+                </option>
+              ))}
             </select>
+
             <span className=" font-normal text-sm text-red-600 ">
               {formik.errors.nameOfHostel &&
                 formik.touched.nameOfHostel &&
@@ -104,7 +121,7 @@ function Rooms() {
           </div>
 
           <div className="flex-1">
-            <div >
+            <div>
               <div className="flex flex-row items-center">
                 <span className="border-2 p-1 border-r-0 bg-gray-400 text-black font-semibold">
                   GHc
