@@ -54,7 +54,18 @@ module.exports = {
         hostel: hostel._id,
       });
 
-      await rooms.save();
+      const roomSaved = await rooms.save();
+      if (!roomSaved) {
+        return res.status(500).json({
+          status: "error",
+          message: "Error saving room details",
+          code: 500,
+        });
+      }
+      hostel.rooms.push(roomSaved._id);
+      await hostel.save();
+
+      // console.log("Rooms in the hostel after adding a new one", hostel.rooms);
       res.status(201).json({
         status: "success",
         message: "Rooms have successfully been created",

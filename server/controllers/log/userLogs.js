@@ -4,17 +4,17 @@ const crypto = require("crypto");
 const { sendEmail } = require("../../utils/sendEmail.js");
 const { saveToBucket, getFromBucket } = require("../../utils/AWSbucket.js");
 const { error } = require("console");
-const verifyEmail = require("../../utils/emailVerification.js")
+const verifyEmail = require("../../utils/emailVerification.js");
 
 module.exports = {
   signUp: async (req, res) => {
     console.log("request body", req.body);
     console.log("request file", req.file);
-    const { name, email, password } = req.body;
+    const { name, email, password, gender } = req.body;
     const profilePicture = [req.file];
     console.log("profilePicture", profilePicture);
 
-    if (!name || !email || !password || !profilePicture) {
+    if (!name || !email || !password || !profilePicture || !gender) {
       res.status(400).json({
         status: "error",
         message: "Missing required fields",
@@ -90,6 +90,7 @@ module.exports = {
 
           const data = await new Users({
             name: name,
+            gender: gender,
             email: email,
             password: password,
             profilePicture: profilePictureKeys,

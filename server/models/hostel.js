@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Room = require("./room.js");
 // import Users from "./user.js";
 
 const HostelSchema = mongoose.Schema({
@@ -29,6 +30,12 @@ const HostelSchema = mongoose.Schema({
   adminID: {
     type: String,
   },
+  rooms: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Room",
+    },
+  ],
   address: {
     latitude: {
       type: String,

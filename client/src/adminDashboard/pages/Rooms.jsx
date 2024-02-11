@@ -208,7 +208,6 @@ function Rooms() {
           type="submit"
           className=" text-white bg-slate-900 border-2 p-1 rounded hover:cursor-pointer hover:bg-slate-500"
         >{loading ? "Adding..." : "Add"}
-          Add
         </button>
       </form>
 

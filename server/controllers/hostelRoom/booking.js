@@ -31,15 +31,15 @@ module.exports = {
           code: 404,
         });
       }
-      const room = await Room.findOne({ _id: roomID });
+      const room = await Room.findOne({ _id: roomID, hostel: hostelID });
       if (!room) {
         return res.status(404).json({
           status: "error",
-          message: "This room does not exist",
+          message: "This room does not exist in this hostel",
           code: 404,
         });
       }
-
+      
       // Check if user has already booked this same hostel or room
       const existingBooking = await Booking.findOne({
         userID: userID,

@@ -12,13 +12,13 @@ function Part5() {
   });
 
   return (
-    <div className="h-screen bg-[#18223C] p-5 md:flex md:flex-row">
-      <div className="md:flex-1 font-semibold self-center text-white text-2xl">Follow the steps <br/> to book the hostel of your choice</div>
+    <div className=" min-h-screen bg-[#18223C] p-1 md:p-5 md:flex md:flex-row">
+      <div className="md:flex-1 my-4 md:my-0 font-semibold self-center text-white text-2xl">Follow the steps <br/> to book the hostel of your choice</div>
       {transitions((style, item) =>
         item ? (
           <animated.div
             ref={stepRef}
-            className="md:flex-1 relative flex flex-col justify-between my-4 lg:gap-0"
+            className="md:flex-1 relative flex flex-col justify-between  lg:gap-0 my-4 md:my-0"
             style={{ ...style }}
           >
             <div className="timeline"></div>

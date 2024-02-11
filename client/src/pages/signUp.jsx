@@ -21,6 +21,7 @@ export default function SignUp() {
       name: "",
       email: "",
       password: "",
+      gender: "",
       profilePicture: [],
     },
     validationSchema: userValidationSchema,
@@ -30,7 +31,6 @@ export default function SignUp() {
       resetForm(); // Reset the form after successful submission
     },
   });
-  
 
   const { success, error, status, message, code, loading } = useSelector(
     (state) => state.signup
@@ -44,11 +44,11 @@ export default function SignUp() {
     setSelectedImage(imageUrl);
   };
 
- useEffect(()=>{
-  if(success){
-    formik.resetForm();
-  }
- },[success])
+  useEffect(() => {
+    if (success) {
+      formik.resetForm();
+    }
+  }, [formik, success]);
 
   return (
     <NavBarLayout bgColor="#18223C">
@@ -147,6 +147,38 @@ export default function SignUp() {
                 formik.touched.email &&
                 formik.errors.email}
             </span>
+            <div>
+              <div className="flex gap-x-3 items-center">
+                <span>For gender</span>
+                <div>
+                  <input
+                    type="radio"
+                    name="gender" // Make sure the name matches the key in initialValues
+                    value="Male"
+                    checked={formik.values.gender === "Male"}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                  />{" "}
+                  Male
+                </div>
+                <div>
+                  <input
+                    type="radio"
+                    name="gender" // Make sure the name matches the key in initialValues
+                    value="Female"
+                    checked={formik.values.gender === "Female"}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                  />{" "}
+                  Female
+                </div>
+              </div>
+              <span className=" font-normal text-sm text-red-600 ">
+                {formik.errors.gender &&
+                  formik.touched.gender &&
+                  formik.errors.gender}
+              </span>
+            </div>
 
             <input
               type="password"
@@ -180,7 +212,11 @@ export default function SignUp() {
 
             <button
               type="submit"
-              className={`${loading?"flex items-center justify-center w-10/12 h-10 gap-2": ""}w-10/12 h-10 gap-2 text-white bg-[#476faf] font-semibold hover:bg-[#7a90b3]`}
+              className={`${
+                loading
+                  ? "flex items-center justify-center w-10/12 h-10 gap-2"
+                  : ""
+              }w-10/12 h-10 gap-2 text-white bg-[#476faf] font-semibold hover:bg-[#7a90b3]`}
               disabled={loading}
             >
               {loading && (

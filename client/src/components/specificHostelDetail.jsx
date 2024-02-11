@@ -31,7 +31,19 @@ function HostelDetail() {
         latitude={parseFloat(data?.address?.latitude)}
         longitude={parseFloat(data?.address?.longitude)}
       />
-      {/* Add other hostel details like description, prices, etc. */}
+
+      {/* Display other hostel details */}
+      <h2>Name: {data?.name}</h2>
+      <p>Description: {data?.description}</p>
+      <p>Phone: {data?.phone}</p>
+      <p>Formatted Address: {data?.formattedAddress}</p>
+      <p>Admin ID: {data?.adminID}</p>
+      <p>Manager: {data?.manager?.name}</p>
+      <p>Email: {data?.manager?.email}</p>
+      <p>Profile Picture: {data?.manager?.profilePic}</p>
+      <p>Images: {data?.images.join(", ")}</p>
+      {/* Display other hostel details */}
+
     </div>
   );
 }

@@ -47,7 +47,7 @@ function Part2() {
   return (
     <div className="flex flex-col justify-around py-12 px-6 min-h-screen">
       <h1 className="font-bold text-3xl mb-6 text-center">Featured Hostels</h1>
-      <div className="flex flex-col">
+      <div className="flex flex-col gap-y-4">
         <button
           onClick={handleClick}
           className=" bg-amber-600 self-end transition duration-300 hover:bg-amber-400 w-fit font-semibold py-3 px-8 rounded-sm"

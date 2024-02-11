@@ -52,7 +52,11 @@ module.exports = {
     console.log(hostelID);
 
     try {
-      const hostel = await Hostel.findOne({ _id: hostelID });
+      const hostel = await Hostel.findOne({ _id: hostelID })
+        .populate({
+          path: "rooms",  // optional: exclude the __v field
+        })
+        .exec();
 
       const manager = await AdminUsers.findOne({ secondID: hostel.adminID });
 
