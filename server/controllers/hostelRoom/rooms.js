@@ -13,6 +13,14 @@ module.exports = {
       gender,
       description,
     } = req.body;
+    console.log("nameOfHostel:", nameOfHostel);
+    console.log("price:", price);
+    console.log("secondID:", secondID);
+    console.log("numberInRoom:", numberInRoom);
+    console.log("available:", available);
+    console.log("gender:", gender);
+    console.log("description:", description);
+
     try {
       const admin = await AdminUsers.findOne({ secondID: secondID });
       if (!admin) {

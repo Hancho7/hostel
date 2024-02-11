@@ -20,6 +20,9 @@ import { watchNamesOfhostelsForAdmin } from "./hostel/nameOfHostelForAdmin";
 // USER REQUESTING SPECIFIC HOSTEL DETAILS
 import { watchUserFetchHostelDetail } from "./hostel/specificHostelDetail";
 
+// ADMIN ADDING ROOMS
+import watchAddNewHostelRoom from "./rooms/adminAddRooms";
+
 export const sagas = [
   // AUTHENTICATION
   watchLogin(),
@@ -44,4 +47,7 @@ export const sagas = [
 
   // USER REQUESTING SPECIFIC HOSTEL DETAILS
   watchUserFetchHostelDetail(),
+
+  // ADMIN ADDING ROOMS
+  watchAddNewHostelRoom(),
 ];

@@ -1,8 +1,9 @@
-const handleResponse = (res, status, message, code) => {
+const handleResponse = (res, status, message, code, data) => {
   return res.status(status).json({
-    status: status < 400 ? "success" : "error",
+    status: status,
     message: message,
-    code: code || status,
+    code: code,
+    data: data || null,
   });
 };
 

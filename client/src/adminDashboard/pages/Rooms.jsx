@@ -3,20 +3,24 @@ import { validationSchema } from "../schemas/roomsSchema";
 import { nameOfHostelAction } from "../../features/hostels/nameOfHostelForAdmin";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { addNewHostelRoomAction } from "../../features/rooms/adminAddRooms";
+
 function Rooms() {
   const dispatch = useDispatch();
-  let { data } = useSelector((state) => state.adminSignIn);
+  let { data, loading } = useSelector((state) => state.adminSignIn);
   const formik = useFormik({
     initialValues: {
       nameOfHostel: "",
       numberInRoom: "",
       roomsAvailable: "",
+      secondID: data.secondID,
       pricePerIndividual: "",
       upgradeDescription: "",
       gender: "",
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
+      dispatch(addNewHostelRoomAction(values));
       console.log(values);
     },
   });
@@ -203,7 +207,7 @@ function Rooms() {
         <button
           type="submit"
           className=" text-white bg-slate-900 border-2 p-1 rounded hover:cursor-pointer hover:bg-slate-500"
-        >
+        >{loading ? "Adding..." : "Add"}
           Add
         </button>
       </form>

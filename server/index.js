@@ -8,6 +8,7 @@ const mongoose = require("mongoose");
 
 const adminRoute = require("./route/adminLogs");
 const { AdminRoomsRouter } = require("./route/rooms");
+const { StudentBookingRouter } = require("./route/bookings");
 const userRoute = require("./route/userLogs");
 const deleteExpiredUsers = require("./utils/backgroundJob");
 const { adminHostel, studentHostel } = require("./route/hostel");
@@ -31,6 +32,9 @@ app.use("/admin/hostel", adminHostel);
 
 // ADMIN HOSTEL ROOM ROUTE
 app.use("/admin/hostel/room", AdminRoomsRouter);
+
+// STUDENT BOOKING ROUTE
+app.use("/student/booking", StudentBookingRouter)
 
 //STUDENT HOSTEL ROUTE
 app.use("/student-hostel", studentHostel);
