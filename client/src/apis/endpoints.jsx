@@ -16,6 +16,7 @@ export const ADDNEWHOSTEL = "/admin/hostel/add-new-hostel";
 export const ADMINHOSTELNAMES = "/admin/hostel/get-admin-hostel-names";
 export const HOMEPAGEHOSTEL = "/student-hostel/get-hostels-for-homepage";
 export const USERSPECIFICHOSTELDETAIL = "/student-hostel/get-specific-hostel";
+export const ALLHOSTELS = "/student-hostel/get-all-hostels";
 
 // ROOM MANAGMENT
 export const ADDROOMS = "/admin/hostel/room/add";

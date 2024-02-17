@@ -3,6 +3,7 @@ import {
   GoogleMap,
   LoadScript,
   DirectionsRenderer,
+  Polyline,
 } from "@react-google-maps/api";
 
 const containerStyle = {
@@ -14,6 +15,7 @@ const apiKey = import.meta.env.VITE_API_KEY;
 
 const HostelExactLocation = ({ latitude, longitude }) => {
   const [directions, setDirections] = useState(null);
+  const [distance, setDistance] = useState(null);
 
   const loadScript = (callback) => {
     if (window.google && window.google.maps) {
@@ -47,6 +49,7 @@ const HostelExactLocation = ({ latitude, longitude }) => {
           (result, status) => {
             if (status === maps.DirectionsStatus.OK) {
               setDirections(result);
+              setDistance(result.routes[0].legs[0].distance.text);
             } else {
               console.error("Error fetching directions:", result);
             }
@@ -66,7 +69,21 @@ const HostelExactLocation = ({ latitude, longitude }) => {
         zoom={15}
       >
         {directions && <DirectionsRenderer directions={directions} />}
+        {latitude && longitude && (
+          <Polyline
+            path={[
+              { lat: latitude, lng: longitude },
+              { lat: 5.766230956101201, lng: 0.05077037941015217 },
+            ]}
+            options={{
+              strokeColor: "#FF0000",
+              strokeOpacity: 1.0,
+              strokeWeight: 2,
+            }}
+          />
+        )}
       </GoogleMap>
+      {distance && <p>Distance: {distance}</p>}
     </LoadScript>
   );
 };

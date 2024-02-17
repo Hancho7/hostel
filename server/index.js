@@ -10,6 +10,7 @@ const adminRoute = require("./route/adminLogs");
 const { AdminRoomsRouter } = require("./route/rooms");
 const { StudentBookingRouter } = require("./route/bookings");
 const userRoute = require("./route/userLogs");
+const expiredBookingsJob = require("./utils/expiredBookingsJob");
 const deleteExpiredUsers = require("./utils/backgroundJob");
 const { adminHostel, studentHostel } = require("./route/hostel");
 
@@ -23,6 +24,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 // setInterval(deleteExpiredUsers, 60 * 1000);
+setInterval(expiredBookingsJob, 60 * 60 * 1000);
 
 // ADMIN ROUTE
 app.use("/admin", adminRoute);
@@ -34,7 +36,7 @@ app.use("/admin/hostel", adminHostel);
 app.use("/admin/hostel/room", AdminRoomsRouter);
 
 // STUDENT BOOKING ROUTE
-app.use("/student/booking", StudentBookingRouter)
+app.use("/student/booking", StudentBookingRouter);
 
 //STUDENT HOSTEL ROUTE
 app.use("/student-hostel", studentHostel);

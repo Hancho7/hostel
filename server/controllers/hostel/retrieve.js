@@ -6,6 +6,48 @@ module.exports = {
   // RETRIEVING ONLY THE NAME AND FIRST PICTURE OF ALL HOSTELS
   retrieveHostelsForHomePage: async (req, res) => {
     try {
+      const hostels = await Hostel.find().limit(8);
+
+      const updatedHostels = [];
+
+      for (let i = 0; i < hostels.length; i++) {
+        const hostel = hostels[i];
+        const firstImageUrl =
+          hostel.images && hostel.images.length > 0 ? hostel.images[0] : null;
+
+        const link = await getFromBucket(firstImageUrl);
+
+        // Create a new hostel object with specific data and the first image URL
+        const updatedHostel = {
+          _id: hostel._id,
+          name: hostel.name,
+          firstImageUrl: link, // Include only the first image URL
+          address: hostel.address.formattedAddress,
+        };
+
+        updatedHostels.push(updatedHostel);
+      }
+
+      res.status(200).json({
+        status: "success",
+        message: "Retrieved all hostels.",
+        data: updatedHostels,
+        code: 200,
+      });
+    } catch (error) {
+      console.log(`Error in getting hostels from database : ${error}`);
+      return res.status(500).json({
+        status: "failure",
+        message: "Server error. Please try again later.",
+        error: error.message,
+      });
+    }
+  },
+
+  //#########################################################################################
+  //retrieve all hostels for the users page
+  retrieveAllHostels: async (req, res) => {
+    try {
       const hostels = await Hostel.find();
 
       const updatedHostels = [];
@@ -44,6 +86,51 @@ module.exports = {
     }
   },
 
+  // USER SEARCH FOR SPECIFIC HOSTEL THROUGH SEARCH BAR
+  userSearchHostels: async function (req, res) {
+    const query = req.query.searchQuery;
+
+    if (!query || typeof query !== "string") {
+      return res.status(400).send("Invalid request");
+    }
+
+    let filterObj = {};
+    if (req.query.accommodationType) {
+      filterObj["accommodationType"] = req.query.accommodationType;
+    }
+
+    try {
+      // Perform text search using $text operator
+      const results = await Hostel.find(
+        { $text: { $search: query } },
+        filterObj
+      );
+
+      if (results.length === 0) {
+        return res.status(404).json({
+          status: "failure",
+          message: `No hostels found for the given search criteria`,
+          code: 404,
+        });
+      } else {
+        return res.status(200).json({
+          status: "success",
+          message: `Search successful`,
+          data: results,
+          code: 200,
+        });
+      }
+    } catch (err) {
+      console.log(`Error in searching hostels : ${err}`);
+      return res.status(500).json({
+        status: "server_error",
+        message: "Internal server error",
+        error: err.message,
+        code: 500,
+      });
+    }
+  },
+
   // #########################################################################################
   // USER REQUESTING FOR SPECIFIC HOSTEL
   getSpecificHostelDetails: async (req, res) => {
@@ -54,7 +141,7 @@ module.exports = {
     try {
       const hostel = await Hostel.findOne({ _id: hostelID })
         .populate({
-          path: "rooms",  // optional: exclude the __v field
+          path: "rooms", // optional: exclude the __v field
         })
         .exec();
 

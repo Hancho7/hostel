@@ -3,7 +3,6 @@ import { Link, Outlet, useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { IoIosArrowBack } from "react-icons/io";
-import logo from "../assets/Logo.png";
 import { MdAdminPanelSettings, MdOutlinePayment } from "react-icons/md";
 import { TbBrandBooking } from "react-icons/tb";
 import { FaHotel } from "react-icons/fa";
@@ -19,9 +18,9 @@ import DropdownMenu from "./dropdownMenu";
 
 export default function Admin() {
   const { pathname } = useLocation();
-  const user = useSelector((state) => state.user.user);
+  const { data } = useSelector((state) => state.adminSignIn);
   const navigate = useNavigate();
-  console.log(user);
+  console.log(data);
   const [open, setOpen] = useState(true);
 
   const [isSmallScreen, setIsSmallScreen] = useState(false);
@@ -118,20 +117,23 @@ export default function Admin() {
         style={{
           gridArea: "header",
           display: "flex",
-          justifyContent: "space-between",
+          justifyContent: "flex-end",
+          alignItems: "center",
+          minHeight: "4rem",
           gap: "1rem",
           padding: "1rem",
           backgroundColor: "#E1E1E1",
         }}
       >
-        <div className="hidden md:block"></div>
-
-        <img src={logo} className=" rounded-full w-11" />
         <div className="flex justify-end gap-3">
-          <h1 className=" self-center md:self-auto">{user.firstName}</h1>
-          {!isSmallScreen && <div>Admin</div>}
+          <h1
+            onClick={(e) => [e.preventDefault(), navigate("/admin/Profile")]}
+            className=" self-center md:self-auto hover:cursor-pointer font-semibold duration-500"
+          >
+            {data.name}
+          </h1>
           {isSmallScreen && (
-            <DropdownMenu pages={pages} navigate={navigate} user={user} />
+            <DropdownMenu pages={pages} navigate={navigate} user={data} />
           )}
         </div>
       </div>
@@ -150,7 +152,11 @@ export default function Admin() {
           onClick={() => setOpen(!open)}
         />
         <div className="flex items-center justify-center text-white gap-2">
-          <img src={logo} className="w-8" />
+          <img
+            src={`${data?.newHostelLogo}`}
+            className="w-11 h-11 rounded-full"
+          />
+
           <span
             className={`${
               !open && " hidden"

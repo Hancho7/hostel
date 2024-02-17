@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import Home from "./pages/home";
 import ContactUs from "./pages/contactUs";
 import SignUp from "./pages/signUp";
@@ -72,6 +77,7 @@ function App() {
         />
         <Route element={<AdminAuth />}>
           <Route path="/admin" element={<Admin />}>
+            <Route path="/admin" element={<Navigate to="/admin/Overview" />} />
             <Route path="/admin/Overview" element={<Overview />} />
             <Route path="/admin/Add" element={<AdminAdd />} />
             <Route path="/admin/Rooms" element={<Rooms />} />

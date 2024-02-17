@@ -24,6 +24,9 @@ import namesOfHostelSlice from "../features/hostels/nameOfHostelForAdmin";
 // HOME PAGE HOSTELS
 import homePageGetHostelsSlice from "../features/hostels/homePageHostels";
 
+// ALL HOSTELS
+import allHostelsSlice from "../features/hostels/getAllHostelsForUser";
+
 // USER REQUESTING FOR SPECIFIC HOSTEL DETAIL
 import specificHostelDetailSlice from "../features/hostels/specificHostelDetail";
 
@@ -56,6 +59,8 @@ export const reducers = {
 
   // HOME PAGE HOSTEL
   homePageHostels: homePageGetHostelsSlice,
+  // GETTING ALL HOSTELS BY THE CURRENT LOGGED IN USER
+  allHostelsForUser: allHostelsSlice,
 
   // USER REQUESTING FOR SPECIFIC HOSTEL DETAILS
   specificHostelDetail: specificHostelDetailSlice,

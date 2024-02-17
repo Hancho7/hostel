@@ -11,7 +11,7 @@ const HostelSchema = mongoose.Schema({
   phone: {
     type: String,
     required: true,
-    unique: true,
+    // unique: true,
   },
   images: [
     {

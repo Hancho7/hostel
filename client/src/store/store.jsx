@@ -15,9 +15,7 @@ const persistConfig = {
   blacklist: [
     "signup",
     "verification",
-    "adminSignUp",
     "adminEmailVerification",
-    "adminSignIn",
   ],
 };
 const rootReducer = combineReducers(reducers);

@@ -97,7 +97,7 @@ function Part2() {
 
           {success ? (
             <>
-              {data.map((hostel) => {
+              {data?.map((hostel) => {
                 // Add curly braces here
                 return (
                   // Add return statement here
