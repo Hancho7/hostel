@@ -88,7 +88,7 @@ module.exports = {
 
   // USER SEARCH FOR SPECIFIC HOSTEL THROUGH SEARCH BAR
   userSearchHostels: async function (req, res) {
-    const query = req.query.searchQuery;
+    const name = req.query.name;
 
     if (!query || typeof query !== "string") {
       return res.status(400).send("Invalid request");
@@ -150,7 +150,7 @@ module.exports = {
       const imageKeys = hostel.images;
       const updatedImageUrls = [];
 
-      for (let i = 0; i < imageKeys.length; i++) {
+      for (let i = 0; i < 4; i++) {
         const link = await getFromBucket(imageKeys[i]);
         updatedImageUrls.push(link);
       }
@@ -170,6 +170,7 @@ module.exports = {
         },
       };
 
+      console.log("updatedHostel", updatedHostel);
       res.status(200).json({
         success: true,
         data: updatedHostel,
@@ -182,6 +183,43 @@ module.exports = {
         status: "failure",
         message: "Server error. Please try again later.",
         error: error.message,
+      });
+    }
+  },
+
+  //#############################################################################
+  //USER REQUESTING FOR THE SPECIFIC HOSTEL IMGAGES
+  getSpecificHostelImages: async (req, res) => {
+    const { hostelID } = req.params;
+    try {
+      const hostel = await Hostel.findOne({ _id: hostelID });
+      if (!hostel) {
+        return res.status(404).json({
+          status: "Not found",
+          message: "Hostel not found",
+          code: 404,
+        });
+      }
+      const imageKeys = hostel.images;
+      const updatedImageUrls = [];
+
+      for (let i = 0; i < imageKeys.length; i++) {
+        const link = await getFromBucket(imageKeys[i]);
+        updatedImageUrls.push(link);
+      }
+
+      res.status(200).json({
+        status: "success",
+        data: updatedImageUrls,
+        code: 200,
+        message: "Images retrieved successfully",
+      });
+    } catch (error) {
+      console.log(`Error in getting hostel images from database : ${error}`);
+      res.status(500).json({
+        status: "Server Error",
+        code: 500,
+        message: "Something went wrong!",
       });
     }
   },

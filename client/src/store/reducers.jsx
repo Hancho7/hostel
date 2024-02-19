@@ -30,8 +30,11 @@ import allHostelsSlice from "../features/hostels/getAllHostelsForUser";
 // USER REQUESTING FOR SPECIFIC HOSTEL DETAIL
 import specificHostelDetailSlice from "../features/hostels/specificHostelDetail";
 
+// USER REQUESTING FOR SPECIFIC HOSTEL IMAGES
+import imagesFromSpecificHostelSlice from "../features/hostels/specificHostelImages";
+
 // ROOM MANAGMENT
-import addnewhostelRoomSlice from "../features/rooms/adminAddRooms"
+import addnewhostelRoomSlice from "../features/rooms/adminAddRooms";
 
 export const reducers = {
   // AUTHENTICATION
@@ -65,6 +68,9 @@ export const reducers = {
   // USER REQUESTING FOR SPECIFIC HOSTEL DETAILS
   specificHostelDetail: specificHostelDetailSlice,
 
+  // USER REQUESTING FOR SPECIFIC HOSTEL IMAGES
+  specificHostelImages: imagesFromSpecificHostelSlice,
+
   // ROOMS
-  addnewhostelRoom:addnewhostelRoomSlice,
+  addnewhostelRoom: addnewhostelRoomSlice,
 };

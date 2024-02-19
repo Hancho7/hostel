@@ -14,6 +14,7 @@ import { AdminAuth, StudentAuth } from "./routes/privateRoute";
 import NotFound from "./pages/404";
 import ResetEmail from "./pages/resetEmail";
 import NewPassword from "./pages/newPassword";
+import SpecificHostelImages from "./components/specificHostelImages";
 import Hostels from "./pages/hostels";
 // import Components from "./pages/components";
 import UserBookings from "./pages/bookings";
@@ -43,6 +44,12 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route element={<StudentAuth />}>
           <Route path="/hostels/:hostelID" element={<HostelDetail />} />
+        </Route>
+        <Route element={<StudentAuth />}>
+          <Route
+            path="/hostels/:hostelID/images"
+            element={<SpecificHostelImages />}
+          />
         </Route>
         <Route element={<StudentAuth />}>
           <Route path="/hostels" element={<Hostels />} />

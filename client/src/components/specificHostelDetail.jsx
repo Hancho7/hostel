@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import HostelExactLocation from "./hostelLocation";
 import { specificHostelDetailAction } from "../features/hostels/specificHostelDetail";
+import Carousel from "./carousel";
 import { useEffect } from "react";
 
 function HostelDetail() {
@@ -27,6 +28,9 @@ function HostelDetail() {
 
   return (
     <div className="hostel-detail relative">
+
+      {/* Display images in a carousel */}
+      <Carousel images={data?.imageUrl || []} hostelID={hostelID} />
       <HostelExactLocation
         latitude={parseFloat(data?.address?.latitude)}
         longitude={parseFloat(data?.address?.longitude)}
