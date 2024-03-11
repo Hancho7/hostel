@@ -27,6 +27,10 @@ import { watchUserGetAllHostels } from "./hostel/getAllHostelsForUser";
 // ADMIN ADDING ROOMS
 import watchAddNewHostelRoom from "./rooms/adminAddRooms";
 
+//BOOKINGS
+import watchUserMakeBooking from "./bookings/userBooking";
+import watchUserGetBooking from "./bookings/userGetBookings";
+
 export const sagas = [
   // AUTHENTICATION
   watchLogin(),
@@ -60,4 +64,8 @@ export const sagas = [
 
   // USER REQUESTING ALL HOSTEL DETAILS
   watchUserGetAllHostels(),
+
+  //BOOKINGS
+  watchUserMakeBooking(),
+  watchUserGetBooking(),
 ];

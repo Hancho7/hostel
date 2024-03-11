@@ -10,6 +10,7 @@ const adminRoute = require("./route/adminLogs");
 const { AdminRoomsRouter } = require("./route/rooms");
 const { StudentBookingRouter } = require("./route/bookings");
 const userRoute = require("./route/userLogs");
+const staffRoute = require("./route/staff");
 const expiredBookingsJob = require("./utils/expiredBookingsJob");
 const deleteExpiredUsers = require("./utils/backgroundJob");
 const { adminHostel, studentHostel } = require("./route/hostel");
@@ -34,6 +35,9 @@ app.use("/admin/hostel", adminHostel);
 
 // ADMIN HOSTEL ROOM ROUTE
 app.use("/admin/hostel/room", AdminRoomsRouter);
+
+//ADMIN STAFF ROUTE
+app.use("/hostel-staff", staffRoute);
 
 // STUDENT BOOKING ROUTE
 app.use("/student/booking", StudentBookingRouter);

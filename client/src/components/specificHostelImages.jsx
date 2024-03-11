@@ -33,7 +33,9 @@ function SpecificHostelImages() {
             <IoIosArrowRoundBack />
           </button>
           {data.map((image, index) => (
-            <img key={index} src={image} alt="hostel" />
+            <div className="my-2" key={index}>
+              <img key={index} src={image} alt="hostel" />
+            </div>
           ))}
         </div>
       )}

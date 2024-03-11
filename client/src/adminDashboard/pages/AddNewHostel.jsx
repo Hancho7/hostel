@@ -1,9 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
 import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
-import {addNewHostelAction} from "../../features/hostels/addNewHostel"
+import {
+  addNewHostelAction,
+  clearAddNewHostel,
+} from "../../features/hostels/addNewHostel";
 
 import { MdAdd } from "react-icons/md";
 import { validationSchema } from "../schemas/newHostelSchema";
@@ -22,8 +25,10 @@ const apiKey = import.meta.env.VITE_API_KEY;
 
 function AddNewHostel() {
   const dispatch = useDispatch();
-  const {data} = useSelector((state)=>state.adminSignIn)
-  const {loading, message, success} = useSelector(state=>state.addnewhostel)
+  const { data } = useSelector((state) => state.adminSignIn);
+  const { loading, message, success } = useSelector(
+    (state) => state.addnewhostel
+  );
   const [position, setPosition] = useState(null);
   const [descriptions, setDescriptions] = useState([""]);
 
@@ -42,10 +47,20 @@ function AddNewHostel() {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      dispatch(addNewHostelAction(values))
+      dispatch(addNewHostelAction(values));
       console.log("values", values);
     },
   });
+  useEffect(() => {
+    if (success) {
+      const timer = setTimeout(() => {
+        formik.resetForm();
+        dispatch(clearAddNewHostel());
+      }, 6000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [success, dispatch, formik]);
 
   const onMapClick = (event) => {
     const clickedPosition = {
@@ -104,7 +119,7 @@ function AddNewHostel() {
         encType="multipart/form-data"
         className="flex flex-col gap-7"
       >
-      {success&&(<p className=" text-green-500">{message}</p>)}
+        {success && <p className=" text-green-500">{message}</p>}
         <div className="flex flex-row gap-x-1">
           <div className="flex flex-col flex-1">
             <label htmlFor="name">Name Of Hostel</label>
@@ -243,12 +258,12 @@ function AddNewHostel() {
             type="submit"
           >
             {" "}
-              {loading ? (
-                <ClipLoader size="1.5rem" className=" mt-auto mb-auto" />
-              ) : (
-                <></>
-              )}
-              <span className=" mt-auto mb-auto"> Submit </span>
+            {loading ? (
+              <ClipLoader size="1.5rem" className=" mt-auto mb-auto" />
+            ) : (
+              <></>
+            )}
+            <span className=" mt-auto mb-auto"> Submit </span>
           </button>
         </div>
       </form>

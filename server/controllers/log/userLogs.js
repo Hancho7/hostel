@@ -173,9 +173,11 @@ module.exports = {
 
         if (isMatch) {
           // Login successful
-          const { name, profilePicture } = user;
+          const { name, profilePicture, _id } = user;
+          console.log('user', user)
           const newProfilePicture = await getFromBucket(profilePicture);
           const response = {
+            _id,
             name,
             newProfilePicture,
           };

@@ -36,6 +36,10 @@ import imagesFromSpecificHostelSlice from "../features/hostels/specificHostelIma
 // ROOM MANAGMENT
 import addnewhostelRoomSlice from "../features/rooms/adminAddRooms";
 
+//BOOKINGS
+import userBookingSlice from "../features/bookings/userBooking";
+import userGetBookingsSlice from "../features/bookings/userGetBookings";
+
 export const reducers = {
   // AUTHENTICATION
   user: loginReducer,
@@ -73,4 +77,8 @@ export const reducers = {
 
   // ROOMS
   addnewhostelRoom: addnewhostelRoomSlice,
+
+  // BOOKINGS
+  userBookingRoom: userBookingSlice,
+  userGetBookings: userGetBookingsSlice,
 };

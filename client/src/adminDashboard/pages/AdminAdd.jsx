@@ -1,13 +1,20 @@
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { validationSchema } from "../schemas/adminSchema";
 import { useFormik } from "formik";
+import { nameOfHostelAction } from "../../features/hostels/nameOfHostelForAdmin";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 function AdminAdd() {
+  const dispatch = useDispatch();
+  let { data } = useSelector((state) => state.adminSignIn);
+
   const formik = useFormik({
     initialValues: {
       name: "",
       email: "",
       password: "",
-      role: "manager",
+      nameOfHostel:"",
+      role: "",
       contact: "",
       file: "",
     },
@@ -17,13 +24,18 @@ function AdminAdd() {
     },
   });
 
+  useEffect(() => {
+    dispatch(nameOfHostelAction(data.secondID));
+    // console.log(data)
+  }, [data.secondID, dispatch]);
+  const { names } = useSelector((state) => state.namesOfHostel);
+
   const handleFileChange = (event) => {
     formik.setFieldValue("file", event.currentTarget.files[0]);
   };
-
   const handleSelectChange = (event) => {
     formik.handleChange(event);
-    formik.setFieldTouched("role", true);
+    formik.setFieldTouched("nameOfHostel", true);
   };
 
   const numberOfadmins = 0;
@@ -33,12 +45,12 @@ function AdminAdd() {
       <div>
         <div className="flex flex-row justify-between">
           <div className="flex flex-row items-center gap-2">
-            <IoIosAddCircleOutline /> <span>add admin</span>
+            <IoIosAddCircleOutline /> <span>add staff</span>
           </div>
           <div className=" border-t-2 p-2">
             <h1>
               {numberOfadmins}
-              <span> registered admins</span>
+              <span> registered staffs</span>
             </h1>
           </div>
         </div>
@@ -47,7 +59,7 @@ function AdminAdd() {
         <form className="flex flex-col gap-y-4" onSubmit={formik.handleSubmit}>
           <div className="flex flex-row gap-x-1">
             <div className="flex flex-col flex-1 gap-y-1">
-              <label htmlFor="name">Admin Name</label>
+              <label htmlFor="name"> Name</label>
               <input
                 type="text"
                 value={formik.values.name}
@@ -64,18 +76,16 @@ function AdminAdd() {
               </span>
             </div>
             <div className="flex flex-col flex-1 gap-y-1">
-              <label htmlFor="role">Admin Role</label>
-              <select
-                name="role"
-                id="role"
-                onChange={handleSelectChange}
-                onBlur={formik.handleBlur}
+              <label htmlFor="role">Role</label>
+              <input
+                type="text"
                 value={formik.values.role}
-                className=" border-2 p-1 rounded hover:cursor-pointer"
-              >
-                <option value="manager">manager</option>
-                <option value="Owner">Owner</option>
-              </select>
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                placeholder="role"
+                id="role"
+                className=" border-2 p-1 rounded"
+              />
               <span className=" font-normal text-sm text-red-600 ">
                 {formik.errors.role &&
                   formik.touched.role &&
@@ -83,26 +93,52 @@ function AdminAdd() {
               </span>
             </div>
           </div>
-          <div className=" flex flex-col gap-y-1">
-            <label htmlFor="email">Admin Email</label>
-            <input
-              type="email"
-              placeholder="email"
-              id="email"
-              className=" border-2 p-1 rounded"
-              value={formik.values.email}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-            />
-            <span className=" font-normal text-sm text-red-600 ">
-              {formik.errors.email &&
-                formik.touched.email &&
-                formik.errors.email}
-            </span>
+          <div className=" flex flex-row gap-y-1 gap-x-1">
+            <div className="flex-1 flex flex-col">
+              <label htmlFor="email">Email</label>
+              <input
+                type="email"
+                placeholder="email"
+                id="email"
+                className=" border-2 p-1 rounded"
+                value={formik.values.email}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              />
+              <span className=" font-normal text-sm text-red-600 ">
+                {formik.errors.email &&
+                  formik.touched.email &&
+                  formik.errors.email}
+              </span>
+            </div>
+            <div className="flex-1 flex flex-col">
+              <label htmlFor="nameOfHostel">name Of Hostel</label>
+              <select
+                name="nameOfHostel"
+                id="nameOfHostel"
+                className="flex-1 border-2 rounded p-1 hover:cursor-pointer"
+                onChange={handleSelectChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.nameOfHostel}
+              >
+                <option value="">Select the hostel</option>
+                {names?.map((name, index) => (
+                  <option key={index} value={index}>
+                    {name}
+                  </option>
+                ))}
+              </select>
+
+              <span className=" font-normal text-sm text-red-600 ">
+                {formik.errors.nameOfHostel &&
+                  formik.touched.nameOfHostel &&
+                  formik.errors.nameOfHostel}
+              </span>
+            </div>
           </div>
           <div className="flex flex-row gap-x-1">
             <div className="flex flex-col flex-1 gap-y-1">
-              <label htmlFor="password">Admin Password</label>
+              <label htmlFor="password">Password</label>
               <input
                 type="password"
                 placeholder="password"
@@ -119,7 +155,7 @@ function AdminAdd() {
               </span>
             </div>
             <div className="flex flex-col flex-1 gap-y-1">
-              <label htmlFor="contact">Admin Contact</label>
+              <label htmlFor="contact"> Contact</label>
               <input
                 type="text"
                 placeholder="contact"

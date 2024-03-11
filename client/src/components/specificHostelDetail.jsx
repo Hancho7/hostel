@@ -2,6 +2,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import HostelExactLocation from "./hostelLocation";
 import { specificHostelDetailAction } from "../features/hostels/specificHostelDetail";
+import RoomList from "./roomsAvailable";
+import ManagerInfo from "./managerInfo";
 import Carousel from "./carousel";
 import { useEffect } from "react";
 
@@ -13,7 +15,10 @@ function HostelDetail() {
     (state) => state.specificHostelDetail
   );
 
+  const { user } = useSelector((state) => state.user);
+
   console.log("hostelID", hostelID);
+  console.log("user", user);
 
   useEffect(() => {
     dispatch(specificHostelDetailAction(hostelID));
@@ -27,27 +32,30 @@ function HostelDetail() {
   console.log("fail", fail);
 
   return (
-    <div className="hostel-detail relative">
-
+    <div className="hostel-detail relative flex flex-col gap-y-6">
       {/* Display images in a carousel */}
-      <Carousel images={data?.imageUrl || []} hostelID={hostelID} />
-      <HostelExactLocation
-        latitude={parseFloat(data?.address?.latitude)}
-        longitude={parseFloat(data?.address?.longitude)}
+      <Carousel
+        images={data?.imageUrl || []}
+        hostelID={hostelID}
+        loading={loading}
       />
+      <h2 className=" text-center text-2xl font-semibold"> {data?.name}</h2>
+
+      <ManagerInfo manager={data?.manager} />
+      <RoomList rooms={data?.rooms} userID={user._id} />
+      <div className="md:self-end w-full">
+        <HostelExactLocation
+          latitude={parseFloat(data?.address?.latitude)}
+          longitude={parseFloat(data?.address?.longitude)}
+        />
+      </div>
 
       {/* Display other hostel details */}
-      <h2>Name: {data?.name}</h2>
+
       <p>Description: {data?.description}</p>
-      <p>Phone: {data?.phone}</p>
-      <p>Formatted Address: {data?.formattedAddress}</p>
-      <p>Admin ID: {data?.adminID}</p>
-      <p>Manager: {data?.manager?.name}</p>
-      <p>Email: {data?.manager?.email}</p>
-      <p>Profile Picture: {data?.manager?.profilePic}</p>
-      <p>Images: {data?.images.join(", ")}</p>
-      {/* Display other hostel details */}
 
+      <p>Manager: {data?.manager?.name}</p>
+      {/* Display other hostel details */}
     </div>
   );
 }

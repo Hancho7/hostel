@@ -22,7 +22,11 @@ export const ALLHOSTELS = "/student-hostel/get-all-hostels";
 // ROOM MANAGMENT
 export const ADDROOMS = "/admin/hostel/room/add";
 export const BOOKING = "/hostelRoom/book-room";
-export const GETBOOKING = "/hostelRoom/get-bookings"; //ADMIN GETTINGS BOOKINGS
+
+// GETTING BOOKINGS
+export const USERMAKEBOOKING = "/student/booking/add-booking";
+export const USERGETBOOKING = "/student/booking/view-personal-bookings"; 
+// export const GETBOOKING = "/hostelRoom/get-bookings"; //ADMIN GETTINGS BOOKINGS
 export const GETUSERBOOKING = "/hostelRoom/user-bookings";
 
 // ADMIN HOSTELS

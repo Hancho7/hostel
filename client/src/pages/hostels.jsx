@@ -60,7 +60,7 @@ function Hostels() {
                         <img
                           src={hostel.firstImageUrl}
                           alt={hostel.name}
-                          className="rounded-md w-full"
+                          className="rounded-md w-full h-full"
                         />
                       )}
                     </section>
